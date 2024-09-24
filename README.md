@@ -75,3 +75,9 @@ npm run dev
 [chore] 異動環境檔
 ```
 
+# Git Merge
+use
+```bash
+git merge --no-ff
+```
+
