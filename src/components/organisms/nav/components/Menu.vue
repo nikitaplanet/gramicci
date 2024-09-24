@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts" setup>
-import NLink from '@components/atoms/NLink.js';
+import NLink from '@components/atoms/NLink.vue';
 </script>
 
 <style lang="scss" scoped></style>

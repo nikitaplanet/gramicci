@@ -10,8 +10,8 @@
 </template>
 
 <script lang="ts" setup>
-import Logo from '@components/organisms/nav/components/Logo.js';
-import Menu from '@components/organisms/nav/components/Menu.js';
+import Logo from '@components/organisms/nav/components/Logo.vue';
+import Menu from '@components/organisms/nav/components/Menu.vue';
 </script>
 
 <style lang="scss" scoped></style>
