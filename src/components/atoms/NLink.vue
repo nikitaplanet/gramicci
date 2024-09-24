@@ -1,22 +1,23 @@
 <template>
-    <a class="text-sm font-medium transition ease-in hover:underline-offset-2 hover:text-gray-700 hover:underline hover:font-medium" :href="link" :target="target">
-        <slot/>
-    </a>
+	<a
+		:href="link"
+		:target="target"
+		class="text-sm font-medium transition ease-in hover:underline-offset-2 hover:text-gray-700 hover:underline hover:font-medium">
+		<slot />
+	</a>
 </template>
 
 <script lang="ts" setup>
 defineProps({
-    link: {
-        type: String,
-        default: ''
-    },
-    target: {
-        type: String,
-        default: '_blank'
-    }
-})
+	link: {
+		type: String,
+		default: '',
+	},
+	target: {
+		type: String,
+		default: '_blank',
+	},
+});
 </script>
 
-<style scoped lang="scss">
-
-</style>
+<style lang="scss" scoped></style>

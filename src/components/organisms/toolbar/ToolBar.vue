@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-import NButton from '@components/atoms/NButton.js';
+import NButton from '@components/atoms/NButton.vue';
 
 const emit = defineEmits(['saveData', 'importData']);
 
