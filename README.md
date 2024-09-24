@@ -35,6 +35,7 @@ Gramicci Editor Tool
 - Vue3<br/>
 - Vite<br/>
 - TypeScript<br/>
+  - Remind: src/enum 定義常數<br/>
 - Pinia<br/>
 
 # Build SetUp
@@ -50,3 +51,18 @@ npm install
 # serve project
 npm run dev
 ```
+# Git Branch
+- main <br>
+  - develop
+    - nikita-[feature] <br>
+    - dd-[feature] <br>
+
+# Git Commit
+```bash
+[feature] 功能項目
+[fix] 修復項目
+[style] 僅異動樣式
+[refactor] 重構項目
+[chore] 異動環境檔
+```
+
