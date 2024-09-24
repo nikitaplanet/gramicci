@@ -1,4 +1,4 @@
 export enum BUTTON_TYPE {
-    DEFAULT = 1,
-    TOOL
+	DEFAULT = 1,
+	TOOL,
 }

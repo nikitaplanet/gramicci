@@ -1,3 +1,3 @@
 export enum BLOCK_TYPE {
-    image = 'image',
+	image = 'image',
 }

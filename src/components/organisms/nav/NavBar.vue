@@ -1,0 +1,17 @@
+<template>
+	<div class="h-24 w-full fixed z-10 p-8 border-b border-b-gray-100 bg-white">
+		<div class="h-full w-full max-w-8xl m-auto flex flex-row justify-start items-center">
+			<Logo />
+			<div class="ml-8">
+				<Menu />
+			</div>
+		</div>
+	</div>
+</template>
+
+<script lang="ts" setup>
+import Logo from '@components/organisms/nav/components/Logo.js';
+import Menu from '@components/organisms/nav/components/Menu.js';
+</script>
+
+<style lang="scss" scoped></style>
