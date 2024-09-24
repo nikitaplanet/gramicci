@@ -5,11 +5,11 @@ Gramicci Editor Tool
 協助 Gramicci 將 Shopline 商品詳細頁下方描述公版快速編排<br/>
 參考網站：https://www.gramiccitwshop.com/products/tactical-vest<br>
 業主 Figma (公版樣貌)：https://www.figma.com/design/BuctAdMrQzvIUowW5roJeT/GRAMICCI<br>
-交付時程：11 月前結案
+交付時程：10 月底前結案
 
-溝通確認時間表：<br>
-  -9/28 交付基楚功能版本供業主參考
-  -後續每週推展進度
+溝通確認時間表：<br/>
+  - 9/28 交付基楚功能版本供業主參考<br/>
+  - 後續每週推展進度
 
 # 開發項目
 使用編輯器 [Editor.js](https://editorjs.io/base-concepts/) 工具讓業主方便排版文字圖片，工程協助將編輯好的內容轉為 HTML Tag 格式方便貼至 Shopline 後台。<br/>
@@ -37,6 +37,15 @@ Gramicci Editor Tool
 - TypeScript<br/>
   - Remind: src/enum 定義常數<br/>
 - Pinia<br/>
+- Tailwind<br/>
+
+## 元件管理參考
+[原子設計](https://medium.com/uxeastmeetswest/%E7%B6%B2%E9%A0%81%E8%A8%AD%E8%A8%88-atomic-design%E7%B0%A1%E4%BB%8B%E5%8F%8A%E5%B7%A5%E4%BD%9C%E5%AF%A6%E4%BE%8B-42e666358d52) <br/>
+- atoms 原子：為網頁構成的基本元素，HTML的tags，例如標籤、輸入，或是一個按鈕，也可以為抽象的概念，例如字體、色調等。<br/>
+- molecules 分子：由元素構成的簡單UI物件<br/>
+- organisms 組織：相對分子而言，較為複雜的構成物，由原子及分子所組成。<br/>
+
+* 這次依需求拆分上述資料夾
 
 # Build SetUp
 ```bash
