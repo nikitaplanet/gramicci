@@ -1,16 +1,24 @@
 <template>
-	<button :class="{'n-button__tool': buttonType === BUTTON_TYPE.TOOL}" @click="mainAction" type="button">
+	<button
+		:class="{'n-button__toggle': buttonType === BUTTON_TYPE.TOGGLE, 'n-button__toggle--unactive': !isActive}"
+		@click="mainAction"
+		class="n-button"
+		type="button">
 		<slot />
 	</button>
 </template>
 
 <script lang="ts" setup>
-import {BUTTON_TYPE} from '@/enum/ui/button';
+import {BUTTON_TYPE} from '@components/atoms/index';
 
 defineProps({
 	buttonType: {
-		type: BUTTON_TYPE,
-		default: BUTTON_TYPE.TOOL,
+		type: Number,
+		default: BUTTON_TYPE.DEFAULT,
+	},
+	isActive: {
+		type: Boolean,
+		default: true,
 	},
 });
 
@@ -23,8 +31,30 @@ function mainAction() {
 
 <style lang="scss" scoped>
 .n-button {
-	&__tool {
-		@apply px-4 font-medium transition ease-in text-sm hover:text-gray-700 hover:underline hover:underline-offset-2;
+	font-size: 14px;
+	line-height: 1.5;
+	font-weight: bold;
+	padding: 10px 15px;
+	letter-spacing: 1px;
+	background-color: black;
+	color: white;
+	border-radius: 0.6rem;
+
+	&__toggle {
+		padding: 0;
+		background-color: transparent;
+		color: black;
+		text-decoration: underline;
+		transition: 0.2s ease;
+
+		&--unactive {
+			opacity: 0.5;
+			text-decoration: none;
+
+			&:hover {
+				opacity: 1;
+			}
+		}
 	}
 }
 </style>
