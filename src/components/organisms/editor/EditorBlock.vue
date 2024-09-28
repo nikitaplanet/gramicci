@@ -21,7 +21,7 @@ import Underline from '@editorjs/underline';
 import IndentTune from 'editorjs-indent-tune';
 import Button from '@ikbenbas/editorjs-button';
 
-const props = defineProps({
+defineProps({
 	data: {
 		type: Array,
 		default: () => [],
@@ -29,17 +29,6 @@ const props = defineProps({
 });
 
 const editor = ref(null);
-
-const saveEditor = () => {
-	editor.value
-		.save()
-		.then((outputData) => {
-			console.log(outputData);
-		})
-		.catch((err) => {
-			console.log(err);
-		});
-};
 
 const {data} = toRefs(
 	reactive({
@@ -128,13 +117,43 @@ const uploadEditorMedia = (url) => {
 	});
 };
 
+const getEditorData = async () => {
+	return await editor.value.save();
+};
+
 defineExpose({
-	saveEditor,
+	getEditorData,
 });
 </script>
 
 <style lang="scss">
 .image-tool__image-picture {
 	width: 100%;
+}
+
+.ce-block__content {
+	h1 {
+		font-size: 36px;
+	}
+
+	h2 {
+		font-size: 30px;
+	}
+
+	h3 {
+		font-size: 26px;
+	}
+
+	h4 {
+		font-size: 22px;
+	}
+
+	h5 {
+		font-size: 18px;
+	}
+
+	h6 {
+		font-size: 16px;
+	}
 }
 </style>
