@@ -1,6 +1,6 @@
 <template>
 	<div class="logo">
-		<img alt="GRAMICCI" src="../../../../assets/img/logo/logo.png" />
+		<img alt="GRAMICCI" src="~@/assets/img/logo/logo.png" />
 	</div>
 </template>
 
@@ -8,7 +8,7 @@
 
 <style lang="scss" scoped>
 .logo {
-	height: 60px;
+	height: 100%;
 
 	img {
 		height: 100%;
