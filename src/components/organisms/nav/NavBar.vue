@@ -1,6 +1,6 @@
 <template>
 	<div class="h-24 w-full fixed z-10 p-8 border-b border-b-gray-100 bg-white">
-		<div class="h-full w-full max-w-8xl m-auto flex flex-row justify-start items-center">
+		<div class="h-full w-full m-auto flex flex-row justify-start items-center">
 			<Logo />
 			<div class="ml-8">
 				<Menu />
