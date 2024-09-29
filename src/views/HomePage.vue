@@ -5,12 +5,12 @@
 	</NavBar>
 
 	<!--Editor-->
-	<div class="w-full py-36">
+	<div class="w-full pt-[96px]">
 		<div>
-			<div class="pt-8">
-				<h1 class="w-full font-bold text-xl text-center pb-4">-內容-</h1>
-				<EditorBlock ref="editorRef" />
-			</div>
+			<TiptapEditor />
+<!--			<div class="pt-8">-->
+<!--				<EditorBlock ref="editorRef" />-->
+<!--			</div>-->
 		</div>
 	</div>
 
@@ -29,6 +29,7 @@ import Menu from '@components/organisms/nav/components/Menu.vue';
 import Logo from '@components/organisms/nav/components/Logo.vue';
 import FullPageModal from '@components/organisms/modal/FullPageModal.vue';
 import ExportTemplate from '@components/organisms/editor/ExportTemplate.vue';
+import TiptapEditor from '@components/organisms/editor/TiptapEditor.vue';
 
 const editorRef = ref(null);
 const savedData = ref(null);
