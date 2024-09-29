@@ -1,7 +1,7 @@
 <template>
 	<NavBar>
 		<Logo />
-		<Menu @exportTemplate="exportTemplate" @loadTemplate="loadTemplate" @saveTemplate="saveTemplate" />
+		<MenuList @exportTemplate="exportTemplate" @loadTemplate="loadTemplate" @saveTemplate="saveTemplate" />
 	</NavBar>
 
 	<!--Editor-->
@@ -21,7 +21,7 @@
 <script lang="ts" setup>
 import {ref} from 'vue';
 import NavBar from '@components/organisms/nav/NavBar.vue';
-import Menu from '@components/organisms/nav/components/Menu.vue';
+import MenuList from '@components/organisms/nav/components/MenuList.vue';
 import Logo from '@components/organisms/nav/components/Logo.vue';
 import FullPageModal from '@components/organisms/modal/FullPageModal.vue';
 import ExportTemplate from '@components/organisms/editor/ExportTemplate.vue';
