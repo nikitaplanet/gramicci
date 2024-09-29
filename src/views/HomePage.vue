@@ -8,9 +8,6 @@
 	<div class="w-full pt-[96px]">
 		<div>
 			<TiptapEditor />
-<!--			<div class="pt-8">-->
-<!--				<EditorBlock ref="editorRef" />-->
-<!--			</div>-->
 		</div>
 	</div>
 
@@ -24,7 +21,6 @@
 <script lang="ts" setup>
 import {ref} from 'vue';
 import NavBar from '@components/organisms/nav/NavBar.vue';
-import EditorBlock from '@components/organisms/editor/EditorBlock.vue';
 import Menu from '@components/organisms/nav/components/Menu.vue';
 import Logo from '@components/organisms/nav/components/Logo.vue';
 import FullPageModal from '@components/organisms/modal/FullPageModal.vue';
