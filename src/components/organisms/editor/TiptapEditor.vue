@@ -156,9 +156,9 @@
 		<div class="flex flex-col">
 			<EditorContent :editor="editorInstance" />
 
-			<div class="mx-4 border-t border-gray-300 py-3 text-right text-sm text-gray-500">
-				{{ editorInstance?.storage.characterCount.characters() }} 字, {{ editorInstance?.storage.characterCount.words() }} 詞
-			</div>
+			<!--			<div class="mx-4 border-t border-gray-300 py-3 text-right text-sm text-gray-500">-->
+			<!--				{{ editorInstance?.storage.characterCount.characters() }} 字, {{ editorInstance?.storage.characterCount.words() }} 詞-->
+			<!--			</div>-->
 		</div>
 
 		<div class="px-4 py-3 text-sm text-gray-700">
