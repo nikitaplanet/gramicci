@@ -1,6 +1,7 @@
 <template>
-	<div id="tiptap" class="max-w-[800px] mx-auto my-5 relative divide-y divide-gray-400 border border-gray-400">
-		<div id="tiptap-toolbar" class="divide-x divide-gray-400">
+	<div v-if="editorInstance" id="tiptap" class="w-full mx-auto">
+		<div id="tiptap-toolbar" class="bg-tool-background sticky top-[96px] left-0">
+			<!--Toolbar-->
 			<TiptapToolbarGroup>
 				<TiptapToolbarButton
 					:disabled="!editorInstance?.can().chain().focus().undo().run()"
@@ -153,12 +154,10 @@
 			</TiptapToolbarGroup>
 		</div>
 
-		<div class="flex flex-col">
-			<EditorContent :editor="editorInstance" />
-
-			<!--			<div class="mx-4 border-t border-gray-300 py-3 text-right text-sm text-gray-500">-->
-			<!--				{{ editorInstance?.storage.characterCount.characters() }} 字, {{ editorInstance?.storage.characterCount.words() }} 詞-->
-			<!--			</div>-->
+		<div class="w-full">
+			<div class="flex flex-col max-w-[800px] mx-auto">
+				<EditorContent :editor="editorInstance" />
+			</div>
 		</div>
 
 		<div class="px-4 py-3 text-sm text-gray-700">
@@ -183,7 +182,7 @@
 
 <script lang="ts" setup>
 import {onBeforeUnmount, onMounted, ref} from 'vue';
-import {EditorContent, useEditor} from '@tiptap/vue-3';
+import {EditorContent, useEditor, FloatingMenu} from '@tiptap/vue-3';
 import type DataTable from '@/models/table';
 import {
 	IconArrowBackUp,
@@ -287,6 +286,7 @@ const editorInstance = useEditor({
 		TableCell,
 		Gapcursor,
 		Image,
+		FloatingMenu,
 	],
 	onUpdate: ({editor}) => {
 		contentResult.value = editor.getHTML();
@@ -309,15 +309,12 @@ function updateLink(value?: string) {
 }
 
 function insertImage(url: string) {
-	console.log('url', url);
 	editorInstance.value?.chain().focus().setImage({src: url}).run();
 }
 
 function insertYoutubeVideo(url: string) {
 	editorInstance.value?.commands.setYoutubeVideo({
 		src: url,
-		width: 400,
-		height: 300,
 	});
 }
 
@@ -344,5 +341,34 @@ onBeforeUnmount(() => {
 <style lang="scss" scoped>
 #tiptap {
 	min-height: calc(100vh - 96px - 40px);
+}
+
+/* Bubble menu */
+.bubble-menu {
+	background-color: white;
+	border: 1px solid #eff0f1;
+	border-radius: 0.7rem;
+	box-shadow: 0 3px 15px -3px rgba(0, 0, 0, 0.3);
+	display: flex;
+	padding: 0.3em;
+
+	button {
+		font-size: 14px;
+		background-color: unset;
+		padding: 5px;
+		border-radius: 5px;
+
+		&:hover {
+			background-color: #f8f8f8;
+		}
+
+		&.is-active {
+			background-color: #f8f8f8;
+
+			&:hover {
+				background-color: rgba(0, 0, 0, 0.2);
+			}
+		}
+	}
 }
 </style>
