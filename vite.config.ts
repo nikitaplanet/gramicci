@@ -5,7 +5,7 @@ import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	base: 'https://nikitaplanet.github.io/gramicci/web/',
+	base: 'https://nikitaplanet.github.io/gramicci/web',
 	resolve: {
 		alias: {
 			'@': path.resolve(__dirname, 'src'),
