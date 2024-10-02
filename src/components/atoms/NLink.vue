@@ -1,7 +1,7 @@
 <template>
 	<component
 		v-bind="linkProps"
-		:class="{'n-link--disabled': disabled, 'n-link--block': isBlock}"
+		:class="{'n-link--disabled': disabled, 'n-link--block': isBlock, 'n-link--hasUnderline': hasUnderline}"
 		:href="isAnchorLink ? href : null"
 		:is="tag"
 		:to="isRouterLink ? to : null"
@@ -32,6 +32,10 @@ const props = defineProps({
 		default: false,
 	},
 	isBlock: {
+		type: Boolean,
+		default: false,
+	},
+	hasUnderline: {
 		type: Boolean,
 		default: false,
 	},
@@ -96,6 +100,10 @@ const handleClick = (event) => {
 	&--disabled {
 		color: #9e9e9e;
 		cursor: default;
+	}
+
+	&--hasUnderline {
+		text-decoration: underline;
 	}
 
 	&:not(.n-link--disabled):hover {
