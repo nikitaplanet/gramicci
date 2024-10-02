@@ -21,32 +21,36 @@
 		</FullPageModal>
 	</transition>
 
-	<SaveTemplateModal v-model:modelValue="isShowSaveTemplate" :templateValue="savedData" title="儲存模板" />
+	<SaveTemplateModal v-model:modelValue="isShowTemplateModal" :templateValue="savedData" title="儲存模板" />
 </template>
 <script lang="ts" setup>
-import {ref, computed} from 'vue';
+import {ref} from 'vue';
 import NavBar from '@components/organisms/nav/NavBar.vue';
 import EditorBlock from '@components/organisms/editor/EditorBlock.vue';
 import Menu from '@components/organisms/nav/components/Menu.vue';
 import Logo from '@components/organisms/nav/components/Logo.vue';
 import FullPageModal from '@components/organisms/modal/FullPageModal.vue';
 import ExportTemplate from '@components/organisms/editor/ExportTemplate.vue';
-import SaveTemplateModal from '@components/organisms/save/saveTemplateModal.vue';
-import {teleportProps} from 'element-plus/lib/components/teleport/index.js';
+import SaveTemplateModal from '@components/organisms/templateModal/saveTemplateModal.vue';
 
 const editorRef = ref(null);
 const savedData = ref(null);
 
 const isShowExport = ref(false);
+const templateMode = ref('save');
 
 const saveTemplate = () => {
-	isShowSaveTemplate.value = true;
+	templateMode.value = 'save';
+	isShowTemplateModal.value = true;
 	if (editorRef.value) {
 		savedData.value = editorRef.value.getEditorData();
 	}
 };
 
-const loadTemplate = () => {};
+const loadTemplate = () => {
+	templateMode.value = 'load';
+	isShowTemplateModal.value = true;
+};
 
 const exportTemplate = async () => {
 	if (editorRef.value) {
@@ -57,7 +61,5 @@ const exportTemplate = async () => {
 };
 
 // 儲存模板
-const isShowSaveTemplate = ref(false);
+const isShowTemplateModal = ref(false);
 </script>
-
-<style lang="scss"></style>
