@@ -1,6 +1,6 @@
 <template>
 	<div v-if="editor" id="tiptap">
-		<div class="bg-tool-background sticky top-[79px] left-0 z-10">
+		<div class="bg-tool-background sticky top-[79px] left-0 z-20">
 			<HistoryTool :editor="editor" />
 			<HeadingTool :editor="editor" />
 			<TextStyleTool :editor="editor" />

@@ -1,5 +1,5 @@
 <template>
-	<div class="w-screen h-screen fixed top-0 left-0 z-10 bg-gray-300 p-5 overflow-y-scroll">
+	<div class="w-screen h-screen fixed top-0 left-0 z-50 bg-gray-300 p-5 overflow-y-scroll">
 		<div class="flex justify-end items-center flex-row">
 			<NButton @click="close">關閉</NButton>
 		</div>
