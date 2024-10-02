@@ -25,7 +25,7 @@
 						<DialogPanel
 							:class="[maxWidth ?? 'max-w-md']"
 							class="flex w-full transform flex-col space-y-6 overflow-hidden rounded-xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-							<DialogTitle class="text-lg font-medium leading-6 text-gray-900" as="h3">{{ title }} </DialogTitle>
+							<DialogTitle class="text-2xl font-medium leading-6 text-gray-900" as="h3">{{ title }} </DialogTitle>
 							<slot />
 						</DialogPanel>
 					</TransitionChild>

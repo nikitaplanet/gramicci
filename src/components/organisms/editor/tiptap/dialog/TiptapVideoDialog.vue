@@ -4,7 +4,7 @@
 			<div class="flex flex-col space-y-5">
 				<InputContainer>
 					<Label for="input-add-youtube-url">輸入 Youtube 連結</Label>
-					<Input v-model="inputYoutubeUrlRef" id="input-add-youtube-url" required type="url" />
+					<Input v-model="inputYoutubeUrlRef" id="input-add-youtube-url" placeholder="輸入連結" required type="url" />
 				</InputContainer>
 				<div class="flex flex-row justify-end space-x-3">
 					<button @click="closeDialog" class="rounded-md px-4 py-3 text-sm font-medium text-gray-600 hover:bg-gray-100" type="button">
@@ -19,10 +19,10 @@
 
 <script lang="ts" setup>
 import {ref} from 'vue';
-import Dialog from './Dialog.vue';
-import InputContainer from './InputContainer.vue';
-import Input from './Input.vue';
-import Label from './Label.vue';
+import Dialog from '../../../modal/Dialog.vue';
+import InputContainer from '../../../form/InputContainer.vue';
+import Input from '../../../form/Input.vue';
+import Label from '../../../form/Label.vue';
 
 defineProps<{
 	show: boolean;
