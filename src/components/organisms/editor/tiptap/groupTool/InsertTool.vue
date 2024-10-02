@@ -21,7 +21,7 @@
 			<IconMinus class="h-5 w-5" />
 		</TiptapToolbarButton>
 
-		<TiptapToolbarButton @click="editor.chain().focus().setHorizontalRule().run()" label="Horizontal Line">
+		<TiptapToolbarButton :isActive="showCommonTextList" @click="toggleCommonTextList" label="文">
 			<div class="h-5 w-5 flex justify-center items-center">文</div>
 		</TiptapToolbarButton>
 	</TiptapToolbarGroup>
@@ -49,6 +49,8 @@ import TiptapTableDialog from '@components/organisms/editor/tiptap/dialog/Tiptap
 import TiptapLinkDialog from '@components/organisms/editor/tiptap/dialog/TiptapLinkDialog.vue';
 import {ref} from 'vue';
 
+const emit = defineEmits(['toggleCommonTextList']);
+
 const props = defineProps({
 	editor: {
 		type: Object,
@@ -61,6 +63,7 @@ const showAddLinkDialog = ref(false);
 const showAddYoutubeDialog = ref(false);
 const showAddImageDialog = ref(false);
 const showAddTableDialog = ref(false);
+const showCommonTextList = ref(false);
 
 // Data
 const currentLinkInDialog = ref('');
@@ -101,6 +104,11 @@ function insertTable(table: DataTable) {
 
 function insertImage(url: string) {
 	props.editor?.chain().focus().setImage({src: url}).run();
+}
+
+function toggleCommonTextList() {
+	showCommonTextList.value = !showCommonTextList.value;
+	emit('toggleCommonTextList', showCommonTextList.value);
 }
 </script>
 

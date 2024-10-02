@@ -6,11 +6,15 @@
 			<TextStyleTool :editor="editor" />
 			<TextAlignTool :editor="editor" />
 			<ListTool :editor="editor" />
-			<InsertTool :editor="editor" />
+			<InsertTool :editor="editor" @toggleCommonTextList="toggleCommonTextList" />
 			<TableEditTool :editor="editor" />
+			<div v-if="isShowCommonTextList" class="bg-tool-background">
+				<CommonTextList @insertCommonText="insertCommonText" />
+			</div>
 		</div>
+
 		<div class="w-full">
-			<div class="flex flex-col max-w-[900px] min-h-96 mx-auto bg-white my-8 p-5 rounded-lg shadow-xl">
+			<div class="flex flex-col max-w-[900px] min-h-96 mx-auto bg-white my-8 p-5 rounded-lg sm:rounded-none sm:my-0 sm:mb-8 shadow-xl">
 				<EditorContent :editor="editor" />
 			</div>
 		</div>
@@ -57,9 +61,11 @@ import TextAlignTool from '@components/organisms/editor/tiptap/groupTool/TextAli
 import ListTool from '@components/organisms/editor/tiptap/groupTool/ListTool.vue';
 import InsertTool from '@components/organisms/editor/tiptap/groupTool/InsertTool.vue';
 import TableEditTool from '@components/organisms/editor/tiptap/groupTool/TableEditTool.vue';
+import CommonTextList from '@components/organisms/editor/tiptap/groupTool/CommonTextList.vue';
 
 export default {
 	components: {
+		CommonTextList,
 		TableEditTool,
 		InsertTool,
 		ListTool,
@@ -72,12 +78,8 @@ export default {
 	data() {
 		return {
 			editor: null,
-			showAddLinkDialog: false,
-			showAddTableDialog: false,
-			showAddImageDialog: false,
-			showAddYoutubeDialog: false,
-			currentLinkInDialog: '',
 			contentResult: '',
+			isShowCommonTextList: false,
 		};
 	},
 	mounted() {
@@ -165,8 +167,11 @@ export default {
 				type: 'tiptapButton',
 			});
 		},
-		insertTextAtCursor(text) {
+		insertCommonText(text) {
 			this.editor.chain().focus().insertContent(text).run();
+		},
+		toggleCommonTextList(val) {
+			this.isShowCommonTextList = val;
 		},
 		getEditorHTML() {
 			return this.contentResult;

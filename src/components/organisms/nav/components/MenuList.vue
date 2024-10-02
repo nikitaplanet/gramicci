@@ -12,14 +12,6 @@
 			<img alt="Save" src="~@/assets/img/icons/print.svg" />
 			<span class="block sm:hidden">轉出模板</span>
 		</NLink>
-		<NLink @click="editRegularWords">
-			<img alt="Save" src="~@/assets/img/icons/regularly_words.svg" />
-			<span class="block sm:hidden">常用文字</span>
-		</NLink>
-		<NLink @click="editTables">
-			<img alt="Save" src="~@/assets/img/icons/tables.svg" />
-			<span class="block sm:hidden">常用表格</span>
-		</NLink>
 	</div>
 </template>
 
