@@ -9,7 +9,7 @@ export default {
 			colors: {
 				'button-disabled': '#9E9E9E',
 				'main-background': '#181D22',
-				'tool-background': '#F5F5F5',
+				'tool-background': '#f9f9f9',
 			},
 		},
 	},

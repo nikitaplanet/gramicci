@@ -5,9 +5,9 @@
 	</NavBar>
 
 	<!--Editor-->
-	<div class="w-full pt-[96px]">
+	<div class="w-full pt-[79px]">
 		<div>
-			<TiptapEditor />
+			<TiptapEditor ref="editorRef" />
 		</div>
 	</div>
 
@@ -33,18 +33,15 @@ const savedData = ref(null);
 const isShowExport = ref(false);
 
 const saveTemplate = () => {
-	if (editorRef.value) {
-		savedData.value = editorRef.value.getEditorData();
-	}
+	savedData.value = editorRef?.value.getEditorHTML();
 };
 
 const loadTemplate = () => {};
 
 const exportTemplate = async () => {
 	if (editorRef.value) {
-		savedData.value = await editorRef.value.getEditorData();
+		savedData.value = editorRef?.value.getEditorHTML();
 		isShowExport.value = true;
-		console.log('savedData.value ', savedData.value.blocks);
 	}
 };
 </script>

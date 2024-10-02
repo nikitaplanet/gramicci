@@ -1,7 +1,7 @@
 <template>
   <input
     v-model="proxyModel"
-    class="rounded-md border border-gray-400 px-3 py-2 text-gray-800 focus:ring-blue-800"
+    class="rounded-md border border-gray-400 px-3 py-2 text-gray-800 focus:ring-black"
   />
 </template>
 
