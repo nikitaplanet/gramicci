@@ -1,16 +1,13 @@
 <template>
 	<NavBar>
 		<Logo />
-		<Menu @exportTemplate="exportTemplate" @loadTemplate="loadTemplate" @saveTemplate="saveTemplate" />
+		<MenuList @exportTemplate="exportTemplate" @loadTemplate="loadTemplate" @saveTemplate="saveTemplate" />
 	</NavBar>
 
 	<!--Editor-->
-	<div class="w-full py-36">
+	<div class="w-full pt-[79px]">
 		<div>
-			<div class="pt-8">
-				<h1 class="w-full font-bold text-xl text-center pb-4">-內容-</h1>
-				<EditorBlock ref="editorRef" />
-			</div>
+			<TiptapEditor ref="editorRef" />
 		</div>
 	</div>
 
@@ -27,13 +24,13 @@
 <script lang="ts" setup>
 import {ref} from 'vue';
 import NavBar from '@components/organisms/nav/NavBar.vue';
-import EditorBlock from '@components/organisms/editor/EditorBlock.vue';
-import Menu from '@components/organisms/nav/components/Menu.vue';
+import MenuList from '@components/organisms/nav/components/MenuList.vue';
 import Logo from '@components/organisms/nav/components/Logo.vue';
 import FullPageModal from '@components/organisms/modal/FullPageModal.vue';
 import ExportTemplate from '@components/organisms/editor/ExportTemplate.vue';
 import SaveTemplateModal from '@components/organisms/templateModal/SaveTemplateModal.vue';
 import LoadTemplateModal from '@components/organisms/templateModal/LoadTemplateModal.vue';
+import TiptapEditor from '@components/organisms/editor/TiptapEditor.vue';
 
 const editorRef = ref(null);
 const savedData = ref(null);
@@ -44,9 +41,7 @@ const isShowExport = ref(false);
 const isShowSaveTemplateModal = ref(false);
 const saveTemplate = () => {
 	isShowSaveTemplateModal.value = true;
-	if (editorRef.value) {
-		savedData.value = editorRef.value.getEditorData();
-	}
+	savedData.value = editorRef?.value.getEditorHTML();
 };
 
 // 載入模板
@@ -60,9 +55,8 @@ const updateTemplate = (data) => {
 
 const exportTemplate = async () => {
 	if (editorRef.value) {
-		savedData.value = await editorRef.value.getEditorData();
+		savedData.value = editorRef?.value.getEditorHTML();
 		isShowExport.value = true;
-		console.log('savedData.value ', savedData.value.blocks);
 	}
 };
 </script>

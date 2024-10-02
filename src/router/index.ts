@@ -1,4 +1,4 @@
-import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router';
+import {createRouter, createWebHashHistory, RouteRecordRaw} from 'vue-router';
 import HomePage from '@/views/HomePage.vue';
 
 const routes: Array<RouteRecordRaw> = [
@@ -11,7 +11,7 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 const router = createRouter({
-	history: createWebHistory(),
+	history: createWebHashHistory(),
 	routes: routes,
 	scrollBehavior() {
 		return {top: 0};
