@@ -1,6 +1,6 @@
 <template>
 	<div id="export-template" class="w-full">
-		<div class="mt-5 bg-white rounded-2xl p-5">
+		<div class="mt-5 bg-white rounded-lg p-5">
 			<div class="flex justify-end items-center">
 				<transition>
 					<div v-if="isCopied" class="text-sm mr-4 text-green-700 font-bold">已複製！</div>
@@ -8,7 +8,7 @@
 				<NLink @click="handleCopy" hasUnderline>複製</NLink>
 			</div>
 
-			<div class="mt-2 text-gray-800">
+			<div class="mt-2 text-gray-800 break-words">
 				{{ savedData }}
 			</div>
 		</div>
