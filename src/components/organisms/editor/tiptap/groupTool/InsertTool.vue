@@ -48,6 +48,7 @@ import TiptapImageDialog from '@components/organisms/editor/tiptap/dialog/Tiptap
 import TiptapTableDialog from '@components/organisms/editor/tiptap/dialog/TiptapTableDialog.vue';
 import TiptapLinkDialog from '@components/organisms/editor/tiptap/dialog/TiptapLinkDialog.vue';
 import {ref} from 'vue';
+import {Image} from '@components/organisms/editor/tiptap/dialog';
 
 const emit = defineEmits(['toggleCommonTextList']);
 
@@ -102,8 +103,8 @@ function insertTable(table: DataTable) {
 		.run();
 }
 
-function insertImage(url: string) {
-	props.editor?.chain().focus().setImage({src: url}).run();
+function insertImage(imageObj: Image) {
+	props.editor?.chain().focus().setFigure({src: imageObj.url, caption: imageObj.caption}).run();
 }
 
 function toggleCommonTextList() {

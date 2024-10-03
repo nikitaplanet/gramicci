@@ -9,7 +9,9 @@ export default {
 			colors: {
 				'button-disabled': '#9E9E9E',
 				'main-background': '#181D22',
+				'card-background': '#efefef',
 				'tool-background': '#f9f9f9',
+				'code-background': '#272823',
 			},
 			screens: {
 				sm: {max: '767px'},

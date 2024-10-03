@@ -1,6 +1,6 @@
 <template>
 	<TransitionRoot :show="show" appear as="template">
-		<Dialog :open="show" @close="closeDialog" class="relative z-10" as="div">
+		<Dialog :open="show" @close="closeDialog" class="relative z-50" as="div">
 			<TransitionChild
 				as="template"
 				enter="duration-300 ease-out"
@@ -9,10 +9,10 @@
 				leave="duration-200 ease-in"
 				leave-from="opacity-100"
 				leave-to="opacity-0">
-				<div class="fixed inset-0 bg-black bg-opacity-25" />
+				<div class="fixed inset-0 bg-black bg-opacity-25 z-30" />
 			</TransitionChild>
 
-			<div class="fixed inset-0 overflow-y-auto">
+			<div class="fixed inset-0 overflow-y-auto z-40">
 				<div class="flex min-h-full items-center justify-center p-6 text-center">
 					<TransitionChild
 						as="template"
