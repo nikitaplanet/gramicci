@@ -1,7 +1,13 @@
 <template>
 	<component
 		v-bind="linkProps"
-		:class="{'n-link--disabled': disabled, 'n-link--block': isBlock, 'n-link--hasUnderline': hasUnderline}"
+		:class="{
+			'n-link--disabled': disabled,
+			'n-link--block': isBlock,
+			'n-link--hasUnderline': hasUnderline,
+			'text-white': isLight,
+			'text-black': !isLight,
+		}"
 		:href="isAnchorLink ? href : null"
 		:is="tag"
 		:to="isRouterLink ? to : null"
@@ -36,6 +42,10 @@ const props = defineProps({
 		default: false,
 	},
 	hasUnderline: {
+		type: Boolean,
+		default: false,
+	},
+	isLight: {
 		type: Boolean,
 		default: false,
 	},
@@ -82,7 +92,6 @@ const handleClick = (event) => {
 	align-items: center;
 	flex-direction: row;
 	grid-gap: 8px;
-	color: black;
 	border: none;
 	font-size: 14px;
 	line-height: 19.6px;

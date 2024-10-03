@@ -7,6 +7,11 @@
 					<Input v-model="inputLinkRef" id="input-link-url" class="mt-2" placeholder="輸入連結" type="url" />
 				</InputContainer>
 
+				<InputContainer>
+					<Label for="input-link-url">輸入圖片註解</Label>
+					<Input v-model="inputCaptionRef" id="input-link-url" class="mt-2" placeholder="輸入文字" type="text" />
+				</InputContainer>
+
 				<div class="flex flex-row justify-end space-x-3">
 					<button @click="closeDialog" class="rounded-lg px-4 py-3 text-sm font-medium text-gray-600 hover:bg-gray-100" type="button">
 						返回
@@ -28,13 +33,14 @@ import InputContainer from '../../../form/InputContainer.vue';
 defineProps<{show: boolean}>();
 const emit = defineEmits(['close', 'insert']);
 const inputLinkRef = ref<string>();
+const inputCaptionRef = ref<string>();
 
 function closeDialog() {
 	emit('close');
 }
 
 function insertImage() {
-	emit('insert', inputLinkRef.value);
+	emit('insert', {url: inputLinkRef.value, caption: inputCaptionRef.value});
 	emit('close');
 }
 </script>
