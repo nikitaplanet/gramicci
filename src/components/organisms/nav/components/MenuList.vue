@@ -8,10 +8,6 @@
 			<img alt="Save" src="~@/assets/img/icons/load.svg" />
 			<span class="block sm:hidden">載入模板</span>
 		</NLink>
-		<NLink @click="exportTemplate">
-			<img alt="Save" src="~@/assets/img/icons/print.svg" />
-			<span class="block sm:hidden">轉出模板</span>
-		</NLink>
 	</div>
 </template>
 
@@ -26,18 +22,6 @@ const saveTemplate = () => {
 
 const loadTemplate = () => {
 	emit('loadTemplate');
-};
-
-const exportTemplate = () => {
-	emit('exportTemplate');
-};
-
-const editRegularWords = () => {
-	emit('editRegularWords');
-};
-
-const editTables = () => {
-	emit('editTables');
 };
 </script>
 

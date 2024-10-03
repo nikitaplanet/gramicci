@@ -1,7 +1,14 @@
 <template>
-	<div v-if="editor" id="tiptap">
+	<div v-if="editor" :class="{'tiptapContent--showOuterBorder': isShowBorderOuter}" id="tiptap" class="tiptapContent">
 		<div class="bg-tool-background sticky top-[79px] left-0 z-20">
 			<HistoryTool :editor="editor" />
+			<EditorStyleTool
+				:isPreviewMobile="isPreviewMobile"
+				:isShowBorderOuter="isShowBorderOuter"
+				:isShowHtml="isShowHtml"
+				@toggleBorderOuter="toggleBorderOuter"
+				@toggleDevice="toggleDevice"
+				@toggleHtml="toggleHtml" />
 			<HeadingTool :editor="editor" />
 			<TextStyleTool :editor="editor" />
 			<TextAlignTool :editor="editor" />
@@ -13,9 +20,17 @@
 			</div>
 		</div>
 
-		<div class="w-full">
-			<div class="flex flex-col max-w-[900px] min-h-96 mx-auto bg-white my-8 p-5 rounded-lg sm:rounded-none sm:my-0 sm:mb-8 shadow-xl">
+		<div v-show="!isShowHtml" class="w-full">
+			<div
+				:class="{'max-w-[800px]': !isPreviewMobile, 'max-w-[500px]': isPreviewMobile}"
+				class="flex flex-col min-h-96 mx-auto bg-white my-8 p-8 rounded-lg sm:rounded-none sm:my-0 sm:mb-8 shadow-xl">
 				<EditorContent :editor="editor" />
+			</div>
+		</div>
+
+		<div v-if="isShowHtml">
+			<div class="w-full max-w-[800px] m-auto my-8 sm:my-0">
+				<ExportTemplate :savedData="contentResult" />
 			</div>
 		</div>
 	</div>
@@ -62,10 +77,14 @@ import TextAlignTool from '@components/organisms/editor/tiptap/groupTool/TextAli
 import ListTool from '@components/organisms/editor/tiptap/groupTool/ListTool.vue';
 import InsertTool from '@components/organisms/editor/tiptap/groupTool/InsertTool.vue';
 import TableEditTool from '@components/organisms/editor/tiptap/groupTool/TableEditTool.vue';
+import EditorStyleTool from '@components/organisms/editor/tiptap/groupTool/EditorStyleTool.vue';
 import CommonTextList from '@components/organisms/editor/tiptap/groupTool/CommonTextList.vue';
+
+import ExportTemplate from '@components/organisms/editor/ExportTemplate.vue';
 
 export default {
 	components: {
+		EditorStyleTool,
 		CommonTextList,
 		TableEditTool,
 		InsertTool,
@@ -75,12 +94,16 @@ export default {
 		HeadingTool,
 		HistoryTool,
 		EditorContent,
+		ExportTemplate,
 	},
 	data() {
 		return {
 			editor: null,
 			contentResult: '',
+			isPreviewMobile: false,
 			isShowCommonTextList: false,
+			isShowBorderOuter: false,
+			isShowHtml: false,
 		};
 	},
 	mounted() {
@@ -180,6 +203,15 @@ export default {
 		getEditorHTML() {
 			return this.contentResult;
 		},
+		toggleDevice(val) {
+			this.isPreviewMobile = val;
+		},
+		toggleBorderOuter() {
+			this.isShowBorderOuter = !this.isShowBorderOuter;
+		},
+		toggleHtml() {
+			this.isShowHtml = !this.isShowHtml;
+		},
 	},
 };
 </script>
@@ -189,8 +221,15 @@ export default {
 	min-height: calc(100vh - 96px - 40px);
 }
 
+.tiptapContent {
+	&--showOuterBorder {
+		.ProseMirror {
+			border: 1px solid #dfdfdf;
+		}
+	}
+}
+
 .ProseMirror {
-	padding: 1rem;
 	min-height: 200px;
 	position: relative;
 

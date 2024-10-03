@@ -1,6 +1,6 @@
 <template>
 	<div id="export-template" class="w-full">
-		<div class="mt-5 rounded-lg p-5 bg-code-background">
+		<div class="rounded-lg p-5 bg-code-background sm:rounded-none">
 			<div class="flex justify-end items-center">
 				<transition>
 					<div v-if="isCopied" class="text-sm mr-3 text-gray-200 font-bold">已複製！</div>
@@ -13,7 +13,7 @@
 
 			<div class="mt-2 text-gray-800">
 				<div v-highlight>
-					<pre class="whitespace-pre-wrap break-words rounded-lg text-sm"><code class="html">{{
+					<pre class="whitespace-pre-wrap break-words text-sm"><code class="html">{{
                             savedData
                         }}</code></pre>
 				</div>
