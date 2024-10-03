@@ -1,7 +1,14 @@
 <template>
-	<div v-if="editor" id="tiptap">
+	<div v-if="editor" :class="{'tiptapContent--showOuterBorder': isShowBorderOuter}" id="tiptap" class="tiptapContent">
 		<div class="bg-tool-background sticky top-[79px] left-0 z-20">
 			<HistoryTool :editor="editor" />
+			<EditorStyleTool
+				:isPreviewMobile="isPreviewMobile"
+				:isShowBorderOuter="isShowBorderOuter"
+				:isShowHtml="isShowHtml"
+				@toggleBorderOuter="toggleBorderOuter"
+				@toggleDevice="toggleDevice"
+				@toggleHtml="toggleHtml" />
 			<HeadingTool :editor="editor" />
 			<TextStyleTool :editor="editor" />
 			<TextAlignTool :editor="editor" />
@@ -13,9 +20,30 @@
 			</div>
 		</div>
 
-		<div class="w-full">
-			<div class="flex flex-col max-w-[900px] min-h-96 mx-auto bg-white my-8 p-5 rounded-lg sm:rounded-none sm:my-0 sm:mb-8 shadow-xl">
+		<div v-show="!isShowHtml" class="w-full">
+			<div
+				:class="{'max-w-[800px]': !isPreviewMobile, 'max-w-[500px]': isPreviewMobile}"
+				class="flex flex-col min-h-96 mx-auto bg-white my-8 p-8 rounded-lg sm:rounded-none sm:my-0 sm:mb-8 shadow-xl">
 				<EditorContent :editor="editor" />
+				<div v-show="!isEditable" class="remarkBlog">
+					<h5>
+						尺寸數據皆為官方數值，可以參照手邊現有衣服尺寸比對大小。<br />
+						平量數據將以「寬」表示 EX. 腰寬、臀寬、褲口寬 等<br />
+						整圈數據將以「圍」表示 EX. 腰圍、臀圍、褲口圍 等 <br />
+						為避免腰帶在洗滌中打卷纏繞，建議使用洗衣袋。<br />
+						*調節環皆可透過單手輕鬆調節，切勿使用蠻力扯開，如不清楚使用方法，歡迎詢問。<br />
+						*由於布料染色工法的特性，一開始著用時可能會有因爲汗水、雨水加上摩擦導致沾色到淺色布料的情況。<br />
+						*淺色和深色衣物建議分開洗滌。<br />
+						*貼身衣物類和配件類商品，皆不提供退換貨服務，購買前請謹慎思考。<br />
+						*如有其他產品相關問題，歡迎透過官網訊息或官方社群媒體訊息詢問，謝謝！<br />
+					</h5>
+				</div>
+			</div>
+		</div>
+
+		<div v-if="isShowHtml">
+			<div class="w-full max-w-[800px] m-auto my-8 sm:my-0">
+				<ExportTemplate :savedData="contentResult" />
 			</div>
 		</div>
 	</div>
@@ -52,6 +80,10 @@ import Image from '@tiptap/extension-image';
 import Text from '@tiptap/extension-text';
 import Placeholder from '@tiptap/extension-placeholder';
 import TextAlign from '@tiptap/extension-text-align';
+import TextStyle from '@tiptap/extension-text-style';
+import FontFamily from '@tiptap/extension-font-family';
+import InvisibleCharacters from '@tiptap-pro/extension-invisible-characters';
+import Fontsize from 'tiptap-extension-font-size';
 import {TipTapButton} from '@/assets/js/tiptap/extensions/TipTapButton';
 import {Figure} from '@assets/js/tiptap/extensions/Figure';
 
@@ -62,10 +94,14 @@ import TextAlignTool from '@components/organisms/editor/tiptap/groupTool/TextAli
 import ListTool from '@components/organisms/editor/tiptap/groupTool/ListTool.vue';
 import InsertTool from '@components/organisms/editor/tiptap/groupTool/InsertTool.vue';
 import TableEditTool from '@components/organisms/editor/tiptap/groupTool/TableEditTool.vue';
+import EditorStyleTool from '@components/organisms/editor/tiptap/groupTool/EditorStyleTool.vue';
 import CommonTextList from '@components/organisms/editor/tiptap/groupTool/CommonTextList.vue';
+
+import ExportTemplate from '@components/organisms/editor/ExportTemplate.vue';
 
 export default {
 	components: {
+		EditorStyleTool,
 		CommonTextList,
 		TableEditTool,
 		InsertTool,
@@ -75,12 +111,17 @@ export default {
 		HeadingTool,
 		HistoryTool,
 		EditorContent,
+		ExportTemplate,
 	},
 	data() {
 		return {
 			editor: null,
 			contentResult: '',
+			isEditable: true,
+			isPreviewMobile: false,
 			isShowCommonTextList: false,
+			isShowBorderOuter: false,
+			isShowHtml: false,
 		};
 	},
 	mounted() {
@@ -96,18 +137,24 @@ export default {
 				Text,
 				History,
 				Heading.configure({
-					levels: [1, 2, 3, 4],
+					levels: [1, 2, 3, 4, 5, 6],
 				}),
 				TextAlign.configure({
 					types: ['heading', 'paragraph'],
 				}),
+				TextStyle,
+				FontFamily,
 				Bold,
 				Italic,
 				Underline,
 				Strike,
+				Fontsize,
 				ListItem,
 				BulletList,
 				OrderedList,
+				InvisibleCharacters.configure({
+					visible: false,
+				}),
 				NodeRange.configure({
 					key: null,
 				}),
@@ -151,7 +198,7 @@ export default {
 					inline: true,
 				}),
 			],
-			content: '<h1>GRAMICCI PANT</h1><p>面料<br>DURABLE NYLON (100% NYLON) / 100% POLYESTE</p>',
+			content: '',
 			onUpdate: ({editor}) => {
 				this.contentResult = this.generateHTML(editor);
 			},
@@ -180,6 +227,16 @@ export default {
 		getEditorHTML() {
 			return this.contentResult;
 		},
+		toggleDevice(val) {
+			this.isPreviewMobile = val;
+		},
+		toggleBorderOuter() {
+			this.editor.commands.toggleInvisibleCharacters();
+			this.isShowBorderOuter = !this.isShowBorderOuter;
+		},
+		toggleHtml() {
+			this.isShowHtml = !this.isShowHtml;
+		},
 	},
 };
 </script>
@@ -189,9 +246,15 @@ export default {
 	min-height: calc(100vh - 96px - 40px);
 }
 
+.tiptapContent {
+	&--showOuterBorder {
+		.ProseMirror {
+			border: 1px solid #dfdfdf;
+		}
+	}
+}
+
 .ProseMirror {
-	padding: 1rem;
-	min-height: 200px;
 	position: relative;
 
 	&:focus {

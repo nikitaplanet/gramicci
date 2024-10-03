@@ -3,10 +3,8 @@ export default {
 	content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
 	theme: {
 		extend: {
-			maxWidth: {
-				'8xl': '1400px',
-			},
 			colors: {
+				'button-active': '#333333',
 				'button-disabled': '#9E9E9E',
 				'main-background': '#181D22',
 				'card-background': '#efefef',
