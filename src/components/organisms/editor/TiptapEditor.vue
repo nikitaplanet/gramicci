@@ -24,7 +24,20 @@
 			<div
 				:class="{'max-w-[800px]': !isPreviewMobile, 'max-w-[500px]': isPreviewMobile}"
 				class="flex flex-col min-h-96 mx-auto bg-white my-8 p-8 rounded-lg sm:rounded-none sm:my-0 sm:mb-8 shadow-xl">
-				<EditorContent :editor="editor" />
+				<div class="px-2">
+					<EditorContent :editor="editor" />
+				</div>
+				<div class="blog">
+					<h5>
+						整圈數據將以「圍」表示 EX. 腰圍、臀圍、褲口圍 等 <br />
+						為避免腰帶在洗滌中打卷纏繞，建議使用洗衣袋。<br />
+						*調節環皆可透過單手輕鬆調節，切勿使用蠻力扯開，如不清楚使用方法，歡迎詢問。<br />
+						*由於布料染色工法的特性，一開始著用時可能會有因爲汗水、雨水加上摩擦導致沾色到淺色布料的情況。<br />
+						*淺色和深色衣物建議分開洗滌。<br />
+						*貼身衣物類和配件類商品，皆不提供退換貨服務，購買前請謹慎思考。<br />
+						*如有其他產品相關問題，歡迎透過官網訊息或官方社群媒體訊息詢問，謝謝！<br />
+					</h5>
+				</div>
 			</div>
 		</div>
 
@@ -119,7 +132,7 @@ export default {
 				Text,
 				History,
 				Heading.configure({
-					levels: [1, 2, 3, 4],
+					levels: [1, 2, 3, 4, 5, 6],
 				}),
 				TextAlign.configure({
 					types: ['heading', 'paragraph'],
