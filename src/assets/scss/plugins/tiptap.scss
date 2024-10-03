@@ -4,29 +4,54 @@
 	display: flex;
 	flex-direction: column;
 	gap: 5px;
+	color: #333333;
 
 	h1 {
-		font-size: 29.54px;
-		line-height: 32.82px;
-		letter-spacing: 1.5px;
+		font-family: Arial;
+		font-size: 18px;
+		line-height: 20px;
+		letter-spacing: 1px;
 		font-weight: 700;
 	}
 
 	h2 {
-		font-size: 26px;
-		line-height: 1.5;
+		font-family: 'PingFang TC';
+		font-size: 10px;
+		line-height: 19px;
+		letter-spacing: 0.5px;
 		font-weight: 500;
 	}
 
 	h3 {
-		font-size: 16.41px;
-		line-height: 29.54px;
+		font-family: 'PingFang TC';
+		font-size: 10px;
+		line-height: 18px;
+		letter-spacing: 0;
 		font-weight: 400;
 	}
 
 	h4 {
-		font-size: 14.77px;
-		line-height: 31.18px;
+		font-family: 'PingFang TC';
+		font-size: 10px;
+		line-height: 18px;
+		letter-spacing: 0;
+		font-weight: 500;
+	}
+
+	h5 {
+		font-family: 'PingFang TC';
+		font-size: 9px;
+		line-height: 16.8px;
+		letter-spacing: 0;
+		font-weight: 500;
+	}
+
+	h6 {
+		font-family: 'PingFang TC';
+		font-size: 11px;
+		line-height: 18px;
+		letter-spacing: 0;
+		font-weight: 600;
 	}
 
 	p {
@@ -101,7 +126,6 @@
 
 	figure {
 		align-items: start;
-		border: 2px solid var(--black);
 		border-radius: 0.5rem;
 		display: flex;
 		flex-direction: column;
@@ -120,5 +144,17 @@
 
 	.tableWrapper {
 		overflow: auto;
+	}
+}
+
+.remarkBlog {
+	color: #333333;
+
+	h5 {
+		font-family: 'PingFang TC';
+		font-size: 9px;
+		line-height: 16.8px;
+		letter-spacing: 0;
+		font-weight: 500;
 	}
 }
