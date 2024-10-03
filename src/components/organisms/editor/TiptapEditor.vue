@@ -53,6 +53,7 @@ import Text from '@tiptap/extension-text';
 import Placeholder from '@tiptap/extension-placeholder';
 import TextAlign from '@tiptap/extension-text-align';
 import {TipTapButton} from '@/assets/js/tiptap/extensions/TipTapButton';
+import {Figure} from '@assets/js/tiptap/extensions/Figure';
 
 import HistoryTool from '@components/organisms/editor/tiptap/groupTool/HistoryTool.vue';
 import HeadingTool from '@components/organisms/editor/tiptap/groupTool/HeadingTool.vue';
@@ -146,6 +147,9 @@ export default {
 					placeholder: '輸入內容...',
 				}),
 				TipTapButton,
+				Figure.configure({
+					inline: true,
+				}),
 			],
 			content: '<h1>GRAMICCI PANT</h1><p>面料<br>DURABLE NYLON (100% NYLON) / 100% POLYESTE</p>',
 			onUpdate: ({editor}) => {
