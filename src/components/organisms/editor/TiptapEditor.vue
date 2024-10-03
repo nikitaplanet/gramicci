@@ -24,11 +24,11 @@
 			<div
 				:class="{'max-w-[800px]': !isPreviewMobile, 'max-w-[500px]': isPreviewMobile}"
 				class="flex flex-col min-h-96 mx-auto bg-white my-8 p-8 rounded-lg sm:rounded-none sm:my-0 sm:mb-8 shadow-xl">
-				<div class="px-2">
-					<EditorContent :editor="editor" />
-				</div>
-				<div class="blog">
+				<EditorContent :editor="editor" />
+				<div v-show="!isEditable" class="remarkBlog">
 					<h5>
+						尺寸數據皆為官方數值，可以參照手邊現有衣服尺寸比對大小。<br />
+						平量數據將以「寬」表示 EX. 腰寬、臀寬、褲口寬 等<br />
 						整圈數據將以「圍」表示 EX. 腰圍、臀圍、褲口圍 等 <br />
 						為避免腰帶在洗滌中打卷纏繞，建議使用洗衣袋。<br />
 						*調節環皆可透過單手輕鬆調節，切勿使用蠻力扯開，如不清楚使用方法，歡迎詢問。<br />
@@ -80,6 +80,10 @@ import Image from '@tiptap/extension-image';
 import Text from '@tiptap/extension-text';
 import Placeholder from '@tiptap/extension-placeholder';
 import TextAlign from '@tiptap/extension-text-align';
+import TextStyle from '@tiptap/extension-text-style';
+import FontFamily from '@tiptap/extension-font-family';
+import InvisibleCharacters from '@tiptap-pro/extension-invisible-characters';
+import Fontsize from 'tiptap-extension-font-size';
 import {TipTapButton} from '@/assets/js/tiptap/extensions/TipTapButton';
 import {Figure} from '@assets/js/tiptap/extensions/Figure';
 
@@ -113,6 +117,7 @@ export default {
 		return {
 			editor: null,
 			contentResult: '',
+			isEditable: true,
 			isPreviewMobile: false,
 			isShowCommonTextList: false,
 			isShowBorderOuter: false,
@@ -137,13 +142,19 @@ export default {
 				TextAlign.configure({
 					types: ['heading', 'paragraph'],
 				}),
+				TextStyle,
+				FontFamily,
 				Bold,
 				Italic,
 				Underline,
 				Strike,
+				Fontsize,
 				ListItem,
 				BulletList,
 				OrderedList,
+				InvisibleCharacters.configure({
+					visible: false,
+				}),
 				NodeRange.configure({
 					key: null,
 				}),
@@ -187,7 +198,7 @@ export default {
 					inline: true,
 				}),
 			],
-			content: '<h1>GRAMICCI PANT</h1><p>面料<br>DURABLE NYLON (100% NYLON) / 100% POLYESTE</p>',
+			content: '',
 			onUpdate: ({editor}) => {
 				this.contentResult = this.generateHTML(editor);
 			},
@@ -220,6 +231,7 @@ export default {
 			this.isPreviewMobile = val;
 		},
 		toggleBorderOuter() {
+			this.editor.commands.toggleInvisibleCharacters();
 			this.isShowBorderOuter = !this.isShowBorderOuter;
 		},
 		toggleHtml() {
@@ -243,7 +255,6 @@ export default {
 }
 
 .ProseMirror {
-	min-height: 200px;
 	position: relative;
 
 	&:focus {
