@@ -16,7 +16,7 @@
 			<div class="flex justify-start items-center flex-wrap gap-3">
 				<CommonTextButton v-for="(item, index) in editList" :key="`editCommon_${index}`" @click="deleteText(index)" class="hover:bg-red-700">
 					{{ item }}
-					<IconTrash class="w-3 h-3 ml-3" />
+					<IconX class="w-3 h-3 ml-3" />
 				</CommonTextButton>
 			</div>
 
@@ -41,7 +41,7 @@ import Input from '@components/organisms/form/Input.vue';
 import Label from '@components/organisms/form/Label.vue';
 import {cloneDeep} from 'lodash';
 import NLink from '@components/atoms/NLink.vue';
-import {IconTrash} from '@tabler/icons-vue';
+import {IconX} from '@tabler/icons-vue';
 
 const props = defineProps<{show: boolean; listTexts: Array<string>}>();
 const emit = defineEmits(['close', 'updateList']);
