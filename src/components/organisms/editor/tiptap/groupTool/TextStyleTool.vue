@@ -36,6 +36,13 @@
 				</TiptapToolbarDropdownButton>
 			</TiptapToolbarDropdown>
 		</TiptapToolbarButton>
+		<div class="inline-flex h-8 w-8 shrink-0 flex-row items-center justify-center">
+			<input
+				:value="editor.getAttributes('textStyle').color"
+				@input="editor.chain().focus().setColor($event.target.value).run()"
+				class="h-5 w-5"
+				type="color" />
+		</div>
 	</TiptapToolbarGroup>
 </template>
 
@@ -92,13 +99,13 @@ const toggleTypographyList = () => {
 </script>
 
 <style lang="scss" scoped>
-//.font {
-//	&-en {
-//		font-family: 'Arial';
-//	}
-//
-//	&-tw {
-//		font-family: 'PingFang TC';
-//	}
-//}
+.font {
+	&-en {
+		font-family: 'Arial';
+	}
+
+	&-tw {
+		font-family: 'PingFang TC';
+	}
+}
 </style>

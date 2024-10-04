@@ -22,7 +22,7 @@
 
 		<div v-show="!isShowHtml" class="w-full">
 			<div
-				:class="{'max-w-[800px]': !isPreviewMobile, 'max-w-[500px]': isPreviewMobile}"
+				:class="{'max-w-[800px]': !isPreviewMobile, 'max-w-[400px]': isPreviewMobile}"
 				class="flex flex-col min-h-96 mx-auto bg-white my-8 p-8 rounded-lg sm:rounded-none sm:my-0 sm:mb-8 shadow-xl">
 				<EditorContent :editor="editor" />
 				<div v-show="!isEditable" class="remarkBlog">
@@ -82,10 +82,10 @@ import Placeholder from '@tiptap/extension-placeholder';
 import TextAlign from '@tiptap/extension-text-align';
 import TextStyle from '@tiptap/extension-text-style';
 import FontFamily from '@tiptap/extension-font-family';
-import InvisibleCharacters from '@tiptap-pro/extension-invisible-characters';
 import Fontsize from 'tiptap-extension-font-size';
 import {TipTapButton} from '@/assets/js/tiptap/extensions/TipTapButton';
 import {Figure} from '@assets/js/tiptap/extensions/Figure';
+import {Color} from '@tiptap/extension-color';
 
 import HistoryTool from '@components/organisms/editor/tiptap/groupTool/HistoryTool.vue';
 import HeadingTool from '@components/organisms/editor/tiptap/groupTool/HeadingTool.vue';
@@ -152,9 +152,6 @@ export default {
 				ListItem,
 				BulletList,
 				OrderedList,
-				InvisibleCharacters.configure({
-					visible: false,
-				}),
 				NodeRange.configure({
 					key: null,
 				}),
@@ -197,6 +194,7 @@ export default {
 				Figure.configure({
 					inline: true,
 				}),
+				Color,
 			],
 			content: '',
 			onUpdate: ({editor}) => {
@@ -231,7 +229,6 @@ export default {
 			this.isPreviewMobile = val;
 		},
 		toggleBorderOuter() {
-			this.editor.commands.toggleInvisibleCharacters();
 			this.isShowBorderOuter = !this.isShowBorderOuter;
 		},
 		toggleHtml() {
