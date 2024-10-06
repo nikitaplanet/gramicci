@@ -13,15 +13,15 @@
 					d="M5,4H19A2,2 0 0,1 21,6V18A2,2 0 0,1 19,20H5A2,2 0 0,1 3,18V6A2,2 0 0,1 5,4M5,8V12H11V8H5M13,8V12H19V8H13M5,14V18H11V14H5M13,14V18H19V14H13Z" />
 			</svg>
 		</TiptapToolbarButton>
-		<TiptapToolbarButton @click="showAddYoutubeDialog = true" label="Youtube">
-			<IconMovie class="h-5 w-5" />
-		</TiptapToolbarButton>
+		<!--		<TiptapToolbarButton @click="showAddYoutubeDialog = true" label="Youtube">-->
+		<!--			<IconMovie class="h-5 w-5" />-->
+		<!--		</TiptapToolbarButton>-->
 
 		<TiptapToolbarButton @click="editor.chain().focus().setHorizontalRule().run()" label="Horizontal Line">
 			<IconMinus class="h-5 w-5" />
 		</TiptapToolbarButton>
 
-		<TiptapToolbarButton :isActive="showCommonTextList" @click="toggleCommonTextList" label="文">
+		<TiptapToolbarButton @click="showCommonTextDialog = true" label="文">
 			<div class="h-5 w-5 flex justify-center items-center">文</div>
 		</TiptapToolbarButton>
 	</TiptapToolbarGroup>
@@ -35,11 +35,12 @@
 	<TiptapVideoDialog v-if="showAddYoutubeDialog" :show="showAddYoutubeDialog" @close="showAddYoutubeDialog = false" @insert="insertYoutubeVideo" />
 	<TiptapTableDialog v-if="showAddTableDialog" :show="showAddTableDialog" @close="showAddTableDialog = false" @insert="insertTable" />
 	<TiptapImageDialog v-if="showAddImageDialog" :show="showAddImageDialog" @close="showAddImageDialog = false" @insert="insertImage" />
+	<CommonTextToolbar :show="showCommonTextDialog" @close="showCommonTextDialog = false" @insertCommonText="insertCommonText" />
 </template>
 
 <script lang="ts" setup>
 import type DataTable from '@/models/table';
-import {IconLink, IconMinus, IconMovie, IconPhoto} from '@tabler/icons-vue';
+import {IconLink, IconMinus, IconPhoto} from '@tabler/icons-vue';
 import TiptapToolbarGroup from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarGroup.vue';
 import TiptapToolbarButton from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarButton.vue';
 
@@ -47,10 +48,9 @@ import TiptapVideoDialog from '@components/organisms/editor/tiptap/dialog/Tiptap
 import TiptapImageDialog from '@components/organisms/editor/tiptap/dialog/TiptapImageDialog.vue';
 import TiptapTableDialog from '@components/organisms/editor/tiptap/dialog/TiptapTableDialog.vue';
 import TiptapLinkDialog from '@components/organisms/editor/tiptap/dialog/TiptapLinkDialog.vue';
+import CommonTextToolbar from '@components/organisms/editor/tiptap/groupTool/CommonTextToolbar.vue';
 import {ref} from 'vue';
 import {Image} from '@components/organisms/editor/tiptap/dialog';
-
-const emit = defineEmits(['toggleCommonTextList']);
 
 const props = defineProps({
 	editor: {
@@ -64,7 +64,7 @@ const showAddLinkDialog = ref(false);
 const showAddYoutubeDialog = ref(false);
 const showAddImageDialog = ref(false);
 const showAddTableDialog = ref(false);
-const showCommonTextList = ref(false);
+const showCommonTextDialog = ref(false);
 
 // Data
 const currentLinkInDialog = ref('');
@@ -107,9 +107,8 @@ function insertImage(imageObj: Image) {
 	props.editor?.chain().focus().setFigure({src: imageObj.url, caption: imageObj.caption}).run();
 }
 
-function toggleCommonTextList() {
-	showCommonTextList.value = !showCommonTextList.value;
-	emit('toggleCommonTextList', showCommonTextList.value);
+function insertCommonText(text) {
+	props.editor.chain().focus().insertContent(text).run();
 }
 </script>
 
