@@ -1,11 +1,6 @@
 <template>
-	<NavBar>
-		<Logo />
-		<MenuList @loadTemplate="loadTemplate" @saveTemplate="saveTemplate" />
-	</NavBar>
-
 	<!--Editor-->
-	<div class="w-full pt-[79px]">
+	<div class="w-full">
 		<div>
 			<TiptapEditor ref="editorRef" />
 		</div>
@@ -16,9 +11,9 @@
 </template>
 <script lang="ts" setup>
 import {ref} from 'vue';
-import NavBar from '@components/organisms/nav/NavBar.vue';
-import MenuList from '@components/organisms/nav/components/MenuList.vue';
-import Logo from '@components/organisms/nav/components/Logo.vue';
+// import NavBar from '@components/organisms/nav/NavBar.vue';
+// import MenuList from '@components/organisms/nav/components/MenuList.vue';
+// import Logo from '@components/organisms/nav/components/Logo.vue';
 import SaveTemplateModal from '@components/organisms/templateModal/SaveTemplateModal.vue';
 import LoadTemplateModal from '@components/organisms/templateModal/LoadTemplateModal.vue';
 import TiptapEditor from '@components/organisms/editor/TiptapEditor.vue';
@@ -28,16 +23,16 @@ const savedData = ref(null);
 
 // 儲存模板
 const isShowSaveTemplateModal = ref(false);
-const saveTemplate = () => {
-	isShowSaveTemplateModal.value = true;
-	savedData.value = editorRef?.value.getEditorHTML();
-};
+// const saveTemplate = () => {
+// 	isShowSaveTemplateModal.value = true;
+// 	savedData.value = editorRef?.value.getEditorHTML();
+// };
 
 // 載入模板
 const isShowLoadTemplateModal = ref(false);
-const loadTemplate = () => {
-	isShowLoadTemplateModal.value = true;
-};
+// const loadTemplate = () => {
+// 	isShowLoadTemplateModal.value = true;
+// };
 const updateTemplate = (data) => {
 	console.log(data);
 };

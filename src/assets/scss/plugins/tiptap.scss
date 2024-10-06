@@ -5,58 +5,62 @@
 	flex-direction: column;
 	gap: 5px;
 	color: #333333;
+	font-feature-settings: 'liga' 0;
 
 	h1 {
 		font-family: Arial;
-		font-size: 18px;
-		line-height: 20px;
-		letter-spacing: 1px;
-		font-weight: 700;
+		font-size: 30px;
+		line-height: 1;
+		letter-spacing: 2px;
+		font-weight: 500;
 	}
 
 	h2 {
 		font-family: 'PingFang TC';
-		font-size: 10px;
-		line-height: 19px;
-		letter-spacing: 0.5px;
+		font-size: 18px;
+		line-height: 1.5;
+		letter-spacing: 1px;
 		font-weight: 500;
 	}
 
 	h3 {
 		font-family: 'PingFang TC';
-		font-size: 10px;
-		line-height: 18px;
-		letter-spacing: 0;
+		font-size: 16px;
+		line-height: 1.8;
+		letter-spacing: 0.5px;
 		font-weight: 400;
 	}
 
 	h4 {
 		font-family: 'PingFang TC';
-		font-size: 10px;
-		line-height: 18px;
-		letter-spacing: 0;
+		font-size: 14px;
+		line-height: 1.5;
+		letter-spacing: 0.5px;
 		font-weight: 500;
 	}
 
 	h5 {
 		font-family: 'PingFang TC';
-		font-size: 9px;
-		line-height: 16.8px;
-		letter-spacing: 0;
+		font-size: 12px;
+		line-height: 2.5;
+		letter-spacing: 0.5px;
 		font-weight: 500;
 	}
 
 	h6 {
 		font-family: 'PingFang TC';
-		font-size: 11px;
-		line-height: 18px;
-		letter-spacing: 0;
-		font-weight: 600;
+		font-size: 15px;
+		line-height: 1.8;
+		letter-spacing: 0.5px;
+		font-weight: 500;
 	}
 
 	p {
-		font-size: 12px;
+		font-family: 'PingFang TC';
+		font-size: 13px;
 		line-height: 1.5;
+		letter-spacing: 0.5px;
+		font-weight: 500;
 	}
 
 	ol,
@@ -125,7 +129,7 @@
 	}
 
 	figure {
-		align-items: start;
+		align-items: flex-start;
 		border-radius: 0.5rem;
 		display: flex;
 		flex-direction: column;
@@ -136,9 +140,14 @@
 
 		figcaption {
 			position: absolute;
-			bottom: 4px;
-			left: 10px;
-			font-size: 12px;
+			bottom: 10px;
+			left: 20px;
+			font-size: 18px;
+			color: #9f9f9f;
+			font-family: 'Arial';
+			line-height: 1;
+			font-weight: 700;
+			letter-spacing: 1px;
 		}
 	}
 
@@ -152,9 +161,89 @@
 
 	h5 {
 		font-family: 'PingFang TC';
-		font-size: 9px;
-		line-height: 16.8px;
-		letter-spacing: 0;
+		font-size: 12px;
+		line-height: 2.5;
+		letter-spacing: 0.5px;
 		font-weight: 500;
+	}
+}
+
+.w767 {
+	.blog {
+		h1 {
+			font-size: 20px;
+			line-height: 1;
+		}
+
+		h2 {
+			font-size: 12px;
+			line-height: 1.5;
+		}
+
+		h3 {
+			font-size: 12px;
+			line-height: 1.8;
+		}
+
+		h4 {
+			font-size: 10.5px;
+			line-height: 1.5;
+		}
+
+		h5 {
+			font-size: 9px;
+			line-height: 2.5;
+			letter-spacing: 1px;
+		}
+
+		h6 {
+			font-size: 12px;
+			line-height: 1.8;
+		}
+
+		p {
+			font-size: 11px;
+			line-height: 1.5;
+		}
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	.blog {
+		h1 {
+			font-size: 20px;
+			line-height: 1;
+		}
+
+		h2 {
+			font-size: 12px;
+			line-height: 1.5;
+		}
+
+		h3 {
+			font-size: 12px;
+			line-height: 1.8;
+		}
+
+		h4 {
+			font-size: 10.5px;
+			line-height: 1.5;
+		}
+
+		h5 {
+			font-size: 9px;
+			line-height: 2.5;
+			letter-spacing: 1px;
+		}
+
+		h6 {
+			font-size: 12px;
+			line-height: 1.8;
+		}
+
+		p {
+			font-size: 11px;
+			line-height: 1.5;
+		}
 	}
 }

@@ -1,7 +1,8 @@
 <template>
 	<div v-if="editor" :class="{'tiptapContent--showOuterBorder': isShowBorderOuter}" id="tiptap" class="tiptapContent">
-		<div class="bg-tool-background sticky top-[79px] left-0 z-20">
-			<HistoryTool :editor="editor" />
+		<div class="bg-tool-background sticky top-0 left-0 z-20 flex items-center justify-start flex-wrap">
+			<LogoInTool />
+			<CacheTool />
 			<EditorStyleTool
 				:isPreviewMobile="isPreviewMobile"
 				:isShowBorderOuter="isShowBorderOuter"
@@ -9,21 +10,17 @@
 				@toggleBorderOuter="toggleBorderOuter"
 				@toggleDevice="toggleDevice"
 				@toggleHtml="toggleHtml" />
-			<HeadingTool :editor="editor" />
+			<HeadingAndAlignTool :editor="editor" />
 			<TextStyleTool :editor="editor" />
-			<TextAlignTool :editor="editor" />
 			<ListTool :editor="editor" />
-			<InsertTool :editor="editor" @toggleCommonTextList="toggleCommonTextList" />
+			<InsertTool :editor="editor" />
 			<TableEditTool :editor="editor" />
-			<div v-if="isShowCommonTextList" class="bg-tool-background">
-				<CommonTextList @insertCommonText="insertCommonText" />
-			</div>
 		</div>
 
-		<div v-show="!isShowHtml" class="w-full">
+		<div v-show="!isShowHtml" :class="{w767: isPreviewMobile}" class="w-full">
 			<div
-				:class="{'max-w-[800px]': !isPreviewMobile, 'max-w-[500px]': isPreviewMobile}"
-				class="flex flex-col min-h-96 mx-auto bg-white my-8 p-8 rounded-lg sm:rounded-none sm:my-0 sm:mb-8 shadow-xl">
+				:class="{'max-w-[800px]': !isPreviewMobile, 'max-w-[400px] sm:max-w-full': isPreviewMobile}"
+				class="flex flex-col min-h-96 mx-auto bg-white my-8 p-8 sm:rounded-none sm:my-0 sm:mb-8 md:rounded-none md:my-0 md:mb-8 shadow-xl">
 				<EditorContent :editor="editor" />
 				<div v-show="!isEditable" class="remarkBlog">
 					<h5>
@@ -82,34 +79,35 @@ import Placeholder from '@tiptap/extension-placeholder';
 import TextAlign from '@tiptap/extension-text-align';
 import TextStyle from '@tiptap/extension-text-style';
 import FontFamily from '@tiptap/extension-font-family';
-import InvisibleCharacters from '@tiptap-pro/extension-invisible-characters';
 import Fontsize from 'tiptap-extension-font-size';
 import {TipTapButton} from '@/assets/js/tiptap/extensions/TipTapButton';
 import {Figure} from '@assets/js/tiptap/extensions/Figure';
+import {Color} from '@tiptap/extension-color';
+import {cssStyle} from '@/assets/js/cssStyle.js';
 
-import HistoryTool from '@components/organisms/editor/tiptap/groupTool/HistoryTool.vue';
-import HeadingTool from '@components/organisms/editor/tiptap/groupTool/HeadingTool.vue';
+import HeadingAndAlignTool from '@components/organisms/editor/tiptap/groupTool/HeadingAndAlignTool.vue';
+import CacheTool from '@components/organisms/editor/tiptap/groupTool/CacheTool.vue';
+// import HistoryTool from '@components/organisms/editor/tiptap/groupTool/HistoryTool.vue';
 import TextStyleTool from '@components/organisms/editor/tiptap/groupTool/TextStyleTool.vue';
-import TextAlignTool from '@components/organisms/editor/tiptap/groupTool/TextAlignTool.vue';
 import ListTool from '@components/organisms/editor/tiptap/groupTool/ListTool.vue';
 import InsertTool from '@components/organisms/editor/tiptap/groupTool/InsertTool.vue';
 import TableEditTool from '@components/organisms/editor/tiptap/groupTool/TableEditTool.vue';
 import EditorStyleTool from '@components/organisms/editor/tiptap/groupTool/EditorStyleTool.vue';
-import CommonTextList from '@components/organisms/editor/tiptap/groupTool/CommonTextList.vue';
 
 import ExportTemplate from '@components/organisms/editor/ExportTemplate.vue';
+import LogoInTool from '@components/organisms/editor/tiptap/groupTool/LogoInTool.vue';
 
 export default {
 	components: {
+		LogoInTool,
+		CacheTool,
+		HeadingAndAlignTool,
 		EditorStyleTool,
-		CommonTextList,
 		TableEditTool,
 		InsertTool,
 		ListTool,
-		TextAlignTool,
 		TextStyleTool,
-		HeadingTool,
-		HistoryTool,
+		// HistoryTool,
 		EditorContent,
 		ExportTemplate,
 	},
@@ -152,9 +150,6 @@ export default {
 				ListItem,
 				BulletList,
 				OrderedList,
-				InvisibleCharacters.configure({
-					visible: false,
-				}),
 				NodeRange.configure({
 					key: null,
 				}),
@@ -197,6 +192,7 @@ export default {
 				Figure.configure({
 					inline: true,
 				}),
+				Color,
 			],
 			content: '',
 			onUpdate: ({editor}) => {
@@ -211,7 +207,7 @@ export default {
 	},
 	methods: {
 		generateHTML(editor) {
-			return `<div class="blog">${editor?.getHTML()}</div>`;
+			return `<div class="blog">${editor?.getHTML()}</div>` + `<style>${cssStyle}</style>`;
 		},
 		insertButton() {
 			this.editor.commands.insertContent({
@@ -221,9 +217,6 @@ export default {
 		insertCommonText(text) {
 			this.editor.chain().focus().insertContent(text).run();
 		},
-		toggleCommonTextList(val) {
-			this.isShowCommonTextList = val;
-		},
 		getEditorHTML() {
 			return this.contentResult;
 		},
@@ -231,7 +224,6 @@ export default {
 			this.isPreviewMobile = val;
 		},
 		toggleBorderOuter() {
-			this.editor.commands.toggleInvisibleCharacters();
 			this.isShowBorderOuter = !this.isShowBorderOuter;
 		},
 		toggleHtml() {
