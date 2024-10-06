@@ -1,5 +1,5 @@
 <template>
-	<div class="flex flex-row justify-start items-cente gap-8 ml-8">
+	<div class="flex flex-row justify-start items-cente gap-6 ml-6">
 		<NLink @click="saveTemplate">
 			<img alt="Save" src="~@/assets/img/icons/save.svg" />
 			<span class="block sm:hidden">儲存模板</span>

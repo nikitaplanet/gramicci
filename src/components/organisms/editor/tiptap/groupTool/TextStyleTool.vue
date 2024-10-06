@@ -9,9 +9,9 @@
 		<TiptapToolbarButton :isActive="editor.isActive('underline')" @click="editor.chain().focus().toggleUnderline().run()" label="Underline">
 			<IconUnderline class="h-5 w-5" />
 		</TiptapToolbarButton>
-		<TiptapToolbarButton :isActive="editor.isActive('strike')" @click="editor.chain().focus().toggleStrike().run()" label="Strikethrough">
-			<IconStrikethrough class="h-5 w-5" />
-		</TiptapToolbarButton>
+		<!--		<TiptapToolbarButton :isActive="editor.isActive('strike')" @click="editor.chain().focus().toggleStrike().run()" label="Strikethrough">-->
+		<!--			<IconStrikethrough class="h-5 w-5" />-->
+		<!--		</TiptapToolbarButton>-->
 		<TiptapToolbarButton :isActive="isShowFontSize" @click="toggleFontSizeList" label="TextSize">
 			<IconTextSize class="h-5 w-5" />
 			<TiptapToolbarDropdown v-if="isShowFontSize" @onClickOutside="isShowFontSize = false">
@@ -36,11 +36,18 @@
 				</TiptapToolbarDropdownButton>
 			</TiptapToolbarDropdown>
 		</TiptapToolbarButton>
+		<div class="inline-flex h-8 w-8 shrink-0 flex-row items-center justify-center">
+			<input
+				:value="editor.getAttributes('textStyle').color"
+				@input="editor.chain().focus().setColor($event.target.value).run()"
+				class="h-5 w-5"
+				type="color" />
+		</div>
 	</TiptapToolbarGroup>
 </template>
 
 <script lang="ts" setup>
-import {IconBold, IconItalic, IconStrikethrough, IconUnderline, IconTextSize, IconTypography} from '@tabler/icons-vue';
+import {IconBold, IconItalic, IconUnderline, IconTextSize, IconTypography} from '@tabler/icons-vue';
 import TiptapToolbarGroup from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarGroup.vue';
 import TiptapToolbarButton from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarButton.vue';
 import TiptapToolbarDropdown from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarDropdown.vue';
@@ -92,13 +99,13 @@ const toggleTypographyList = () => {
 </script>
 
 <style lang="scss" scoped>
-//.font {
-//	&-en {
-//		font-family: 'Arial';
-//	}
-//
-//	&-tw {
-//		font-family: 'PingFang TC';
-//	}
-//}
+.font {
+	&-en {
+		font-family: 'Arial';
+	}
+
+	&-tw {
+		font-family: 'PingFang TC';
+	}
+}
 </style>
