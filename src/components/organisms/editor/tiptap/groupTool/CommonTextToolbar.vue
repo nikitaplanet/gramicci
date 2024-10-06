@@ -4,7 +4,7 @@
 			v-if="show"
 			v-click-outside:[popperPaneRef]="onClickOutside"
 			ref="commonTextTool"
-			class="w-[300px] h-full p-4 fixed top-0 left-0 bg-card-background z-20">
+			class="w-[300px] h-full p-4 fixed top-0 left-0 bg-card-background z-20 overflow-y-scroll">
 			<div class="w-full flex justify-center items-start flex-wrap gap-3 flex-col">
 				<div class="w-full flex justify-start items-center flex-wrap gap-3">
 					<TiptapToolbarButton @click="close" label="Horizontal Line">
