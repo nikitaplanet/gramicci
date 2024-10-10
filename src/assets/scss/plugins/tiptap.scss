@@ -1,25 +1,33 @@
 // 模板樣式
 .blog {
+	width: 100%;
+	max-width: 750px;
+	padding: 0 0 0 -20px;
+	margin: auto;
 	font-family: Arial, 'PingFang TC', '微軟正黑體';
 	display: flex;
 	flex-direction: column;
-	gap: 5px;
 	color: #333333;
 	font-feature-settings: 'liga' 0;
+
+	> * {
+		// drag drop front content
+		margin-left: 20px;
+	}
 
 	h1 {
 		font-family: Arial;
 		font-size: 30px;
-		line-height: 1;
+		line-height: 1.5;
 		letter-spacing: 2px;
-		font-weight: 500;
+		font-weight: 700;
 	}
 
 	h2 {
 		font-family: 'PingFang TC';
 		font-size: 18px;
 		line-height: 1.5;
-		letter-spacing: 1px;
+		letter-spacing: 0.5px;
 		font-weight: 500;
 	}
 
@@ -110,21 +118,34 @@
 	}
 
 	table {
-		border: 1px solid #9ca3af; /* border-gray-400 */
-		table-layout: fixed;
+		border: 1px solid #000000;
 		border-collapse: collapse;
+		margin: 0;
+		overflow: hidden;
+		table-layout: fixed;
 		width: 100%;
 
 		th,
 		td {
 			text-align: left;
-			border: 1px solid #9ca3af; /* border-gray-400 */
-			padding: 0.25rem 0.5rem; /* py-1 px-2 */
+			border: 1px solid black;
+			padding: 2px 0.5rem;
 			position: relative;
+			box-sizing: border-box;
+			min-width: 1em;
+			vertical-align: center;
 		}
 
 		th {
 			text-align: left;
+		}
+
+		p {
+			font-family: 'PingFang TC';
+			font-size: 13px;
+			line-height: 1.5;
+			letter-spacing: 0.5px;
+			font-weight: 500;
 		}
 	}
 
@@ -153,6 +174,22 @@
 
 	.tableWrapper {
 		overflow: auto;
+		width: calc(100% - 40px);
+	}
+
+	.image-link-button {
+		display: block;
+		width: 100px;
+		transition: 0.2s ease;
+		margin-top: 8px;
+
+		&:hover {
+			opacity: 0.8;
+		}
+
+		img {
+			width: 100%;
+		}
 	}
 }
 
@@ -170,6 +207,8 @@
 
 .w767 {
 	.blog {
+		padding: 0 20px 0 -20px;
+
 		h1 {
 			font-size: 20px;
 			line-height: 1;
@@ -204,12 +243,21 @@
 		p {
 			font-size: 11px;
 			line-height: 1.5;
+		}
+
+		table {
+			p {
+				font-size: 12px;
+				line-height: 1.5;
+			}
 		}
 	}
 }
 
 @media only screen and (max-width: 767px) {
 	.blog {
+		padding: 0 20px;
+
 		h1 {
 			font-size: 20px;
 			line-height: 1;
@@ -244,6 +292,13 @@
 		p {
 			font-size: 11px;
 			line-height: 1.5;
+		}
+
+		table {
+			p {
+				font-size: 12px;
+				line-height: 1.5;
+			}
 		}
 	}
 }
