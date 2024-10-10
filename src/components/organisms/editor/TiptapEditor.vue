@@ -19,8 +19,8 @@
 
 		<div v-show="!isShowHtml" :class="{w767: isPreviewMobile}" class="w-full">
 			<div
-				:class="{'max-w-[800px]': !isPreviewMobile, 'max-w-[400px] sm:max-w-full': isPreviewMobile}"
-				class="flex flex-col min-h-96 mx-auto bg-white my-8 p-8 sm:rounded-none sm:my-0 sm:mb-8 md:rounded-none md:my-0 md:mb-8 shadow-xl">
+				:class="{'max-w-[1400px]': !isPreviewMobile, 'max-w-[400px] sm:max-w-full': isPreviewMobile}"
+				class="flex flex-col min-h-96 mx-auto bg-white my-8 sm:rounded-none sm:my-0 sm:mb-8 md:rounded-none md:my-0 md:mb-8">
 				<EditorContent :editor="editor" />
 				<div v-show="!isEditable" class="remarkBlog">
 					<h5>
@@ -80,10 +80,12 @@ import TextAlign from '@tiptap/extension-text-align';
 import TextStyle from '@tiptap/extension-text-style';
 import FontFamily from '@tiptap/extension-font-family';
 import Fontsize from 'tiptap-extension-font-size';
-import {TipTapButton} from '@/assets/js/tiptap/extensions/TipTapButton';
+import {TipTapImageLink} from '@assets/js/tiptap/extensions/ImageLink';
 import {Figure} from '@assets/js/tiptap/extensions/Figure';
 import {Color} from '@tiptap/extension-color';
 import {cssStyle} from '@/assets/js/cssStyle.js';
+import {AllSelection} from 'prosemirror-state';
+import {LineHeightTextStyle} from '@assets/js/tiptap/extensions/LineHeight';
 
 import HeadingAndAlignTool from '@components/organisms/editor/tiptap/groupTool/HeadingAndAlignTool.vue';
 import CacheTool from '@components/organisms/editor/tiptap/groupTool/CacheTool.vue';
@@ -127,6 +129,20 @@ export default {
 			editorProps: {
 				attributes: {
 					class: 'blog',
+				},
+				handleKeyDown(view, event) {
+					// 處理 Command+A 或 Ctrl+A 鍵盤事件
+					if ((event.metaKey || event.ctrlKey) && event.key === 'a') {
+						event.preventDefault();
+
+						const {state, dispatch} = view;
+						const {doc, tr} = state;
+						const allSelection = new AllSelection(doc); // 使用 ProseMirror 的全選
+
+						dispatch(tr.setSelection(allSelection)); // 更新為全選狀態
+						return true;
+					}
+					return false;
 				},
 			},
 			extensions: [
@@ -188,11 +204,12 @@ export default {
 				Placeholder.configure({
 					placeholder: '輸入內容...',
 				}),
-				TipTapButton,
+				TipTapImageLink,
 				Figure.configure({
 					inline: true,
 				}),
 				Color,
+				LineHeightTextStyle,
 			],
 			content: '',
 			onUpdate: ({editor}) => {
@@ -208,11 +225,6 @@ export default {
 	methods: {
 		generateHTML(editor) {
 			return `<div class="blog">${editor?.getHTML()}</div>` + `<style>${cssStyle}</style>`;
-		},
-		insertButton() {
-			this.editor.commands.insertContent({
-				type: 'tiptapButton',
-			});
 		},
 		insertCommonText(text) {
 			this.editor.chain().focus().insertContent(text).run();
@@ -255,7 +267,7 @@ export default {
 }
 
 ::selection {
-	background-color: #70cff850;
+	background-color: #e5c3ff;
 }
 
 .ProseMirror-noderangeselection {
@@ -277,11 +289,11 @@ export default {
 		pointer-events: none;
 		z-index: -1;
 		content: '';
-		top: -0.25rem;
-		left: -0.25rem;
-		right: -0.25rem;
-		bottom: -0.25rem;
-		background-color: #70cff850;
+		top: -0.2rem;
+		left: -0.2rem;
+		right: -0.2rem;
+		bottom: -0.2rem;
+		background-color: #333333;
 		border-radius: 0.2rem;
 	}
 }
