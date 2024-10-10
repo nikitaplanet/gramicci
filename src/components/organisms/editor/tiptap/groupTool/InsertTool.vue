@@ -24,6 +24,9 @@
 		<TiptapToolbarButton @click="showCommonTextDialog = true" label="文">
 			<div class="h-5 w-5 flex justify-center items-center">文</div>
 		</TiptapToolbarButton>
+		<TiptapToolbarButton @click="insertLinkButton" label="版">
+			<div class="h-5 w-5 flex justify-center items-center">版</div>
+		</TiptapToolbarButton>
 	</TiptapToolbarGroup>
 
 	<TiptapLinkDialog
@@ -43,6 +46,7 @@ import type DataTable from '@/models/table';
 import {IconLink, IconMinus, IconPhoto} from '@tabler/icons-vue';
 import TiptapToolbarGroup from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarGroup.vue';
 import TiptapToolbarButton from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarButton.vue';
+import SizeLink from '@assets/img/button/sizeLink.svg';
 
 import TiptapVideoDialog from '@components/organisms/editor/tiptap/dialog/TiptapVideoDialog.vue';
 import TiptapImageDialog from '@components/organisms/editor/tiptap/dialog/TiptapImageDialog.vue';
@@ -70,28 +74,27 @@ const showCommonTextDialog = ref(false);
 const currentLinkInDialog = ref('');
 
 // Methods
-function openLinkDialog() {
+const openLinkDialog = () => {
 	currentLinkInDialog.value = props.editor.value?.getAttributes('link').href;
-
 	showAddLinkDialog.value = true;
-}
+};
 
-function insertLink(value?: string) {
+const insertLink = (value?: string) => {
 	if (!value) {
 		props.editor?.chain().focus().extendMarkRange('link').unsetLink().run();
 		return;
 	}
 
 	props.editor?.chain().focus().extendMarkRange('link').setLink({href: value}).run();
-}
+};
 
-function insertYoutubeVideo(url: string) {
+const insertYoutubeVideo = (url: string) => {
 	props.editor?.commands.setYoutubeVideo({
 		src: url,
 	});
-}
+};
 
-function insertTable(table: DataTable) {
+const insertTable = (table: DataTable) => {
 	props.editor
 		?.chain()
 		.focus()
@@ -101,15 +104,23 @@ function insertTable(table: DataTable) {
 			withHeaderRow: table.withHeader,
 		})
 		.run();
-}
+};
 
-function insertImage(imageObj: Image) {
+const insertImage = (imageObj: Image) => {
 	props.editor?.chain().focus().setFigure({src: imageObj.url, caption: imageObj.caption}).run();
-}
+};
 
-function insertCommonText(text) {
-	props.editor.chain().focus().insertContent(text).run();
-}
+const insertCommonText = (text) => {
+	props.editor?.chain().focus().insertContent(text).run();
+};
+
+const insertLinkButton = () => {
+	props.editor?.commands.insertImageLink({
+		src: SizeLink,
+		href: 'https://www.gramiccitwshop.com/pages/fit-guide-2024',
+		alt: '版型指南',
+	});
+};
 </script>
 
 <style lang="scss" scoped></style>
