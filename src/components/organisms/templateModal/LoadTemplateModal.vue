@@ -3,16 +3,16 @@
 		<FullPageModal v-if="modelValueWritable" @close="modelValueWritable = false" title="儲存模板">
 			<div class="flex flex-col gap-11 overflow-y-auto mb-20">
 				<div
-					v-for="template in templateStore.template"
-					:class="template.title ? 'hover:border-[3px] hover:border-black cursor-pointer' : ''"
+					v-for="template in data.data"
+					:class="template.label ? 'hover:border-[3px] hover:border-black cursor-pointer' : 'cursor-default'"
 					:key="template.id"
-					@click="template.title ? open(template.id) : ''"
+					@click="template.label ? open(template.id) : ''"
 					class="flex items-center h-[130px] bg-card-background rounded-2xl pl-8 relative">
-					<p :class="template.title ? '' : 'text-[#D5D5D5]'" class="text-5xl font-bold mr-12">{{ template.id }}</p>
-					<p :class="template.title ? '' : 'text-[#D5D5D5]'" class="text-xl font-bold mr-12">
-						{{ template.title ? template.title : '沒有紀錄' }}
+					<p :class="template.label ? '' : 'text-[#D5D5D5]'" class="text-5xl font-bold mr-12">{{ template.id }}</p>
+					<p :class="template.label ? '' : 'text-[#D5D5D5]'" class="text-xl font-bold mr-12">
+						{{ template.label ? template.label : '沒有紀錄' }}
 					</p>
-					<p class="text-sm font-bold text-[#5d5d5d] italic absolute bottom-5 right-6">{{ template.updateAt ?? '沒有紀錄' }}</p>
+					<p class="text-sm font-bold text-[#5d5d5d] italic absolute bottom-5 right-6">{{ template.updateAt ?? '' }}</p>
 				</div>
 			</div>
 			<div class="fixed bottom-0 left-0 h-20 bg-[#5B5B5B] text-white flex w-screen">
@@ -26,8 +26,11 @@
 import FullPageModal from '@components/organisms/modal/FullPageModal.vue';
 import {useVModel} from '@vueuse/core';
 import {ElMessage, ElMessageBox} from 'element-plus';
-import useTemplateStore from '@/store/template.ts';
-const templateStore = useTemplateStore();
+// import useTemplateStore from '@/store/template.ts';
+import useQueryTemplates from '/src/server/composables/useQueryTemplates.ts';
+
+const {data} = useQueryTemplates({params: {tagName: 'template'}});
+// const templateStore = useTemplateStore();
 
 interface SaveTemplateModalProps {
 	modelValue: boolean;
@@ -55,7 +58,7 @@ const open = (id) => {
 		showCancelButton: false,
 	})
 		.then(() => {
-			const checkedIdData = templateStore.template.find((data) => data.id === id);
+			const checkedIdData = data.value.data.find((data) => data.id === id);
 			emit('update', checkedIdData.value);
 			console.log(checkedIdData.value);
 			ElMessage({
