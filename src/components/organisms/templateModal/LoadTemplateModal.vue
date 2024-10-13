@@ -32,19 +32,19 @@ import useQueryTemplates from '/src/server/composables/useQueryTemplates.ts';
 const {data} = useQueryTemplates({params: {tagName: 'template'}});
 // const templateStore = useTemplateStore();
 
-interface SaveTemplateModalProps {
+interface LoadeTmplateModalProps {
 	modelValue: boolean;
 }
 
-const props = withDefaults(defineProps<SaveTemplateModalProps>(), {
+const props = withDefaults(defineProps<LoadeTmplateModalProps>(), {
 	modelValue: true,
 });
 
-interface SaveTemplateModalEmit {
+interface LoadeTmplateModalEmit {
 	(event: 'update:modelValue', value: boolean): void;
-	(event: 'update', value: any): void;
+	(event: 'update', value: string): void;
 }
-const emit = defineEmits<SaveTemplateModalEmit>();
+const emit = defineEmits<LoadeTmplateModalEmit>();
 
 const modelValueWritable = useVModel(props, 'modelValue', emit);
 
@@ -58,7 +58,7 @@ const open = (id) => {
 		showCancelButton: false,
 	})
 		.then(() => {
-			const checkedIdData = data.value.data.find((data) => data.id === id);
+			const checkedIdData = data.value.find((data) => data.id === id);
 			emit('update', checkedIdData.value);
 			ElMessage({
 				type: 'success',

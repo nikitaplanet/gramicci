@@ -66,11 +66,18 @@ const formatDate = (timestamp) => {
 /**
  * 儲存
  */
+type Val = {
+	tagId?: number;
+	id?: number;
+	label?: string;
+	value?: string | null;
+	updateAt?: string;
+};
 
 const open = (id) => {
 	let title = '確認儲存模板?';
 	// const checkedIdData = templateStore.template.find((data) => data.id === id);
-	const checkedIdData = data.value.data.find((data) => data.id === id);
+	const checkedIdData = data.value.find((data) => data.id === id);
 	if (checkedIdData?.label) title = `確認覆蓋模板 ${id}「${checkedIdData.label}」?`;
 	ElMessageBox.prompt('輸入存檔名稱＊', title, {
 		confirmButtonText: '確認',
@@ -80,10 +87,11 @@ const open = (id) => {
 		inputErrorMessage: '不能為空，最多輸入20個字',
 	})
 		.then(({value}) => {
-			let val = {tagId: 1, id: null, label: '', value: '', updateAt: ''};
-			data.value.data.forEach((item) => {
+			let val: Val = {};
+			data.value.forEach((item) => {
 				if (item && item.id === id) {
-					val.id = Number(id);
+					val.tagId = 1;
+					val.id = Number(id) as number;
 					val.label = value;
 					val.value = props.templateValue;
 					val.updateAt = formatDate(Date.now());

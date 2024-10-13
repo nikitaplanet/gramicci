@@ -8,7 +8,14 @@
 		</TiptapToolbarButton>
 	</TiptapToolbarGroup>
 	<SaveTemplateModal v-model:modelValue="isShowSaveTemplateModal" :templateValue="htmlContent" title="儲存模板" />
-	<LoadTemplateModal v-model:modelValue="isShowLoadTemplateModal" @update="updateTemplate" title="載入模板" />
+	<LoadTemplateModal
+		v-model:modelValue="isShowLoadTemplateModal"
+		@update="
+			(data) => {
+				loadTemplate(data);
+			}
+		"
+		title="載入模板" />
 </template>
 
 <script setup>
@@ -44,7 +51,7 @@ const load = () => {
 	isShowLoadTemplateModal.value = true;
 };
 
-const updateTemplate = (data) => {
+const loadTemplate = (data) => {
 	emit('load', data);
 };
 </script>
