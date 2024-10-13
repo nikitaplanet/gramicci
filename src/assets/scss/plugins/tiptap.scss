@@ -16,6 +16,11 @@
 		margin-left: 20px;
 	}
 
+	h1, h2, h3, h4, h5, h6, p {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+
 	h1 {
 		font-family: Arial;
 		font-size: 30px;
@@ -256,7 +261,7 @@
 
 @media only screen and (max-width: 767px) {
 	.blog {
-		padding: 0 20px;
+		padding: 0 20px 0 -20px;
 
 		h1 {
 			font-size: 20px;
