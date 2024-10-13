@@ -89,7 +89,6 @@ const open = (id) => {
 					val.updateAt = formatDate(Date.now());
 				}
 			});
-			console.log(val);
 			mutate(val, {
 				onSuccess() {
 					invalidate();

@@ -60,7 +60,6 @@ const open = (id) => {
 		.then(() => {
 			const checkedIdData = data.value.data.find((data) => data.id === id);
 			emit('update', checkedIdData.value);
-			console.log(checkedIdData.value);
 			ElMessage({
 				type: 'success',
 				message: '已載入模板',

@@ -6,7 +6,6 @@ import type {MutationPostSheetData} from '../api/mutationPostSheet.ts';
 
 export default () => {
 	const mutationFn = (data: MutationPostSheetData) => {
-		console.log(data, '??????');
 		return mutationPostSheet(data);
 	};
 	return useMutation({

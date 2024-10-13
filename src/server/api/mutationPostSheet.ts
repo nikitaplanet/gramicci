@@ -1,5 +1,3 @@
-import {postRequest} from '../core/request';
-
 export interface MutationPostSheetData {
 	tagId: number; //頁籤id
 	id: number;
