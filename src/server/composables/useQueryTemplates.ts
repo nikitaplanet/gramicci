@@ -17,9 +17,7 @@ export default (options: UseQueryTemplatesOption) => {
 		const result = await queryTemplates(params.value);
 		const data = transData(result.values);
 
-		return {
-			data,
-		};
+		return data;
 	};
 
 	const invalidate = () => queryClient.invalidateQueries({queryKey});

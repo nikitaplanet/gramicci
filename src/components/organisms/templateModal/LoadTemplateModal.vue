@@ -3,7 +3,7 @@
 		<FullPageModal v-if="modelValueWritable" @close="modelValueWritable = false" title="儲存模板">
 			<div class="flex flex-col gap-11 overflow-y-auto mb-20">
 				<div
-					v-for="template in data.data"
+					v-for="template in data"
 					:class="template.label ? 'hover:border-[3px] hover:border-black cursor-pointer' : 'cursor-default'"
 					:key="template.id"
 					@click="template.label ? open(template.id) : ''"

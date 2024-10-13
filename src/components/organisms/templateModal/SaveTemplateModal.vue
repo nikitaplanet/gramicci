@@ -3,7 +3,7 @@
 		<FullPageModal v-if="modelValueWritable" @close="modelValueWritable = false" title="儲存模板">
 			<div class="flex flex-col gap-11 overflow-y-auto mb-20">
 				<div
-					v-for="template in data.data"
+					v-for="template in data"
 					:key="template.id"
 					@click="open(template.id)"
 					class="flex items-center h-[130px] bg-card-background rounded-2xl pl-8 hover:border-[3px] hover:border-black relative cursor-pointer">
