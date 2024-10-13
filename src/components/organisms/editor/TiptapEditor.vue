@@ -2,7 +2,7 @@
 	<div v-if="editor" :class="{'tiptapContent--showOuterBorder': isShowBorderOuter}" id="tiptap" class="tiptapContent">
 		<div class="bg-tool-background sticky top-0 left-0 z-20 flex items-center justify-start flex-wrap">
 			<LogoInTool />
-			<CacheTool />
+			<CacheTool :htmlContent="contentResult" @load="(data) => loadHtml(data)" />
 			<EditorStyleTool
 				:isPreviewMobile="isPreviewMobile"
 				:isShowBorderOuter="isShowBorderOuter"
@@ -240,6 +240,9 @@ export default {
 		},
 		toggleHtml() {
 			this.isShowHtml = !this.isShowHtml;
+		},
+		loadHtml(data) {
+			this.editor.commands.setContent(data);
 		},
 	},
 };

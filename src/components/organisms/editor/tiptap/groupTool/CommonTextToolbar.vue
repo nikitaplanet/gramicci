@@ -29,11 +29,7 @@
 
 				<div class="w-full flex justify-start items-center flex-wrap gap-3">
 					<template v-if="searchInput">
-						<CommonTextButton
-							v-for="(item, index) in searchList"
-							:key="`editCommon_${item}`"
-							@click="textAction(item, index)"
-							class="hover:bg-blue-700">
+						<CommonTextButton v-for="item in searchList" :key="`editCommon_${item}`" @click="textAction(item)" class="hover:bg-blue-700">
 							{{ item }}
 						</CommonTextButton>
 						<div v-if="!searchList.length" class="text-xs text-gray-500">無搜尋結果</div>
@@ -63,11 +59,14 @@ import {computed, ref} from 'vue';
 import TiptapToolbarButton from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarButton.vue';
 import {filter} from 'lodash';
 import * as sea from 'node:sea';
+import useQueryCommomWords from '/src/server/composables/useQueryCommomWords.ts';
+import useMutationPostSheet from '/src/server/composables/useMutationPostSheet.ts';
+import {ElMessage} from 'element-plus';
 
 defineProps<{show: boolean}>();
 const emit = defineEmits(['close', 'insertCommonText']);
-
-const textList = ref<Array<string>>(['sss', 'dsadasdad']);
+const {data: textList, invalidate} = useQueryCommomWords({params: {tagName: 'commonWords'}});
+const {mutate: mutate} = useMutationPostSheet();
 const searchList = ref<Array<string>>([]);
 const addInput = ref<string>('');
 const searchInput = ref<string>('');
@@ -93,21 +92,62 @@ const toggleEdit = () => {
 	}
 };
 
-const textAction = (item: string, index: number) => {
+const textAction = (item: string) => {
 	if (isEdit.value) {
-		deleteText(index);
+		deleteText(item);
 	} else {
 		insertText(item);
 	}
 };
 
-const deleteText = (index: number) => {
-	textList.value.splice(index, 1);
+const deleteText = (item: string) => {
+	const arr = [...textList.value];
+	mutate(
+		{
+			tagId: 0,
+			id: 1,
+			value: JSON.stringify(arr.filter((val) => val !== item)),
+		},
+		{
+			onSuccess() {
+				addInput.value = '';
+				invalidate();
+				ElMessage({
+					type: 'success',
+					message: `已刪除常用字 "${item}"`,
+				});
+			},
+		},
+	);
 };
 
 const addText = () => {
-	textList.value.unshift(addInput.value);
-	addInput.value = '';
+	if (textList.value && textList.value.includes(addInput.value)) {
+		ElMessage({
+			type: 'warning',
+			message: `"${addInput.value}" 已在常用字清單中`,
+		});
+		return;
+	}
+	const arr = textList.value ? [...textList.value, addInput.value] : [addInput.value];
+
+	mutate(
+		{
+			tagId: 0,
+			id: 1,
+			value: JSON.stringify(arr),
+		},
+		{
+			onSuccess() {
+				addInput.value = '';
+				invalidate();
+				ElMessage({
+					type: 'success',
+					message: '已儲存常用字',
+				});
+			},
+		},
+	);
 };
 
 const insertText = (text: string) => {
