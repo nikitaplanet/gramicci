@@ -7,8 +7,9 @@ import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 import '../src/assets/scss/index.scss';
 import ElementPlus from 'element-plus';
 import 'element-plus/dist/index.css';
+import {VueQueryPlugin} from '@tanstack/vue-query';
 
 const app = createApp(App);
 const pinia = createPinia();
 
-app.use(pinia).use(router).use(ElementPlus).mount('#app');
+app.use(pinia).use(VueQueryPlugin).use(router).use(ElementPlus).mount('#app');
