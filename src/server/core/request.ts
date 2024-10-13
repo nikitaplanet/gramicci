@@ -1,4 +1,5 @@
 import axios, {AxiosInstance, AxiosResponse} from 'axios';
+import axiosRetry from 'axios-retry';
 
 // 定義接口用於響應數據類型
 interface ApiResponse<T> {
@@ -19,6 +20,8 @@ const getApiClient: AxiosInstance = axios.create({
 		'Content-Type': 'application/json',
 	},
 });
+
+axiosRetry(getApiClient, {retries: 1});
 
 // 創建 POST 專用的 Axios 實例
 const postApiClient: AxiosInstance = axios.create({
