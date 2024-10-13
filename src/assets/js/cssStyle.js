@@ -2,7 +2,8 @@ const cssStyle =
 	'.blog {\n' +
 	'  width: 100%;\n' +
 	'  max-width: 750px;\n' +
-	'  padding: 0 0 0 -20px;\n' +
+	'  padding-left: -20px;\n' +
+	'  padding-bottom: 20px;\n' +
 	'  margin: auto;\n' +
 	"  font-family: Arial, 'PingFang TC', '微軟正黑體';\n" +
 	'  display: flex;\n' +
@@ -12,6 +13,10 @@ const cssStyle =
 	'}\n' +
 	'.blog > * {\n' +
 	'  margin-left: 20px;\n' +
+	'}\n' +
+	'.blog h1, .blog h2, .blog h3, .blog h4, .blog h5, .blog h6, .blog p {\n' +
+	'  margin-top: 0;\n' +
+	'  margin-bottom: 0;\n' +
 	'}\n' +
 	'.blog h1 {\n' +
 	'  font-family: Arial;\n' +
@@ -144,9 +149,8 @@ const cssStyle =
 	'  border-radius: 0.5rem;\n' +
 	'  display: flex;\n' +
 	'  flex-direction: column;\n' +
-	'  width: fit-content;\n' +
 	'  position: relative;\n' +
-	'  margin: 0;\n' +
+	'  width: calc(100% - 40px);\n' +
 	'  max-width: 100%;\n' +
 	'}\n' +
 	'.blog figure figcaption {\n' +
@@ -157,7 +161,7 @@ const cssStyle =
 	'  color: #9f9f9f;\n' +
 	"  font-family: 'Arial';\n" +
 	'  line-height: 1;\n' +
-	'  font-weight: 700;\n' +
+	'  font-weight: 500;\n' +
 	'  letter-spacing: 1px;\n' +
 	'}\n' +
 	'.blog .tableWrapper {\n' +
@@ -224,7 +228,7 @@ const cssStyle =
 	'}\n' +
 	'@media only screen and (max-width: 767px) {\n' +
 	'  .blog {\n' +
-	'    padding: 0 20px;\n' +
+	'    padding: 0 20px 0 -20px;\n' +
 	'  }\n' +
 	'  .blog h1 {\n' +
 	'    font-size: 20px;\n' +
