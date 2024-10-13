@@ -3,10 +3,8 @@ export default {
 	content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
 	theme: {
 		extend: {
-			maxWidth: {
-				'8xl': '1400px',
-			},
 			colors: {
+				'button-active': '#333333',
 				'button-disabled': '#9E9E9E',
 				'main-background': '#181D22',
 				'card-background': '#efefef',
@@ -15,11 +13,11 @@ export default {
 			},
 			screens: {
 				sm: {max: '767px'},
-				md: {min: '768px'},
-				lg: {min: '1024px'},
-				xl: {min: '1280px'},
-				'2xl': {min: '1536px'},
-				'3xl': {min: '1920px'},
+				md: {max: '768px'},
+				lg: {max: '1024px'},
+				xl: {max: '1280px'},
+				'2xl': {max: '1536px'},
+				'3xl': {max: '1920px'},
 			},
 		},
 	},
