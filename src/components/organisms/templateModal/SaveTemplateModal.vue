@@ -3,7 +3,7 @@
 		<FullPageModal v-if="modelValueWritable" @close="modelValueWritable = false" title="儲存模板">
 			<div class="flex flex-col gap-11 overflow-y-auto mb-20">
 				<div
-					v-for="template in data"
+					v-for="template in store.getTemplates"
 					:key="template.id"
 					@click="open(template.id)"
 					class="flex items-center h-[130px] bg-card-background rounded-2xl pl-8 hover:border-[3px] hover:border-black relative cursor-pointer">
@@ -25,13 +25,9 @@
 import FullPageModal from '@components/organisms/modal/FullPageModal.vue';
 import {useVModel} from '@vueuse/core';
 import {ElMessage, ElMessageBox} from 'element-plus';
-// import useTemplateStore from '@/store/template.ts';
-import useMutationPostSheet from '/src/server/composables/useMutationPostSheet.ts';
-import useQueryTemplates from '/src/server/composables/useQueryTemplates.ts';
+import {useDataStore} from '@/store/template.ts';
 
-// const templateStore = useTemplateStore();
-const {data, invalidate} = useQueryTemplates({params: {tagName: 'template'}});
-const {mutate} = useMutationPostSheet();
+const store = useDataStore();
 
 interface SaveTemplateModalProps {
 	modelValue: boolean;
@@ -66,18 +62,12 @@ const formatDate = (timestamp) => {
 /**
  * 儲存
  */
-type Val = {
-	tagId?: number;
-	id?: number;
-	label?: string;
-	value?: string | null;
-	updateAt?: string;
-};
 
 const open = (id) => {
 	let title = '確認儲存模板?';
-	// const checkedIdData = templateStore.template.find((data) => data.id === id);
-	const checkedIdData = data.value.find((data) => data.id === id);
+	console.log(store.getTemplates);
+
+	const checkedIdData = store.getTemplates.find((data) => data.id === id);
 	if (checkedIdData?.label) title = `確認覆蓋模板 ${id}「${checkedIdData.label}」?`;
 	ElMessageBox.prompt('輸入存檔名稱＊', title, {
 		confirmButtonText: '確認',
@@ -87,24 +77,17 @@ const open = (id) => {
 		inputErrorMessage: '不能為空，最多輸入20個字',
 	})
 		.then(({value}) => {
-			let val: Val = {};
-			data.value.forEach((item) => {
+			store.templates.forEach((item) => {
 				if (item && item.id === id) {
-					val.tagId = 1;
-					val.id = Number(id) as number;
-					val.label = value;
-					val.value = props.templateValue;
-					val.updateAt = formatDate(Date.now());
+					item.id = Number(id) as number;
+					item.label = value;
+					item.value = props.templateValue;
+					item.updateAt = formatDate(Date.now());
 				}
 			});
-			mutate(val, {
-				onSuccess() {
-					invalidate();
-					ElMessage({
-						type: 'success',
-						message: '已儲存模板',
-					});
-				},
+			ElMessage({
+				type: 'success',
+				message: '已儲存模板',
 			});
 		})
 		.catch(() => {});

@@ -3,7 +3,7 @@
 		<FullPageModal v-if="modelValueWritable" @close="modelValueWritable = false" title="儲存模板">
 			<div class="flex flex-col gap-11 overflow-y-auto mb-20">
 				<div
-					v-for="template in data"
+					v-for="template in store.getTemplates"
 					:class="template.label ? 'hover:border-[3px] hover:border-black cursor-pointer' : 'cursor-default'"
 					:key="template.id"
 					@click="template.label ? open(template.id) : ''"
@@ -26,11 +26,8 @@
 import FullPageModal from '@components/organisms/modal/FullPageModal.vue';
 import {useVModel} from '@vueuse/core';
 import {ElMessage, ElMessageBox} from 'element-plus';
-// import useTemplateStore from '@/store/template.ts';
-import useQueryTemplates from '/src/server/composables/useQueryTemplates.ts';
-
-const {data} = useQueryTemplates({params: {tagName: 'template'}});
-// const templateStore = useTemplateStore();
+import {useDataStore} from '@/store/template.ts';
+const store = useDataStore();
 
 interface LoadeTmplateModalProps {
 	modelValue: boolean;
@@ -58,7 +55,7 @@ const open = (id) => {
 		showCancelButton: false,
 	})
 		.then(() => {
-			const checkedIdData = data.value.find((data) => data.id === id);
+			const checkedIdData = store.getTemplates.find((data) => data.id === id);
 			emit('update', checkedIdData.value);
 			ElMessage({
 				type: 'success',
