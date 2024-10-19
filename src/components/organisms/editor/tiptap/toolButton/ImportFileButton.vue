@@ -9,13 +9,21 @@
 import {ref} from 'vue';
 import TiptapToolbarButton from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarButton.vue';
 import {useDataStore} from '@/store/template.ts';
-import {ElMessage} from 'element-plus';
+import {ElMessage, ElMessageBox} from 'element-plus';
 const store = useDataStore();
 const importRef = ref();
 const importedObject = ref(null);
 
 const inputHandler = () => {
-	importRef.value.click();
+	ElMessageBox.confirm('匯入後將直接覆蓋目前設定檔。', '確認匯入設定檔?', {
+		confirmButtonText: '確認',
+		cancelButtonText: '取消',
+		showCancelButton: true,
+	})
+		.then(() => {
+			importRef.value.click();
+		})
+		.catch(() => {});
 };
 
 const importTextFile = (event) => {
