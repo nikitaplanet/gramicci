@@ -52,7 +52,8 @@ const modelValueWritable = useVModel(props, 'modelValue', emit);
 const open = (id) => {
 	ElMessageBox.confirm('載入後將直接覆蓋目前編輯器資料。', '確認載入模板?', {
 		confirmButtonText: '確認',
-		showCancelButton: false,
+		cancelButtonText: '取消',
+		showCancelButton: true,
 	})
 		.then(() => {
 			const checkedIdData = store.getTemplates.find((data) => data.id === id);
