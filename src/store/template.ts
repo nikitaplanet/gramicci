@@ -6,31 +6,31 @@ export const useDataStore = defineStore('template', {
 		templates: useStorage('templates', [
 			{
 				id: 1,
-				title: '',
+				label: '',
 				value: null,
 				updateAt: '',
 			},
 			{
 				id: 2,
-				title: '',
+				label: '',
 				value: null,
 				updateAt: '',
 			},
 			{
 				id: 3,
-				title: '',
+				label: '',
 				value: null,
 				updateAt: '',
 			},
 			{
 				id: 4,
-				title: '',
+				label: '',
 				value: null,
 				updateAt: '',
 			},
 			{
 				id: 5,
-				title: '',
+				label: '',
 				value: null,
 				updateAt: '',
 			},
@@ -43,13 +43,26 @@ export const useDataStore = defineStore('template', {
 	},
 	actions: {
 		setTemplates(val) {
-			console.log('setTemplate', val);
 			this.templates = val;
 		},
 		setCommonWords(val) {
-			console.log('setWord', val);
-
 			this.commonWords = val;
+		},
+		deleteTemplate(id) {
+			console.log(id);
+			this.templates.forEach((item) => {
+				if (item.id === id) {
+					item.value = null
+					item.label = ''
+					item.updateAt= ''
+				};
+			});
+		},
+		renameTemplate(id, name) {
+			console.log(id);
+			this.templates.forEach((item) => {
+				if (item.id === id) item.label = name;
+			});
 		},
 	},
 });

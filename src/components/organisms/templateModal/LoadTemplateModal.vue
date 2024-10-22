@@ -8,8 +8,8 @@
 					:key="template.id"
 					@click="template.label ? open(template.id) : ''"
 					class="flex items-center h-[130px] bg-card-background rounded-2xl pl-8 relative">
-					<p :class="template.label ? '' : 'text-[#D5D5D5]'" class="text-5xl font-bold mr-12">{{ template.id }}</p>
-					<p :class="template.label ? '' : 'text-[#D5D5D5]'" class="text-xl font-bold mr-12">
+					<p :class="template.label ? '' : 'text-[#D5D5D5]'" class="text-5xl font-bold mr-12 sm:mr-6">{{ template.id }}</p>
+					<p :class="template.label ? '' : 'text-[#D5D5D5]'" class="text-xl sm:text-base font-bold">
 						{{ template.label ? template.label : '沒有紀錄' }}
 					</p>
 					<p class="text-sm font-bold text-[#5d5d5d] italic absolute bottom-5 right-6">{{ template.updateAt ?? '' }}</p>
