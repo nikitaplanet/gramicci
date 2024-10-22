@@ -15,6 +15,7 @@
 			<ListTool :editor="editor" />
 			<InsertTool :editor="editor" />
 			<TableEditTool :editor="editor" />
+			<SyncConfigTool />
 		</div>
 
 		<div v-show="!isShowHtml" :class="{w767: isPreviewMobile}" class="w-full">
@@ -98,6 +99,7 @@ import EditorStyleTool from '@components/organisms/editor/tiptap/groupTool/Edito
 
 import ExportTemplate from '@components/organisms/editor/ExportTemplate.vue';
 import LogoInTool from '@components/organisms/editor/tiptap/groupTool/LogoInTool.vue';
+import SyncConfigTool from '@components/organisms/editor/tiptap/groupTool/SyncConfigTool.vue';
 
 export default {
 	components: {
@@ -112,6 +114,7 @@ export default {
 		// HistoryTool,
 		EditorContent,
 		ExportTemplate,
+		SyncConfigTool,
 	},
 	data() {
 		return {

@@ -1,53 +1,68 @@
 import {defineStore} from 'pinia';
+import {useStorage} from '@vueuse/core';
 
-export default defineStore('APP', () => {
-	const template = [
-		// {
-		// 	id: 1,
-		// 	title: '男裝模板1',
-		// 	value: {},
-		// 	updateAt: '2024-05-01 12:00',
-		// },
-		// {
-		// 	id: 2,
-		// 	title: '女裝模板1',
-		// 	value: {},
-		// 	updateAt: '2024-05-03 12:00',
-		// },
-
-		{
-			id: 1,
-			title: '',
-			value: null,
-			updateAt: '',
+export const useDataStore = defineStore('template', {
+	state: () => ({
+		templates: useStorage('templates', [
+			{
+				id: 1,
+				label: '',
+				value: null,
+				updateAt: '',
+			},
+			{
+				id: 2,
+				label: '',
+				value: null,
+				updateAt: '',
+			},
+			{
+				id: 3,
+				label: '',
+				value: null,
+				updateAt: '',
+			},
+			{
+				id: 4,
+				label: '',
+				value: null,
+				updateAt: '',
+			},
+			{
+				id: 5,
+				label: '',
+				value: null,
+				updateAt: '',
+			},
+		]),
+		commonWords: useStorage('commonWords', []),
+	}),
+	getters: {
+		getTemplates: (state) => state.templates,
+		getCommonWords: (state) => state.commonWords,
+	},
+	actions: {
+		setTemplates(val) {
+			this.templates = val;
 		},
-		{
-			id: 2,
-			title: '',
-			value: null,
-			updateAt: '',
+		setCommonWords(val) {
+			this.commonWords = val;
 		},
-		{
-			id: 3,
-			title: '',
-			value: null,
-			updateAt: '',
+		deleteTemplate(id) {
+			console.log(id);
+			this.templates.forEach((item) => {
+				if (item.id === id) {
+					item.value = null
+					item.label = ''
+					item.updateAt= ''
+				};
+			});
 		},
-		{
-			id: 4,
-			title: '',
-			value: null,
-			updateAt: '',
+		renameTemplate(id, name) {
+			console.log(id);
+			this.templates.forEach((item) => {
+				if (item.id === id) item.label = name;
+			});
 		},
-		{
-			id: 5,
-			title: '',
-			value: null,
-			updateAt: '',
-		},
-	];
-
-	return {
-		template,
-	};
+	},
 });
