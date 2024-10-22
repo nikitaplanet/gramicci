@@ -1,17 +1,21 @@
-const cssStyle =
-	'.blog {\n' +
+const cssStyle = '.blog {\n' +
 	'  width: 100%;\n' +
 	'  max-width: 750px;\n' +
-	'  padding: 0 0 0 -20px;\n' +
+	'  padding-left: -20px;\n' +
+	'  padding-bottom: 20px;\n' +
 	'  margin: auto;\n' +
-	"  font-family: Arial, 'PingFang TC', '微軟正黑體';\n" +
+	'  font-family: Arial, \'PingFang TC\', \'微軟正黑體\';\n' +
 	'  display: flex;\n' +
 	'  flex-direction: column;\n' +
 	'  color: #333333;\n' +
-	"  font-feature-settings: 'liga' 0;\n" +
+	'  font-feature-settings: \'liga\' 0;\n' +
 	'}\n' +
 	'.blog > * {\n' +
 	'  margin-left: 20px;\n' +
+	'}\n' +
+	'.blog h1, .blog h2, .blog h3, .blog h4, .blog h5, .blog h6, .blog p {\n' +
+	'  margin-top: 0;\n' +
+	'  margin-bottom: 0;\n' +
 	'}\n' +
 	'.blog h1 {\n' +
 	'  font-family: Arial;\n' +
@@ -21,42 +25,42 @@ const cssStyle =
 	'  font-weight: 700;\n' +
 	'}\n' +
 	'.blog h2 {\n' +
-	"  font-family: 'PingFang TC';\n" +
+	'  font-family: \'PingFang TC\';\n' +
 	'  font-size: 18px;\n' +
 	'  line-height: 1.5;\n' +
 	'  letter-spacing: 0.5px;\n' +
 	'  font-weight: 500;\n' +
 	'}\n' +
 	'.blog h3 {\n' +
-	"  font-family: 'PingFang TC';\n" +
+	'  font-family: \'PingFang TC\';\n' +
 	'  font-size: 16px;\n' +
 	'  line-height: 1.8;\n' +
 	'  letter-spacing: 0.5px;\n' +
 	'  font-weight: 400;\n' +
 	'}\n' +
 	'.blog h4 {\n' +
-	"  font-family: 'PingFang TC';\n" +
+	'  font-family: \'PingFang TC\';\n' +
 	'  font-size: 14px;\n' +
 	'  line-height: 1.5;\n' +
 	'  letter-spacing: 0.5px;\n' +
 	'  font-weight: 500;\n' +
 	'}\n' +
 	'.blog h5 {\n' +
-	"  font-family: 'PingFang TC';\n" +
+	'  font-family: \'PingFang TC\';\n' +
 	'  font-size: 12px;\n' +
 	'  line-height: 2.5;\n' +
 	'  letter-spacing: 0.5px;\n' +
 	'  font-weight: 500;\n' +
 	'}\n' +
 	'.blog h6 {\n' +
-	"  font-family: 'PingFang TC';\n" +
+	'  font-family: \'PingFang TC\';\n' +
 	'  font-size: 15px;\n' +
 	'  line-height: 1.8;\n' +
 	'  letter-spacing: 0.5px;\n' +
 	'  font-weight: 500;\n' +
 	'}\n' +
 	'.blog p {\n' +
-	"  font-family: 'PingFang TC';\n" +
+	'  font-family: \'PingFang TC\';\n' +
 	'  font-size: 13px;\n' +
 	'  line-height: 1.5;\n' +
 	'  letter-spacing: 0.5px;\n' +
@@ -133,7 +137,7 @@ const cssStyle =
 	'  text-align: left;\n' +
 	'}\n' +
 	'.blog table p {\n' +
-	"  font-family: 'PingFang TC';\n" +
+	'  font-family: \'PingFang TC\';\n' +
 	'  font-size: 13px;\n' +
 	'  line-height: 1.5;\n' +
 	'  letter-spacing: 0.5px;\n' +
@@ -144,10 +148,12 @@ const cssStyle =
 	'  border-radius: 0.5rem;\n' +
 	'  display: flex;\n' +
 	'  flex-direction: column;\n' +
-	'  width: fit-content;\n' +
 	'  position: relative;\n' +
-	'  margin: 0;\n' +
+	'  width: calc(100% - 40px);\n' +
 	'  max-width: 100%;\n' +
+	'}\n' +
+	'.blog figure img {\n' +
+	'  width: 100%;\n' +
 	'}\n' +
 	'.blog figure figcaption {\n' +
 	'  position: absolute;\n' +
@@ -155,9 +161,9 @@ const cssStyle =
 	'  left: 20px;\n' +
 	'  font-size: 18px;\n' +
 	'  color: #9f9f9f;\n' +
-	"  font-family: 'Arial';\n" +
+	'  font-family: \'Arial\';\n' +
 	'  line-height: 1;\n' +
-	'  font-weight: 700;\n' +
+	'  font-weight: 500;\n' +
 	'  letter-spacing: 1px;\n' +
 	'}\n' +
 	'.blog .tableWrapper {\n' +
@@ -180,7 +186,7 @@ const cssStyle =
 	'  color: #333333;\n' +
 	'}\n' +
 	'.remarkBlog h5 {\n' +
-	"  font-family: 'PingFang TC';\n" +
+	'  font-family: \'PingFang TC\';\n' +
 	'  font-size: 12px;\n' +
 	'  line-height: 2.5;\n' +
 	'  letter-spacing: 0.5px;\n' +
@@ -224,7 +230,7 @@ const cssStyle =
 	'}\n' +
 	'@media only screen and (max-width: 767px) {\n' +
 	'  .blog {\n' +
-	'    padding: 0 20px;\n' +
+	'    padding: 0 20px 0 -20px;\n' +
 	'  }\n' +
 	'  .blog h1 {\n' +
 	'    font-size: 20px;\n' +

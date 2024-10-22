@@ -21,7 +21,7 @@
 		<div v-show="!isShowHtml" :class="{w767: isPreviewMobile}" class="w-full">
 			<div
 				:class="{'max-w-[1400px]': !isPreviewMobile, 'max-w-[400px] sm:max-w-full': isPreviewMobile}"
-				class="flex flex-col min-h-96 mx-auto bg-white my-8 sm:rounded-none sm:my-0 sm:mb-8 md:rounded-none md:my-0 md:mb-8">
+				class="flex flex-col w-11/12 min-h-96 mx-auto bg-white my-8 sm:w-full sm:my-0 sm:mb-8 md:my-0 md:mb-8">
 				<EditorContent :editor="editor" />
 				<div v-show="!isEditable" class="remarkBlog">
 					<h5>
