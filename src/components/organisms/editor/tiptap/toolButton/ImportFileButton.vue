@@ -19,6 +19,7 @@ const inputHandler = () => {
 		confirmButtonText: '確認',
 		cancelButtonText: '取消',
 		showCancelButton: true,
+		type: 'warning',
 	})
 		.then(() => {
 			importRef.value.click();
