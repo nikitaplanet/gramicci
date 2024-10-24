@@ -4,30 +4,38 @@
 			v-if="show"
 			v-click-outside:[popperPaneRef]="onClickOutside"
 			ref="commonTextTool"
-			class="w-[300px] h-full p-4 fixed top-0 left-0 bg-card-background z-20 overflow-y-scroll">
+			class="w-full h-[45vh] p-4 pt-0 fixed bottom-0 bg-card-background/80 z-20 overflow-y-scroll Properties shadow-md">
 			<div class="w-full flex justify-center items-start flex-wrap gap-3 flex-col">
-				<div class="w-full flex justify-between items-center flex-wrap gap-3">
-					<TiptapToolbarButton @click="close" label="Horizontal Line">
-						<IconSquareX class="h-5 w-5" />
-					</TiptapToolbarButton>
-					<TiptapToolbarButton :isActive="isEdit" @click="toggleEdit" label="Horizontal Line">
-						<IconEdit class="h-5 w-5" />
-					</TiptapToolbarButton>
-				</div>
+				<!-- 工具列 -->
+				<div class="w-full bg-card-background pt-4 pb-2 flex flex-col gap-3 sticky top-0">
+					<div class="w-full flex justify-between items-center flex-wrap gap-3 h-[41px]">
+						<TiptapToolbarButton @click="close" label="Horizontal Line">
+							<IconSquareX class="h-5 w-5" />
+						</TiptapToolbarButton>
+						<div class="flex items-center">
+							<NButton v-if="isEdit" @click="addText" class="w-max h-10 mr-3">新增常用字</NButton>
+							<TiptapToolbarButton :isActive="isEdit" @click="toggleEdit" label="Horizontal Line">
+								<IconEdit class="h-5 w-5" />
+							</TiptapToolbarButton>
+						</div>
+					</div>
 
-				<div class="w-full flex">
-					<ElInput
-						v-if="!isEdit"
-						v-model="searchInput"
-						:prefixIcon="Search"
-						@keyup="search"
-						class="w-full"
-						clearable
-						placeholder="搜尋常用字" />
-					<ElInput v-else v-model="addInput" @keyup.enter="addText" class="w-full" clearable placeholder="輸入欲新增的文字" />
+					<!-- input -->
+					<div class="w-full flex">
+						<ElInput
+							v-if="!isEdit"
+							v-model="searchInput"
+							:prefixIcon="Search"
+							@keyup="search"
+							class="w-full"
+							clearable
+							placeholder="搜尋常用字" />
+						<template v-else>
+							<ElInput v-model="addInput" class="w-full" clearable placeholder="輸入欲新增的文字" type="textarea" />
+						</template>
+					</div>
 				</div>
-
-				<div class="w-full flex justify-start items-center flex-wrap gap-3">
+				<div class="w-full flex justify-start items-center flex-wrap gap-3 overflow-scroll">
 					<template v-if="searchInput">
 						<CommonTextButton v-for="item in searchList" :key="`editCommon_${item}`" @click="textAction(item)" class="hover:bg-blue-700">
 							{{ item }}
@@ -40,8 +48,8 @@
 							:class="{'hover:bg-red-700': isEdit, 'hover:bg-blue-700': !isEdit}"
 							:key="`editCommon_${item}`"
 							@click="textAction(item, index)">
-							{{ item }}
-							<IconX v-if="isEdit" class="w-3 h-3 ml-3" />
+							<pre v-html="transHtmlFormat(item)" class="text-left"></pre>
+							<IconX v-if="isEdit" :size="10" class="min-w-2 min-h-2 ml-3" />
 						</CommonTextButton>
 					</template>
 				</div>
@@ -51,7 +59,7 @@
 </template>
 
 <script lang="ts" setup>
-import {ElInput, ClickOutside as vClickOutside} from 'element-plus';
+import {ElInput, ClickOutside as vClickOutside, ElMessage, ElMessageBox} from 'element-plus';
 import {Search} from '@element-plus/icons-vue';
 import {IconX, IconSquareX, IconEdit} from '@tabler/icons-vue';
 import CommonTextButton from '@components/organisms/editor/tiptap/toolButton/CommonTextButton.vue';
@@ -59,7 +67,7 @@ import {computed, ref, watch} from 'vue';
 import TiptapToolbarButton from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarButton.vue';
 import {filter} from 'lodash';
 import * as sea from 'node:sea';
-import {ElMessage} from 'element-plus';
+import NButton from '@components/atoms/NButton.vue';
 
 import {useDataStore} from '@/store/template.ts';
 const store = useDataStore();
@@ -100,11 +108,20 @@ const textAction = (item: string) => {
 };
 
 const deleteText = (item: string) => {
-	store.setCommonWords(store.commonWords.filter((val) => val !== item));
-	ElMessage({
-		type: 'success',
-		message: `已刪除常用字 "${item}"`,
-	});
+	ElMessageBox.confirm(`確認後將刪除常用字「${item}」。`, `確認刪除常用字?`, {
+		confirmButtonText: '確認',
+		cancelButtonText: '取消',
+		showCancelButton: true,
+		type: 'warning',
+	})
+		.then(() => {
+			store.setCommonWords(store.commonWords.filter((val) => val !== item));
+			ElMessage({
+				type: 'success',
+				message: `已刪除常用字 "${item}"`,
+			});
+		})
+		.catch(() => {});
 };
 
 const addText = () => {
@@ -123,11 +140,21 @@ const addText = () => {
 };
 
 const insertText = (text: string) => {
-	emit('insertCommonText', text);
+	emit('insertCommonText', transHtmlFormat(text));
 };
 
 const search = () => {
 	searchList.value = filter(store.getCommonWords, (i) => i.includes(searchInput.value));
+};
+
+/**
+ * transHtmlFormat:textarea有換行格式換為<p>標籤
+ * @description textarea有換行格式\h，將每列文字是用<p>標籤做換行區別，無\h傳回text原始值。
+ * @param {string} text - 新增常用字input輸入的值
+ * @returns {string} text or <p>標籤字串。
+ */
+const transHtmlFormat = (text: string) => {
+	return text.includes('\n') ? `<p>${text.replaceAll('\n', '</p><p>')}</p>` : text;
 };
 </script>
 <style lang="scss" scoped></style>
