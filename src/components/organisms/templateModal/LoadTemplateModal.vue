@@ -3,13 +3,13 @@
 		<FullPageModal v-if="modelValueWritable" @close="modelValueWritable = false" title="儲存模板">
 			<div class="flex flex-col gap-11 overflow-y-auto mb-20">
 				<div
-					v-for="template in data"
+					v-for="template in store.getTemplates"
 					:class="template.label ? 'hover:border-[3px] hover:border-black cursor-pointer' : 'cursor-default'"
 					:key="template.id"
 					@click="template.label ? open(template.id) : ''"
 					class="flex items-center h-[130px] bg-card-background rounded-2xl pl-8 relative">
-					<p :class="template.label ? '' : 'text-[#D5D5D5]'" class="text-5xl font-bold mr-12">{{ template.id }}</p>
-					<p :class="template.label ? '' : 'text-[#D5D5D5]'" class="text-xl font-bold mr-12">
+					<p :class="template.label ? '' : 'text-[#D5D5D5]'" class="text-5xl font-bold mr-12 sm:mr-6">{{ template.id }}</p>
+					<p :class="template.label ? '' : 'text-[#D5D5D5]'" class="text-xl sm:text-base font-bold">
 						{{ template.label ? template.label : '沒有紀錄' }}
 					</p>
 					<p class="text-sm font-bold text-[#5d5d5d] italic absolute bottom-5 right-6">{{ template.updateAt ?? '' }}</p>
@@ -26,11 +26,8 @@
 import FullPageModal from '@components/organisms/modal/FullPageModal.vue';
 import {useVModel} from '@vueuse/core';
 import {ElMessage, ElMessageBox} from 'element-plus';
-// import useTemplateStore from '@/store/template.ts';
-import useQueryTemplates from '/src/server/composables/useQueryTemplates.ts';
-
-const {data} = useQueryTemplates({params: {tagName: 'template'}});
-// const templateStore = useTemplateStore();
+import {useDataStore} from '@/store/template.ts';
+const store = useDataStore();
 
 interface LoadeTmplateModalProps {
 	modelValue: boolean;
@@ -55,10 +52,11 @@ const modelValueWritable = useVModel(props, 'modelValue', emit);
 const open = (id) => {
 	ElMessageBox.confirm('載入後將直接覆蓋目前編輯器資料。', '確認載入模板?', {
 		confirmButtonText: '確認',
-		showCancelButton: false,
+		cancelButtonText: '取消',
+		showCancelButton: true,
 	})
 		.then(() => {
-			const checkedIdData = data.value.find((data) => data.id === id);
+			const checkedIdData = store.getTemplates.find((data) => data.id === id);
 			emit('update', checkedIdData.value);
 			ElMessage({
 				type: 'success',
