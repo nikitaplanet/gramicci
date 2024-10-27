@@ -16,9 +16,9 @@
 							<IconTrash></IconTrash>
 						</TiptapToolbarButton>
 
-						<TiptapToolbarButton @click="open(template.id)" class="border border-gray-400" label="templateCover">
-							<IconDeviceFloppy />
-						</TiptapToolbarButton>
+						<!--						<TiptapToolbarButton @click="open(template.id)" class="border border-gray-400" label="templateCover">-->
+						<!--							<IconDeviceFloppy />-->
+						<!--						</TiptapToolbarButton>-->
 
 						<TiptapToolbarButton @click="editTable(template.id)" class="border border-gray-400" label="templateEdit">
 							<IconEdit />
