@@ -12,7 +12,10 @@
 						{{ template.label ? template.label : '點擊創建表格' }}
 					</p>
 					<TiptapToolbarGroup v-if="template.label" class="absolute top-2 right-6">
-						<TiptapToolbarButton @click="deleteItem(template.id, template.label)" class="border border-gray-400" label="templateTrash">
+						<TiptapToolbarButton
+							@click.stop="deleteItem(template.id, template.label)"
+							class="border border-gray-400"
+							label="templateTrash">
 							<IconTrash></IconTrash>
 						</TiptapToolbarButton>
 
@@ -20,7 +23,7 @@
 						<!--							<IconDeviceFloppy />-->
 						<!--						</TiptapToolbarButton>-->
 
-						<TiptapToolbarButton @click="editTable(template.id)" class="border border-gray-400" label="templateEdit">
+						<TiptapToolbarButton @click.stop="editTable(template.id)" class="border border-gray-400" label="templateEdit">
 							<IconEdit />
 						</TiptapToolbarButton>
 					</TiptapToolbarGroup>
