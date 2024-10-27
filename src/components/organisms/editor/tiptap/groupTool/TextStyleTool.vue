@@ -1,11 +1,16 @@
 <template>
 	<TiptapToolbarGroup v-if="editor">
+		<!-- 粗體 -->
 		<TiptapToolbarButton :isActive="editor.isActive('bold')" @click="editor?.chain().focus().toggleBold().run()" label="Bold">
 			<IconBold class="h-5 w-5" />
 		</TiptapToolbarButton>
+
+		<!-- 斜體 -->
 		<TiptapToolbarButton :isActive="editor.isActive('italic')" @click="editor?.chain().focus().toggleItalic().run()" label="Italic">
 			<IconItalic class="h-5 w-5" />
 		</TiptapToolbarButton>
+
+		<!-- 底線 -->
 		<TiptapToolbarButton :isActive="editor.isActive('underline')" @click="editor.chain().focus().toggleUnderline().run()" label="Underline">
 			<IconUnderline class="h-5 w-5" />
 		</TiptapToolbarButton>
@@ -24,6 +29,8 @@
 				</TiptapToolbarDropdownButton>
 			</TiptapToolbarDropdown>
 		</TiptapToolbarButton>
+
+		<!-- 字體 -->
 		<TiptapToolbarButton :isActive="isShowTypography" @click="toggleTypographyList" label="Typography">
 			<IconTypography class="h-5 w-5" />
 			<TiptapToolbarDropdown v-if="isShowTypography" @onClickOutside="isShowTypography = false">
@@ -36,6 +43,8 @@
 				</TiptapToolbarDropdownButton>
 			</TiptapToolbarDropdown>
 		</TiptapToolbarButton>
+
+		<!-- 行高 -->
 		<TiptapToolbarButton :isActive="isShowLineHeight" @click="toggleLineHeightList" label="LineHeight">
 			<IconLineHeight class="h-5 w-5" />
 			<TiptapToolbarDropdown v-if="isShowLineHeight" @onClickOutside="isShowLineHeight = false">
@@ -44,6 +53,20 @@
 					:isActive="editor.isActive('textStyle', {lineHeight: item})"
 					:key="`lineHeight_${index}`"
 					@click="setLineHeight(item)">
+					<span>{{ item }}</span>
+				</TiptapToolbarDropdownButton>
+			</TiptapToolbarDropdown>
+		</TiptapToolbarButton>
+
+		<!-- 間隔 -->
+		<TiptapToolbarButton :isActive="isShowSpacing || isSplacing" @click="toggleSpacingList" label="Spacing">
+			<IconSpacingVertical class="h-5 w-5" />
+			<TiptapToolbarDropdown v-if="isShowSpacing" @onClickOutside="isShowSpacing = false">
+				<TiptapToolbarDropdownButton
+					v-for="(item, index) in spacingList"
+					:isActive="editor.isActive('customSpacing', {minHeight: item})"
+					:key="`spacing_${index}`"
+					@click="setSpacing(item)">
 					<span>{{ item }}</span>
 				</TiptapToolbarDropdownButton>
 			</TiptapToolbarDropdown>
@@ -59,13 +82,14 @@
 </template>
 
 <script lang="ts" setup>
-import {IconBold, IconItalic, IconUnderline, IconTextSize, IconTypography, IconLineHeight} from '@tabler/icons-vue';
+import {IconBold, IconItalic, IconUnderline, IconTextSize, IconTypography, IconLineHeight, IconSpacingVertical} from '@tabler/icons-vue';
 import TiptapToolbarGroup from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarGroup.vue';
 import TiptapToolbarButton from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarButton.vue';
 import TiptapToolbarDropdown from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarDropdown.vue';
 import TiptapToolbarDropdownButton from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarDropdownButton.vue';
 
-import {ref} from 'vue';
+import {ref, computed} from 'vue';
+import {space} from 'postcss/lib/list';
 
 const props = defineProps({
 	editor: {
@@ -77,6 +101,7 @@ const props = defineProps({
 const isShowFontSize = ref(false);
 const isShowTypography = ref(false);
 const isShowLineHeight = ref(false);
+const isShowSpacing = ref(false);
 
 const fontSizeList = ref<number[]>([]);
 for (let i = 9; i < 40; i++) {
@@ -84,6 +109,7 @@ for (let i = 9; i < 40; i++) {
 }
 
 const lineHeightList = ref<number[]>([20, 25, 50]);
+const spacingList = ref<number[]>([20, 25, 50]);
 
 interface FontFamily {
 	name: string;
@@ -121,6 +147,10 @@ const toggleLineHeightList = () => {
 	isShowLineHeight.value = !isShowLineHeight.value;
 };
 
+const toggleSpacingList = () => {
+	isShowSpacing.value = !isShowSpacing.value;
+};
+
 const setLineHeight = (val) => {
 	props.editor
 		?.chain()
@@ -128,6 +158,35 @@ const setLineHeight = (val) => {
 		.setMark('textStyle', {lineHeight: `${val}px`})
 		.run();
 };
+
+const setSpacing = (val) => {
+	const stateIsSplacing = isSplacing.value;
+
+	//如果是文字要到最尾端才能正確換行
+	if (!stateIsSplacing) {
+		props.editor.commands.focus('end');
+	}
+
+	props.editor?.commands.newlineInCode();
+	props.editor?.commands.insertContent({
+		type: 'customSpacing',
+		attrs: {
+			minHeight: val,
+		},
+	});
+
+	//新增的間距完後自動至下一行編輯，編輯原本就有的間距不用換行
+	if (!stateIsSplacing) {
+		props.editor.commands.enter();
+	}
+	props.editor?.commands.focus();
+};
+
+const isSplacing = computed(() => {
+	return props.editor.isActive('customSpacing');
+});
+
+const isCurrentTextAlign = (value) => props.editor?.getAttributes('textAlign').textAlign === value;
 </script>
 
 <style lang="scss" scoped>
