@@ -1,269 +1,309 @@
-const cssStyle = '.blog {\n' +
-	'  width: 100%;\n' +
-	'  max-width: 750px;\n' +
-	'  padding-left: -20px;\n' +
-	'  padding-bottom: 20px;\n' +
-	'  margin: auto;\n' +
-	'  font-family: Arial, \'PingFang TC\', \'微軟正黑體\';\n' +
-	'  display: flex;\n' +
-	'  flex-direction: column;\n' +
-	'  color: #333333;\n' +
-	'  font-feature-settings: \'liga\' 0;\n' +
+const cssStyle =
+	'.blog {\n' +
+	'\twidth: 100% !important;\n' +
+	'\tmax-width: 750px !important;\n' +
+	'\tpadding-left: -20px !important;\n' +
+	'\tpadding-bottom: 20px !important;\n' +
+	'\tmargin: auto !important;\n' +
+	"\tfont-family: Arial, 'PingFang TC', '微軟正黑體' !important;\n" +
+	'\tdisplay: flex !important;\n' +
+	'\tflex-direction: column !important;\n' +
+	'\tcolor: #333333 !important;\n' +
+	"\tfont-feature-settings: 'liga' 0 !important;\n" +
 	'}\n' +
-	'.blog > * {\n' +
-	'  margin-left: 20px;\n' +
-	'}\n' +
+	'\n' +
 	'.blog h1, .blog h2, .blog h3, .blog h4, .blog h5, .blog h6, .blog p {\n' +
-	'  margin-top: 0;\n' +
-	'  margin-bottom: 0;\n' +
+	'\tmargin-top: 0 !important;\n' +
+	'\tmargin-bottom: 0 !important;\n' +
 	'}\n' +
+	'\n' +
 	'.blog h1 {\n' +
-	'  font-family: Arial;\n' +
-	'  font-size: 30px;\n' +
-	'  line-height: 1.5;\n' +
-	'  letter-spacing: 2px;\n' +
-	'  font-weight: 700;\n' +
+	'\tfont-family: Arial !important;\n' +
+	'\tfont-size: 30px !important;\n' +
+	'\tline-height: 1.5 !important;\n' +
+	'\tletter-spacing: 2px !important;\n' +
+	'\tfont-weight: 700 !important;\n' +
 	'}\n' +
+	'\n' +
 	'.blog h2 {\n' +
-	'  font-family: \'PingFang TC\';\n' +
-	'  font-size: 18px;\n' +
-	'  line-height: 1.5;\n' +
-	'  letter-spacing: 0.5px;\n' +
-	'  font-weight: 500;\n' +
+	"\tfont-family: 'PingFang TC' !important;\n" +
+	'\tfont-size: 18px !important;\n' +
+	'\tline-height: 1.5 !important;\n' +
+	'\tletter-spacing: 0.5px !important;\n' +
+	'\tfont-weight: 500 !important;\n' +
 	'}\n' +
+	'\n' +
 	'.blog h3 {\n' +
-	'  font-family: \'PingFang TC\';\n' +
-	'  font-size: 16px;\n' +
-	'  line-height: 1.8;\n' +
-	'  letter-spacing: 0.5px;\n' +
-	'  font-weight: 400;\n' +
+	"\tfont-family: 'PingFang TC' !important;\n" +
+	'\tfont-size: 16px !important;\n' +
+	'\tline-height: 1.8 !important;\n' +
+	'\tletter-spacing: 0.5px !important;\n' +
+	'\tfont-weight: 400 !important;\n' +
 	'}\n' +
+	'\n' +
 	'.blog h4 {\n' +
-	'  font-family: \'PingFang TC\';\n' +
-	'  font-size: 14px;\n' +
-	'  line-height: 1.5;\n' +
-	'  letter-spacing: 0.5px;\n' +
-	'  font-weight: 500;\n' +
+	"\tfont-family: 'PingFang TC' !important;\n" +
+	'\tfont-size: 14px !important;\n' +
+	'\tline-height: 1.5 !important;\n' +
+	'\tfont-weight: 500 !important;\n' +
 	'}\n' +
+	'\n' +
 	'.blog h5 {\n' +
-	'  font-family: \'PingFang TC\';\n' +
-	'  font-size: 12px;\n' +
-	'  line-height: 2.5;\n' +
-	'  letter-spacing: 0.5px;\n' +
-	'  font-weight: 500;\n' +
+	"\tfont-family: 'PingFang TC' !important;\n" +
+	'\tfont-size: 12px !important;\n' +
+	'\tline-height: 2.5 !important;\n' +
+	'\tletter-spacing: 0.5px !important;\n' +
+	'\tfont-weight: 500 !important;\n' +
 	'}\n' +
+	'\n' +
 	'.blog h6 {\n' +
-	'  font-family: \'PingFang TC\';\n' +
-	'  font-size: 15px;\n' +
-	'  line-height: 1.8;\n' +
-	'  letter-spacing: 0.5px;\n' +
-	'  font-weight: 500;\n' +
+	"\tfont-family: 'PingFang TC' !important;\n" +
+	'\tfont-size: 15px !important;\n' +
+	'\tline-height: 1.8 !important;\n' +
+	'\tletter-spacing: 0.5px !important;\n' +
+	'\tfont-weight: 500 !important;\n' +
 	'}\n' +
+	'\n' +
 	'.blog p {\n' +
-	'  font-family: \'PingFang TC\';\n' +
-	'  font-size: 13px;\n' +
-	'  line-height: 1.5;\n' +
-	'  letter-spacing: 0.5px;\n' +
-	'  font-weight: 500;\n' +
+	"\tfont-family: 'PingFang TC' !important;\n" +
+	'\tfont-size: 13px !important;\n' +
+	'\tline-height: 1.5 !important;\n' +
+	'\tletter-spacing: 0.5px !important;\n' +
+	'\tfont-weight: 500 !important;\n' +
 	'}\n' +
-	'.blog ol, .blog ul {\n' +
-	'  margin-left: 2rem;\n' +
-	'  /* ml-8 */\n' +
-	'  list-style-position: outside;\n' +
-	'  /* list-outside */\n' +
-	'  margin-top: 0.5rem !important;\n' +
-	'  /* !mt-2 */\n' +
-	'}\n' +
-	'.blog ol li, .blog ul li {\n' +
-	'  margin-top: 0.5rem;\n' +
-	'  /* mt-2 */\n' +
-	'}\n' +
-	'.blog ol li:first-child, .blog ul li:first-child {\n' +
-	'  margin-top: 0;\n' +
-	'  /* first:mt-0 */\n' +
-	'}\n' +
-	'.blog ol {\n' +
-	'  list-style-type: decimal;\n' +
-	'  /* list-decimal */\n' +
-	'}\n' +
+	'\n' +
+	'.blog ol,\n' +
 	'.blog ul {\n' +
-	'  list-style-type: disc;\n' +
-	'  /* list-disc */\n' +
+	'\tmargin-left: 2rem !important;\n' +
+	'\tlist-style-position: outside !important;\n' +
+	'\tmargin-top: 0.5rem !important;\n' +
 	'}\n' +
+	'\n' +
+	'.blog ol li,\n' +
+	'.blog ul li {\n' +
+	'\tmargin-top: 0.5rem !important;\n' +
+	'}\n' +
+	'\n' +
+	'.blog ol li:first-child,\n' +
+	'.blog ul li:first-child {\n' +
+	'\tmargin-top: 0 !important;\n' +
+	'}\n' +
+	'\n' +
+	'.blog ol {\n' +
+	'\tlist-style-type: decimal !important;\n' +
+	'}\n' +
+	'\n' +
+	'.blog ul {\n' +
+	'\tlist-style-type: disc !important;\n' +
+	'}\n' +
+	'\n' +
 	'.blog blockquote {\n' +
-	'  font-style: italic;\n' +
-	'  border-left: 4px solid #d1d5db;\n' +
-	'  /* border-gray-300 */\n' +
-	'  padding: 0.5rem 1rem;\n' +
-	'  /* p-4 py-2 */\n' +
-	'  margin-left: 1.5rem;\n' +
-	'  /* ml-6 */\n' +
-	'  margin-top: 1.5rem !important;\n' +
-	'  /* !mt-6 */\n' +
-	'  margin-bottom: 0.5rem !important;\n' +
-	'  /* !mb-2 */\n' +
+	'\tfont-style: italic !important;\n' +
+	'\tborder-left: 4px solid #d1d5db !important;\n' +
+	'\tpadding: 0.5rem 1rem !important;\n' +
+	'\tmargin-left: 1.5rem !important;\n' +
+	'\tmargin-top: 1.5rem !important;\n' +
+	'\tmargin-bottom: 0.5rem !important;\n' +
 	'}\n' +
+	'\n' +
 	'.blog a {\n' +
-	'  color: #1e40af;\n' +
-	'  /* text-blue-800 */\n' +
-	'  cursor: pointer;\n' +
-	'  text-decoration: none;\n' +
+	'\tcolor: #1e40af !important;\n' +
+	'\tcursor: pointer !important;\n' +
+	'\ttext-decoration: none !important;\n' +
 	'}\n' +
+	'\n' +
 	'.blog a:hover {\n' +
-	'  text-decoration: underline;\n' +
+	'\ttext-decoration: underline !important;\n' +
 	'}\n' +
+	'\n' +
 	'.blog hr {\n' +
-	'  border-color: #9ca3af;\n' +
-	'  /* border-gray-400 */\n' +
+	'\tborder-color: #9ca3af !important;\n' +
 	'}\n' +
+	'\n' +
 	'.blog table {\n' +
-	'  border: 1px solid #000000;\n' +
-	'  border-collapse: collapse;\n' +
-	'  margin: 0;\n' +
-	'  overflow: hidden;\n' +
-	'  table-layout: fixed;\n' +
-	'  width: 100%;\n' +
+	'\tborder: 1px solid #000000 !important;\n' +
+	'\tborder-collapse: collapse !important;\n' +
+	'\tmargin: 0 !important;\n' +
+	'\toverflow: hidden !important;\n' +
+	'\ttable-layout: fixed !important;\n' +
+	'\twidth: 100% !important;\n' +
 	'}\n' +
-	'.blog table th, .blog table td {\n' +
-	'  text-align: left;\n' +
-	'  border: 1px solid black;\n' +
-	'  padding: 2px 0.5rem;\n' +
-	'  position: relative;\n' +
-	'  box-sizing: border-box;\n' +
-	'  min-width: 1em;\n' +
-	'  vertical-align: center;\n' +
+	'\n' +
+	'.blog table th,\n' +
+	'.blog table td {\n' +
+	'\ttext-align: left !important;\n' +
+	'\tborder: 1px solid black !important;\n' +
+	'\tpadding: 2px 0.5rem !important;\n' +
+	'\tposition: relative !important;\n' +
+	'\tbox-sizing: border-box !important;\n' +
+	'\tmin-width: 1em !important;\n' +
+	'\tvertical-align: center !important;\n' +
 	'}\n' +
-	'.blog table th {\n' +
-	'  text-align: left;\n' +
-	'}\n' +
+	'\n' +
 	'.blog table p {\n' +
-	'  font-family: \'PingFang TC\';\n' +
-	'  font-size: 13px;\n' +
-	'  line-height: 1.5;\n' +
-	'  letter-spacing: 0.5px;\n' +
-	'  font-weight: 500;\n' +
+	"\tfont-family: 'PingFang TC' !important;\n" +
+	'\tfont-size: 13px !important;\n' +
+	'\tline-height: 1.5 !important;\n' +
+	'\tletter-spacing: 0.5px !important;\n' +
+	'\tfont-weight: 500 !important;\n' +
 	'}\n' +
+	'\n' +
 	'.blog figure {\n' +
-	'  align-items: flex-start;\n' +
-	'  border-radius: 0.5rem;\n' +
-	'  display: flex;\n' +
-	'  flex-direction: column;\n' +
-	'  position: relative;\n' +
-	'  width: calc(100% - 40px);\n' +
-	'  max-width: 100%;\n' +
+	'\talign-items: flex-start !important;\n' +
+	'\tborder-radius: 0.5rem !important;\n' +
+	'\tdisplay: flex !important;\n' +
+	'\tflex-direction: column !important;\n' +
+	'\tposition: relative !important;\n' +
+	'\twidth: 100% !important;\n' +
+	'\tmax-width: 100% !important;\n' +
 	'}\n' +
+	'\n' +
 	'.blog figure img {\n' +
-	'  width: 100%;\n' +
+	'\twidth: 100% !important;\n' +
 	'}\n' +
+	'\n' +
 	'.blog figure figcaption {\n' +
-	'  position: absolute;\n' +
-	'  bottom: 10px;\n' +
-	'  left: 20px;\n' +
-	'  font-size: 18px;\n' +
-	'  color: #9f9f9f;\n' +
-	'  font-family: \'Arial\';\n' +
-	'  line-height: 1;\n' +
-	'  font-weight: 500;\n' +
-	'  letter-spacing: 1px;\n' +
+	'\tposition: absolute !important;\n' +
+	'\tbottom: 16px !important;\n' +
+	'\tleft: 16px !important;\n' +
+	'\tfont-size: 14px !important;\n' +
+	'\tcolor: #9f9f9f !important;\n' +
+	"\tfont-family: 'Arial' !important;\n" +
+	'\tline-height: 19px !important;\n' +
+	'\tfont-weight: 500 !important;\n' +
+	'\tletter-spacing: 0.5px !important;\n' +
 	'}\n' +
+	'\n' +
 	'.blog .tableWrapper {\n' +
-	'  overflow: auto;\n' +
-	'  width: calc(100% - 40px);\n' +
+	'\toverflow: auto !important;\n' +
+	'\twidth: calc(100% - 40px) !important;\n' +
 	'}\n' +
+	'\n' +
 	'.blog .image-link-button {\n' +
-	'  display: block;\n' +
-	'  width: 100px;\n' +
-	'  transition: 0.2s ease;\n' +
-	'  margin-top: 8px;\n' +
+	'\tdisplay: block !important;\n' +
+	'\twidth: 100px !important;\n' +
+	'\ttransition: 0.2s ease !important;\n' +
+	'\tmargin-top: 8px !important;\n' +
 	'}\n' +
+	'\n' +
 	'.blog .image-link-button:hover {\n' +
-	'  opacity: 0.8;\n' +
+	'\topacity: 0.8 !important;\n' +
 	'}\n' +
+	'\n' +
 	'.blog .image-link-button img {\n' +
-	'  width: 100%;\n' +
+	'\twidth: 100% !important;\n' +
 	'}\n' +
+	'\n' +
 	'.remarkBlog {\n' +
-	'  color: #333333;\n' +
+	'\tcolor: #333333 !important;\n' +
 	'}\n' +
+	'\n' +
 	'.remarkBlog h5 {\n' +
-	'  font-family: \'PingFang TC\';\n' +
-	'  font-size: 12px;\n' +
-	'  line-height: 2.5;\n' +
-	'  letter-spacing: 0.5px;\n' +
-	'  font-weight: 500;\n' +
+	"\tfont-family: 'PingFang TC' !important;\n" +
+	'\tfont-size: 12px !important;\n' +
+	'\tline-height: 2.5 !important;\n' +
+	'\tletter-spacing: 0.5px !important;\n' +
+	'\tfont-weight: 500 !important;\n' +
 	'}\n' +
+	'\n' +
 	'.w767 .blog {\n' +
-	'  padding: 0 20px 0 -20px;\n' +
+	'\tpadding: 0 20px 0 -20px !important;\n' +
 	'}\n' +
+	'\n' +
 	'.w767 .blog h1 {\n' +
-	'  font-size: 20px;\n' +
-	'  line-height: 1;\n' +
+	'\tfont-size: 20px !important;\n' +
+	'\tline-height: 1 !important;\n' +
 	'}\n' +
+	'\n' +
 	'.w767 .blog h2 {\n' +
-	'  font-size: 12px;\n' +
-	'  line-height: 1.5;\n' +
+	'\tfont-size: 12px !important;\n' +
+	'\tline-height: 1.5 !important;\n' +
 	'}\n' +
+	'\n' +
 	'.w767 .blog h3 {\n' +
-	'  font-size: 12px;\n' +
-	'  line-height: 1.8;\n' +
+	'\tfont-size: 12px !important;\n' +
+	'\tline-height: 1.8 !important;\n' +
 	'}\n' +
+	'\n' +
 	'.w767 .blog h4 {\n' +
-	'  font-size: 10.5px;\n' +
-	'  line-height: 1.5;\n' +
+	'\tfont-size: 10px !important;\n' +
+	'\tline-height: 1.5 !important;\n' +
 	'}\n' +
+	'\n' +
 	'.w767 .blog h5 {\n' +
-	'  font-size: 9px;\n' +
-	'  line-height: 2.5;\n' +
-	'  letter-spacing: 1px;\n' +
+	'\tfont-size: 9px !important;\n' +
+	'\tline-height: 2.5 !important;\n' +
+	'\tletter-spacing: 1px !important;\n' +
 	'}\n' +
+	'\n' +
 	'.w767 .blog h6 {\n' +
-	'  font-size: 12px;\n' +
-	'  line-height: 1.8;\n' +
+	'\tfont-size: 12px !important;\n' +
+	'\tline-height: 1.8 !important;\n' +
 	'}\n' +
+	'\n' +
 	'.w767 .blog p {\n' +
-	'  font-size: 11px;\n' +
-	'  line-height: 1.5;\n' +
+	'\tfont-size: 11px !important;\n' +
+	'\tline-height: 1.5 !important;\n' +
 	'}\n' +
+	'\n' +
 	'.w767 .blog table p {\n' +
-	'  font-size: 12px;\n' +
-	'  line-height: 1.5;\n' +
+	'\tfont-size: 12px !important;\n' +
+	'\tline-height: 1.5 !important;\n' +
 	'}\n' +
+	'\n' +
+	'.w767 .blog figure figcaption {\n' +
+	'\tfont-size: 10px !important;\n' +
+	'}\n' +
+	'\n' +
 	'@media only screen and (max-width: 767px) {\n' +
-	'  .blog {\n' +
-	'    padding: 0 20px 0 -20px;\n' +
-	'  }\n' +
-	'  .blog h1 {\n' +
-	'    font-size: 20px;\n' +
-	'    line-height: 1;\n' +
-	'  }\n' +
-	'  .blog h2 {\n' +
-	'    font-size: 12px;\n' +
-	'    line-height: 1.5;\n' +
-	'  }\n' +
-	'  .blog h3 {\n' +
-	'    font-size: 12px;\n' +
-	'    line-height: 1.8;\n' +
-	'  }\n' +
-	'  .blog h4 {\n' +
-	'    font-size: 10.5px;\n' +
-	'    line-height: 1.5;\n' +
-	'  }\n' +
-	'  .blog h5 {\n' +
-	'    font-size: 9px;\n' +
-	'    line-height: 2.5;\n' +
-	'    letter-spacing: 1px;\n' +
-	'  }\n' +
-	'  .blog h6 {\n' +
-	'    font-size: 12px;\n' +
-	'    line-height: 1.8;\n' +
-	'  }\n' +
-	'  .blog p {\n' +
-	'    font-size: 11px;\n' +
-	'    line-height: 1.5;\n' +
-	'  }\n' +
-	'  .blog table p {\n' +
-	'    font-size: 12px;\n' +
-	'    line-height: 1.5;\n' +
-	'  }\n' +
+	'\t.blog {\n' +
+	'\t\tpadding: 0 20px 0 -20px !important;\n' +
+	'\t}\n' +
+	'\n' +
+	'\t.blog h1 {\n' +
+	'\t\tfont-size: 20px !important;\n' +
+	'\t\tline-height: 1 !important;\n' +
+	'\t}\n' +
+	'\n' +
+	'\t.blog h2 {\n' +
+	'\t\tfont-size: 12px !important;\n' +
+	'\t\tline-height: 1.5 !important;\n' +
+	'\t}\n' +
+	'\n' +
+	'\t.blog h3 {\n' +
+	'\t\tfont-size: 12px !important;\n' +
+	'\t\tline-height: 1.8 !important;\n' +
+	'\t}\n' +
+	'\n' +
+	'\t.blog h4 {\n' +
+	'\t\tfont-size: 10px !important;\n' +
+	'\t\tline-height: 1.5 !important;\n' +
+	'\t}\n' +
+	'\n' +
+	'\t.blog h5 {\n' +
+	'\t\tfont-size: 9px !important;\n' +
+	'\t\tline-height: 2.5 !important;\n' +
+	'\t\tletter-spacing: 1px !important;\n' +
+	'\t}\n' +
+	'\n' +
+	'\t.blog h6 {\n' +
+	'\t\tfont-size: 12px !important;\n' +
+	'\t\tline-height: 1.8 !important;\n' +
+	'\t}\n' +
+	'\n' +
+	'\t.blog p {\n' +
+	'\t\tfont-size: 11px !important;\n' +
+	'\t\tline-height: 1.5 !important;\n' +
+	'\t}\n' +
+	'\n' +
+	'\t.blog table p {\n' +
+	'\t\tfont-size: 12px !important;\n' +
+	'\t\tline-height: 1.5 !important;\n' +
+	'\t}\n' +
+	'\n' +
+	'\t.blog figure figcaption {\n' +
+	'\t\tfont-size: 10px !important;\n' +
+	'\t}\n' +
 	'}\n';
+
 export {cssStyle};

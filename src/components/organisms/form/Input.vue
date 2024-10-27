@@ -1,6 +1,7 @@
 <template>
 	<input
 		v-model="proxyModel"
+		v-bind="$attrs"
 		:placeholder="placeholder"
 		class="w-full text-sm rounded-md border border-gray-400 px-3 py-2 text-gray-800 focus:ring-black focus:outline-black" />
 </template>
