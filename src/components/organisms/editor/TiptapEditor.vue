@@ -131,7 +131,7 @@ export default {
 		this.editor = new Editor({
 			editorProps: {
 				attributes: {
-					class: 'blog',
+					class: 'blog blogAlign',
 				},
 				handleKeyDown(view, event) {
 					// 處理 Command+A 或 Ctrl+A 鍵盤事件
@@ -254,4 +254,12 @@ export default {
 
 <style lang="scss">
 @import '@/assets/scss/plugins/tiptapTemplate';
+
+.blogAlign {
+	> * {
+		// drag drop front content
+		margin-left: 20px;
+		width: calc(100% - 40px) !important;
+	}
+}
 </style>
