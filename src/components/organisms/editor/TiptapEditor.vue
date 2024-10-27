@@ -87,6 +87,7 @@ import {Color} from '@tiptap/extension-color';
 import {cssStyle} from '@/assets/js/cssStyle.js';
 import {AllSelection} from 'prosemirror-state';
 import {LineHeightTextStyle} from '@assets/js/tiptap/extensions/LineHeight';
+import {TiptapCustomSpacing} from '@/plugins/TiptapCustomSpacing.ts';
 
 import HeadingAndAlignTool from '@components/organisms/editor/tiptap/groupTool/HeadingAndAlignTool.vue';
 import CacheTool from '@components/organisms/editor/tiptap/groupTool/CacheTool.vue';
@@ -213,6 +214,7 @@ export default {
 				}),
 				Color,
 				LineHeightTextStyle,
+				TiptapCustomSpacing,
 			],
 			content: '',
 			onUpdate: () => {

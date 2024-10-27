@@ -1,14 +1,21 @@
 <template>
 	<TiptapToolbarGroup v-if="editor">
+		<!-- 粗體 -->
 		<TiptapToolbarButton :isActive="editor.isActive('bold')" @click="editor?.chain().focus().toggleBold().run()" label="Bold">
 			<IconBold class="h-5 w-5" />
 		</TiptapToolbarButton>
+
+		<!-- 斜體 -->
 		<TiptapToolbarButton :isActive="editor.isActive('italic')" @click="editor?.chain().focus().toggleItalic().run()" label="Italic">
 			<IconItalic class="h-5 w-5" />
 		</TiptapToolbarButton>
+
+		<!-- 底線 -->
 		<TiptapToolbarButton :isActive="editor.isActive('underline')" @click="editor.chain().focus().toggleUnderline().run()" label="Underline">
 			<IconUnderline class="h-5 w-5" />
 		</TiptapToolbarButton>
+
+		<!-- 字級 -->
 		<TiptapToolbarButton :isActive="isShowFontSize" @click="toggleFontSizeList" label="TextSize">
 			<IconTextSize class="h-5 w-5" />
 			<TiptapToolbarDropdown v-if="isShowFontSize" @onClickOutside="isShowFontSize = false">
@@ -21,6 +28,8 @@
 				</TiptapToolbarDropdownButton>
 			</TiptapToolbarDropdown>
 		</TiptapToolbarButton>
+
+		<!-- 字體 -->
 		<TiptapToolbarButton :isActive="isShowTypography" @click="toggleTypographyList" label="Typography">
 			<IconTypography class="h-5 w-5" />
 			<TiptapToolbarDropdown v-if="isShowTypography" @onClickOutside="isShowTypography = false">
@@ -30,6 +39,20 @@
 					:key="`fontFamily_${index}`"
 					@click="editor.chain().focus().setFontFamily(item.font).run()">
 					<span>{{ item.name }}</span>
+				</TiptapToolbarDropdownButton>
+			</TiptapToolbarDropdown>
+		</TiptapToolbarButton>
+
+		<!-- 間隔 -->
+		<TiptapToolbarButton :isActive="isShowSpacing || isSplacing" @click="toggleSpacingList" label="Spacing">
+			<IconSpacingVertical class="h-5 w-5" />
+			<TiptapToolbarDropdown v-if="isShowSpacing" @onClickOutside="isShowSpacing = false">
+				<TiptapToolbarDropdownButton
+					v-for="(item, index) in spacingList"
+					:isActive="editor.isActive('customSpacing', {minHeight: item})"
+					:key="`spacing_${index}`"
+					@click="setSpacing(item)">
+					<span>{{ item }}</span>
 				</TiptapToolbarDropdownButton>
 			</TiptapToolbarDropdown>
 		</TiptapToolbarButton>
@@ -44,15 +67,15 @@
 </template>
 
 <script lang="ts" setup>
-import {IconBold, IconItalic, IconUnderline, IconTextSize, IconTypography} from '@tabler/icons-vue';
+import {IconBold, IconItalic, IconUnderline, IconTextSize, IconTypography, IconSpacingVertical} from '@tabler/icons-vue';
 import TiptapToolbarGroup from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarGroup.vue';
 import TiptapToolbarButton from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarButton.vue';
 import TiptapToolbarDropdown from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarDropdown.vue';
 import TiptapToolbarDropdownButton from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarDropdownButton.vue';
 
-import {ref} from 'vue';
+import {ref, computed} from 'vue';
 
-defineProps({
+const props = defineProps({
 	editor: {
 		type: Object,
 		default: () => {},
@@ -61,10 +84,14 @@ defineProps({
 
 const isShowFontSize = ref(false);
 const isShowTypography = ref(false);
+const isShowSpacing = ref(false);
+
 const fontSizeList = ref<number[]>([]);
 for (let i = 9; i < 40; i++) {
 	fontSizeList.value.push(i);
 }
+
+const spacingList = ref<number[]>([20, 25, 50]);
 
 interface FontFamily {
 	name: string;
@@ -97,7 +124,53 @@ const toggleFontSizeList = () => {
 const toggleTypographyList = () => {
 	isShowTypography.value = !isShowTypography.value;
 };
+
+const toggleSpacingList = () => {
+	isShowSpacing.value = !isShowSpacing.value;
+};
+
+const setSpacing = (val) => {
+	const stateIsSplacing = isSplacing.value;
+
+	//如果是文字要到最尾端才能正確換行
+	if (!stateIsSplacing) {
+		props.editor.commands.focus('end');
+	}
+
+	props.editor?.commands.newlineInCode();
+	props.editor?.commands.insertContent({
+		type: 'customSpacing',
+		attrs: {
+			minHeight: val,
+		},
+	});
+
+	//新增的間距完後自動至下一行編輯，編輯原本就有的間距不用換行
+	if (!stateIsSplacing) {
+		props.editor.commands.enter();
+	}
+	props.editor?.commands.focus();
+};
+
+const isSplacing = computed(() => {
+	return props.editor.isActive('customSpacing');
+});
+
+const isCurrentTextAlign = (value) => props.editor?.getAttributes('textAlign').textAlign === value;
 </script>
 
 <style lang="scss" scoped>
+.font {
+	&-en {
+		font-family: 'Arial';
+	}
+
+	&-en-black {
+		font-family: 'Arial Black';
+	}
+
+	&-tw {
+		font-family: 'PingFang TC';
+	}
+}
 </style>
