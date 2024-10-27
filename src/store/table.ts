@@ -40,6 +40,14 @@ export const useTableDataStore = defineStore('table', {
 		getTables: (state) => state.tables,
 	},
 	actions: {
+		addCell() {
+			this.tables.push({
+				id: this.tables[this.tables.length - 1].id + 1,
+				label: '',
+				value: null,
+				updateAt: '',
+			});
+		},
 		setTables(val) {
 			this.tables = val;
 		},
