@@ -36,13 +36,13 @@
 		@close="showAddLinkDialog = false"
 		@update="insertLink" />
 	<TiptapVideoDialog v-if="showAddYoutubeDialog" :show="showAddYoutubeDialog" @close="showAddYoutubeDialog = false" @insert="insertYoutubeVideo" />
-	<TiptapTableDialog v-if="showAddTableDialog" :show="showAddTableDialog" @close="showAddTableDialog = false" @insert="insertTable" />
 	<TiptapImageDialog v-if="showAddImageDialog" :show="showAddImageDialog" @close="showAddImageDialog = false" @insert="insertImage" />
 	<CommonTextToolbar :show="showCommonTextDialog" @close="showCommonTextDialog = false" @insertCommonText="insertCommonText" />
+
+	<EditTableOverlay v-model:modelValue="showAddTableDialog" @close="showAddTableDialog = false" @insert="insertTable" />
 </template>
 
 <script lang="ts" setup>
-import type DataTable from '@/models/table';
 import {IconLink, IconMinus, IconPhoto} from '@tabler/icons-vue';
 import TiptapToolbarGroup from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarGroup.vue';
 import TiptapToolbarButton from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarButton.vue';
@@ -50,9 +50,10 @@ import SizeLink from '@assets/img/button/sizeLink.svg';
 
 import TiptapVideoDialog from '@components/organisms/editor/tiptap/dialog/TiptapVideoDialog.vue';
 import TiptapImageDialog from '@components/organisms/editor/tiptap/dialog/TiptapImageDialog.vue';
-import TiptapTableDialog from '@components/organisms/editor/tiptap/dialog/TiptapTableDialog.vue';
 import TiptapLinkDialog from '@components/organisms/editor/tiptap/dialog/TiptapLinkDialog.vue';
 import CommonTextToolbar from '@components/organisms/editor/tiptap/groupTool/CommonTextToolbar.vue';
+import EditTableOverlay from '@components/organisms/editor/tiptap/dialog/EditTableOverlay.vue';
+
 import {ref} from 'vue';
 import {Image} from '@components/organisms/editor/tiptap/dialog';
 
@@ -94,16 +95,9 @@ const insertYoutubeVideo = (url: string) => {
 	});
 };
 
-const insertTable = (table: DataTable) => {
-	props.editor
-		?.chain()
-		.focus()
-		.insertTable({
-			rows: table.rows,
-			cols: table.columns,
-			withHeaderRow: table.withHeader,
-		})
-		.run();
+const insertTable = (tableHtml: string) => {
+	showAddTableDialog.value = false;
+	props.editor?.chain().focus().insertContent(tableHtml).run();
 };
 
 const insertImage = (imageObj: Image) => {

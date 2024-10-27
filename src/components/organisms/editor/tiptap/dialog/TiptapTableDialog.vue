@@ -1,6 +1,6 @@
 <template>
-	<Dialog :show="show" @close="closeDialog" title="插入表單">
-		<form @submit.prevent="onSubmit">
+	<Dialog :show="show" @close="closeDialog" title="新增表單">
+		<form>
 			<div class="flex flex-col space-y-5">
 				<div class="flex flex-row space-x-5">
 					<InputContainer class="w-full flex-1">
@@ -13,10 +13,8 @@
 					</InputContainer>
 				</div>
 				<div class="flex flex-row justify-end space-x-3">
-					<button @click="closeDialog" class="rounded-lg px-4 py-3 text-sm font-medium text-gray-600 hover:bg-gray-100" type="button">
-						返回
-					</button>
-					<button class="rounded-lg bg-black px-4 py-3 text-sm font-medium text-white hover:bg-opacity-80" type="submit">確認</button>
+					<DialogButton @click="closeDialog" isLight>返回</DialogButton>
+					<DialogButton @click="onSubmit">確認</DialogButton>
 				</div>
 			</div>
 		</form>
@@ -30,6 +28,7 @@ import type Table from '@/models/table';
 import InputContainer from '../../../form/InputContainer.vue';
 import Label from '../../../form/Label.vue';
 import Input from '../../../form/Input.vue';
+import DialogButton from '@components/atoms/dialog/DialogButton.vue';
 
 defineProps<{
 	show: boolean;
