@@ -7,8 +7,5 @@
 	</div>
 </template>
 <script lang="ts" setup>
-// import NavBar from '@components/organisms/nav/NavBar.vue';
-// import MenuList from '@components/organisms/nav/components/MenuList.vue';
-// import Logo from '@components/organisms/nav/components/Logo.vue';
 import TiptapEditor from '@components/organisms/editor/TiptapEditor.vue';
 </script>
