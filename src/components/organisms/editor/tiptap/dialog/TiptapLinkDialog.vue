@@ -4,7 +4,7 @@
 			<div class="flex flex-col space-y-5">
 				<InputContainer>
 					<Label for="input-link-url">輸入 https 開頭連結</Label>
-                    <Input v-model="inputLinkRef" id="input-link-url" class="mt-2" placeholder="輸入連結" type="url" />
+					<Input v-model="inputLinkRef" id="input-link-url" class="mt-2" placeholder="輸入連結" type="url" />
 				</InputContainer>
 
 				<div class="flex flex-row justify-end space-x-3">

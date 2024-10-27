@@ -4,20 +4,20 @@
 			<div class="flex flex-col gap-11 sm:gap-5 overflow-y-auto mb-20">
 				<div
 					v-for="template in store.getTemplates"
-					@click="template.label?'':open(template.id)"
 					:key="template.id"
+					@click="template.label ? '' : open(template.id)"
 					class="flex items-center h-[130px] sm:h-[150px] bg-card-background rounded-2xl px-8 hover:border-[3px] hover:border-black relative cursor-pointer">
 					<p class="text-5xl font-bold mr-12 sm:mr-6">{{ template.id }}</p>
 					<p :class="template.label ? '' : 'text-[#D5D5D5]'" class="text-xl sm:text-base font-bold">
 						{{ template.label ? template.label : '點擊儲存當前模板' }}
 					</p>
 					<TiptapToolbarGroup v-if="template.label" class="absolute top-2 right-6">
-						<TiptapToolbarButton @click="deleteItem(template.id,template.label)" class="border border-gray-400" label="templateTrash">
+						<TiptapToolbarButton @click="deleteItem(template.id, template.label)" class="border border-gray-400" label="templateTrash">
 							<IconTrash></IconTrash
 						></TiptapToolbarButton>
 
 						<TiptapToolbarButton @click="open(template.id)" class="border border-gray-400" label="templateCover">
-							<IconDeviceFloppy/>
+							<IconDeviceFloppy />
 						</TiptapToolbarButton>
 
 						<TiptapToolbarButton @click="rename(template.id, template.label)" class="border border-gray-400" label="templateEdit">
@@ -85,7 +85,6 @@ const formatDate = (timestamp) => {
  */
 const open = (id: number) => {
 	let title = '確認儲存模板?';
-	console.log(store.getTemplates);
 
 	const checkedIdData = store.getTemplates.find((data) => data.id === id);
 	if (checkedIdData?.label) title = `確認覆蓋模板 ${id}「${checkedIdData.label}」?`;
@@ -95,7 +94,7 @@ const open = (id: number) => {
 		showCancelButton: true,
 		inputPlaceholder: '請輸入名稱',
 		inputPattern: /^.{1,20}$/,
-		inputValue:checkedIdData.label??null,
+		inputValue: checkedIdData.label ?? null,
 		inputErrorMessage: '不能為空，最多輸入20個字',
 	})
 		.then(({value}) => {
@@ -140,14 +139,15 @@ const rename = (id, oldName) => {
 		})
 		.catch(() => {});
 };
-const deleteItem = (id, oldName)=>  {
+const deleteItem = (id, oldName) => {
 	ElMessageBox.confirm('確認後將刪除此筆模板。', `確認刪除模板「${oldName}」?`, {
 		confirmButtonText: '確認',
 		cancelButtonText: '取消',
 		showCancelButton: true,
+		type: 'warning',
 	})
 		.then(() => {
-			store.deleteTemplate(id)
+			store.deleteTemplate(id);
 			ElMessage({
 				type: 'success',
 				message: '已刪除模板',

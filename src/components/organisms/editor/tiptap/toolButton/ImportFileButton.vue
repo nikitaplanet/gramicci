@@ -9,8 +9,11 @@
 import {ref} from 'vue';
 import TiptapToolbarButton from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarButton.vue';
 import {useDataStore} from '@/store/template.ts';
+import {useTableDataStore} from '@/store/table.ts';
 import {ElMessage, ElMessageBox} from 'element-plus';
+
 const store = useDataStore();
+const tableStore = useTableDataStore();
 const importRef = ref();
 const importedObject = ref(null);
 
@@ -19,6 +22,7 @@ const inputHandler = () => {
 		confirmButtonText: '確認',
 		cancelButtonText: '取消',
 		showCancelButton: true,
+		type: 'warning',
 	})
 		.then(() => {
 			importRef.value.click();
@@ -36,6 +40,7 @@ const importTextFile = (event) => {
 				importedObject.value = JSON.parse(text);
 				store.setTemplates(importedObject.value.templates);
 				store.setCommonWords([...importedObject.value.commonWords]);
+				tableStore.setTables([...importedObject.value.tables]);
 				ElMessage({
 					type: 'success',
 					message: '已匯入設定檔',
