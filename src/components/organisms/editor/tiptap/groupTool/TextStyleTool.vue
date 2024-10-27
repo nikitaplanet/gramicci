@@ -9,9 +9,6 @@
 		<TiptapToolbarButton :isActive="editor.isActive('underline')" @click="editor.chain().focus().toggleUnderline().run()" label="Underline">
 			<IconUnderline class="h-5 w-5" />
 		</TiptapToolbarButton>
-		<!--		<TiptapToolbarButton :isActive="editor.isActive('strike')" @click="editor.chain().focus().toggleStrike().run()" label="Strikethrough">-->
-		<!--			<IconStrikethrough class="h-5 w-5" />-->
-		<!--		</TiptapToolbarButton>-->
 		<TiptapToolbarButton :isActive="isShowFontSize" @click="toggleFontSizeList" label="TextSize">
 			<IconTextSize class="h-5 w-5" />
 			<TiptapToolbarDropdown v-if="isShowFontSize" @onClickOutside="isShowFontSize = false">
@@ -36,18 +33,6 @@
 				</TiptapToolbarDropdownButton>
 			</TiptapToolbarDropdown>
 		</TiptapToolbarButton>
-		<TiptapToolbarButton :isActive="isShowLineHeight" @click="toggleLineHeightList" label="LineHeight">
-			<IconLineHeight class="h-5 w-5" />
-			<TiptapToolbarDropdown v-if="isShowLineHeight" @onClickOutside="isShowLineHeight = false">
-				<TiptapToolbarDropdownButton
-					v-for="(item, index) in lineHeightList"
-					:isActive="editor.isActive('textStyle', {lineHeight: item})"
-					:key="`lineHeight_${index}`"
-					@click="setLineHeight(item)">
-					<span>{{ item }}</span>
-				</TiptapToolbarDropdownButton>
-			</TiptapToolbarDropdown>
-		</TiptapToolbarButton>
 		<div class="inline-flex h-8 w-8 shrink-0 flex-row items-center justify-center">
 			<input
 				:value="editor.getAttributes('textStyle').color"
@@ -59,7 +44,7 @@
 </template>
 
 <script lang="ts" setup>
-import {IconBold, IconItalic, IconUnderline, IconTextSize, IconTypography, IconLineHeight} from '@tabler/icons-vue';
+import {IconBold, IconItalic, IconUnderline, IconTextSize, IconTypography} from '@tabler/icons-vue';
 import TiptapToolbarGroup from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarGroup.vue';
 import TiptapToolbarButton from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarButton.vue';
 import TiptapToolbarDropdown from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarDropdown.vue';
@@ -67,7 +52,7 @@ import TiptapToolbarDropdownButton from '@components/organisms/editor/tiptap/too
 
 import {ref} from 'vue';
 
-const props = defineProps({
+defineProps({
 	editor: {
 		type: Object,
 		default: () => {},
@@ -76,14 +61,10 @@ const props = defineProps({
 
 const isShowFontSize = ref(false);
 const isShowTypography = ref(false);
-const isShowLineHeight = ref(false);
-
 const fontSizeList = ref<number[]>([]);
 for (let i = 9; i < 40; i++) {
 	fontSizeList.value.push(i);
 }
-
-const lineHeightList = ref<number[]>([20, 25, 50]);
 
 interface FontFamily {
 	name: string;
@@ -116,32 +97,7 @@ const toggleFontSizeList = () => {
 const toggleTypographyList = () => {
 	isShowTypography.value = !isShowTypography.value;
 };
-
-const toggleLineHeightList = () => {
-	isShowLineHeight.value = !isShowLineHeight.value;
-};
-
-const setLineHeight = (val) => {
-	props.editor
-		?.chain()
-		.focus()
-		.setMark('textStyle', {lineHeight: `${val}px`})
-		.run();
-};
 </script>
 
 <style lang="scss" scoped>
-.font {
-	&-en {
-		font-family: 'Arial';
-	}
-
-	&-en-black {
-		font-family: 'Arial Black';
-	}
-
-	&-tw {
-		font-family: 'PingFang TC';
-	}
-}
 </style>
