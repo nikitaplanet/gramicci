@@ -14,12 +14,8 @@
 			</InputContainer>
 
 			<div class="flex flex-row justify-end space-x-3">
-				<button @click="closeDialog" class="rounded-md px-4 py-3 text-sm font-medium text-gray-600 hover:bg-gray-100" type="button">
-					返回
-				</button>
-				<button @click="onSubmit" class="rounded-md bg-black px-4 py-3 text-sm font-medium text-white hover:bg-opacity-80" type="button">
-					確認
-				</button>
+				<DialogButton @click="closeDialog" isLight> 返回</DialogButton>
+				<DialogButton @click="onSubmit"> 確認</DialogButton>
 			</div>
 		</div>
 	</Dialog>
@@ -43,9 +39,11 @@ import TableEditTool from '@components/organisms/editor/tiptap/groupTool/TableEd
 import Label from '@components/organisms/form/Label.vue';
 import InputContainer from '@components/organisms/form/InputContainer.vue';
 import Input from '@components/organisms/form/Input.vue';
+import DialogButton from '@components/atoms/dialog/DialogButton.vue';
 
 export default {
 	components: {
+		DialogButton,
 		Input,
 		InputContainer,
 		Label,

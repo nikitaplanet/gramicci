@@ -56,7 +56,7 @@ import {IconEdit, IconTrash, IconDeviceFloppy} from '@tabler/icons-vue';
 import TiptapToolbarGroup from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarGroup.vue';
 import TiptapToolbarButton from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarButton.vue';
 import TableEditorOverlay from '@components/organisms/editor/tiptap/dialog/TableEditorOverlay.vue';
-import {ref} from 'vue';
+import {onMounted, ref} from 'vue';
 
 const store = useTableDataStore();
 
@@ -175,5 +175,14 @@ const saveTable = (tableResult) => {
 			});
 		}
 	});
+
+	checkSaveCells();
+};
+
+const checkSaveCells = () => {
+	const isFull = store.tables.every((item) => item.label);
+	if (isFull) {
+		store.addCell();
+	}
 };
 </script>
