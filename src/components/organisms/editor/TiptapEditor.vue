@@ -215,19 +215,19 @@ export default {
 				LineHeightTextStyle,
 			],
 			content: '',
-			onUpdate: ({editor}) => {
-				this.contentResult = this.generateHTML(editor);
+			onUpdate: () => {
+				this.contentResult = this.generateHTML();
 			},
 		});
 
-		setTimeout(() => (this.contentResult = this.generateHTML(this.editor)), 250);
+		setTimeout(() => (this.contentResult = this.generateHTML()), 250);
 	},
 	beforeUnmount() {
 		this.editor?.destroy();
 	},
 	methods: {
-		generateHTML(editor) {
-			return `<div class="blog">${editor?.getHTML()}</div>` + `<style>${cssStyle}</style>`;
+		generateHTML() {
+			return `<div class="blog">${this.editor?.getHTML()}</div>` + `<style>${cssStyle}</style>`;
 		},
 		insertCommonText(text) {
 			this.editor.chain().focus().insertContent(text).run();
@@ -242,6 +242,7 @@ export default {
 			this.isShowBorderOuter = !this.isShowBorderOuter;
 		},
 		toggleHtml() {
+			this.contentResult = this.generateHTML();
 			this.isShowHtml = !this.isShowHtml;
 		},
 		loadHtml(data) {
