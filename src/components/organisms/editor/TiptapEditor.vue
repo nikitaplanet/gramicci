@@ -88,6 +88,7 @@ import {cssStyle} from '@/assets/js/cssStyle.js';
 import {AllSelection} from 'prosemirror-state';
 import {LineHeightTextStyle} from '@assets/js/tiptap/extensions/LineHeight';
 import {TiptapCustomSpacing} from '@/plugins/TiptapCustomSpacing.ts';
+import {staticWords} from '@/assets/js/staticWords.js';
 
 import HeadingAndAlignTool from '@components/organisms/editor/tiptap/groupTool/HeadingAndAlignTool.vue';
 import CacheTool from '@components/organisms/editor/tiptap/groupTool/CacheTool.vue';
@@ -229,7 +230,7 @@ export default {
 	},
 	methods: {
 		generateHTML() {
-			return `<div class="blog">${this.editor?.getHTML()}</div>` + `<style>${cssStyle}</style>`;
+			return `<div class="blog">${this.editor?.getHTML()}${staticWords}</div>` + `<style>${cssStyle}</style>`;
 		},
 		insertCommonText(text) {
 			this.editor.chain().focus().insertContent(text).run();
