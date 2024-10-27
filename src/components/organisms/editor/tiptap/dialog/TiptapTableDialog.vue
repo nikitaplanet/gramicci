@@ -1,5 +1,5 @@
 <template>
-	<Dialog :show="show" @close="closeDialog" title="插入表單">
+	<Dialog :show="show" @close="closeDialog" title="新增表單">
 		<form @submit.prevent="onSubmit">
 			<div class="flex flex-col space-y-5">
 				<div class="flex flex-row space-x-5">

@@ -1,9 +1,9 @@
 import {defineStore} from 'pinia';
 import {useStorage} from '@vueuse/core';
 
-export const useDataStore = defineStore('template', {
+export const useTableDataStore = defineStore('table', {
 	state: () => ({
-		templates: useStorage('templates', [
+		tables: useStorage('tables', [
 			{
 				id: 1,
 				label: '',
@@ -35,22 +35,19 @@ export const useDataStore = defineStore('template', {
 				updateAt: '',
 			},
 		]),
-		commonWords: useStorage('commonWords', []),
 	}),
 	getters: {
-		getTemplates: (state) => state.templates,
-		getCommonWords: (state) => state.commonWords,
+		getTables: (state) => state.tables,
 	},
 	actions: {
-		setTemplates(val) {
-			this.templates = val;
+		setTables(val) {
+			this.tables = val;
 		},
 		setCommonWords(val) {
 			this.commonWords = val;
 		},
-		deleteTemplate(id) {
-			console.log(id);
-			this.templates.forEach((item) => {
+		deleteTable(id) {
+			this.tables.forEach((item) => {
 				if (item.id === id) {
 					item.value = null;
 					item.label = '';
@@ -59,8 +56,7 @@ export const useDataStore = defineStore('template', {
 			});
 		},
 		renameTemplate(id, name) {
-			console.log(id);
-			this.templates.forEach((item) => {
+			this.tables.forEach((item) => {
 				if (item.id === id) item.label = name;
 			});
 		},
