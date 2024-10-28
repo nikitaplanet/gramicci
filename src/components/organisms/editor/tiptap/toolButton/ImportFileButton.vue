@@ -38,7 +38,7 @@ const importTextFile = (event) => {
 			try {
 				const text = e.target.result;
 				importedObject.value = JSON.parse(text);
-				store.setTemplates(importedObject.value.templates);
+				store.templates = [...importedObject.value.templates];
 				store.setCommonWords([...importedObject.value.commonWords]);
 				tableStore.setTables([...importedObject.value.tables]);
 				ElMessage({
