@@ -35,7 +35,7 @@
         "@tiptap/extension-underline": "^2.7.4",
         "@tiptap/extension-youtube": "^2.7.4",
         "@tiptap/pm": "^2.7.4",
-        "@tiptap/starter-kit": "^2.8.0",
+        "@tiptap/starter-kit": "^2.9.1",
         "@tiptap/vue-3": "^2.8.0",
         "@types/axios": "^0.14.0",
         "@types/lodash": "4.14.202",
