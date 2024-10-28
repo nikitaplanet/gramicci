@@ -123,7 +123,7 @@ const save = (id?: string, dataIndex?: number) => {
 		.then(({value}) => {
 			if (id)
 				store.setTemplates({
-					id: Number(id) as number,
+					id: id,
 					label: value,
 					value: props.templateValue,
 					updateAt: formatDate(Date.now()),
@@ -200,6 +200,7 @@ const load = (id) => {
 	})
 		.then(() => {
 			const checkedIdData = store.getTemplates.find((data) => data.id === id);
+
 			emit('update', checkedIdData.value);
 			ElMessage({
 				type: 'success',
