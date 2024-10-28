@@ -20,22 +20,19 @@ export const useDataStore = defineStore('template', {
 	actions: {
 		setTemplates(data:TemplateData) {
 			this.templates.forEach((item) => {
-				if (data.id === data.id) {
-					item={...data}
-				}
+				if (item.id === data.id) {
+					item.value= data.value
+					item.label = data.label
+					item.updateAt=data.updateAt
+				};
 			});
 		},
 		setCommonWords(val) {
 			this.commonWords = val;
 		},
 		deleteTemplate(id) {
-			console.log(id);
-			this.templates.forEach((item) => {
-				if (item.id === id) {
-					item.value = null;
-					item.label = '';
-					item.updateAt = '';
-				}
+			this.templates=this.templates.filter((item) => {
+				return item.id !== id
 			});
 		},
 		renameTemplate(id, name) {
