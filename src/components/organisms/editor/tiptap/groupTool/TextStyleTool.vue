@@ -132,11 +132,6 @@ const toggleSpacingList = () => {
 const setSpacing = (val) => {
 	const stateIsSplacing = isSplacing.value;
 
-	//如果是文字要到最尾端才能正確換行
-	if (!stateIsSplacing) {
-		props.editor.commands.focus('end');
-	}
-
 	props.editor?.commands.newlineInCode();
 	props.editor?.commands.insertContent({
 		type: 'customSpacing',
@@ -145,10 +140,6 @@ const setSpacing = (val) => {
 		},
 	});
 
-	//新增的間距完後自動至下一行編輯，編輯原本就有的間距不用換行
-	if (!stateIsSplacing) {
-		props.editor.commands.enter();
-	}
 	props.editor?.commands.focus();
 };
 
