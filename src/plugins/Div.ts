@@ -1,19 +1,18 @@
 import { Node, mergeAttributes } from '@tiptap/core';
 
-export const TiptapCustomSpacing = Node.create({
-  name: 'customSpacing',
+export const Div = Node.create({
+  name: 'Div',
   group: 'block',
-  content: 'inline*',// 可以根據需要修改為特定的 inline 元素
+  content: 'inline*', // 可以根據需要修改為特定的 inline 元素
   inline: false,
   selectable: true,
 
   addAttributes() {
     return {
-      minHeight: {
-        default: null,
-        parseHTML: element => element.style.minHeight,
+      className: {
+        default: 'custom-spacing-class', // 默認 class
         renderHTML: attributes => {
-          return attributes.minHeight ? { style: `min-height: ${String(attributes.minHeight).replace("px", "")}px;` } : {};
+          return attributes.className ? { class: attributes.className } : {};
         },
       },
     };

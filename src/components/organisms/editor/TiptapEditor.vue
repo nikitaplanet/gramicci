@@ -2,7 +2,7 @@
 	<div v-if="editor" :class="{'tiptapContent--showOuterBorder': isShowBorderOuter}" id="tiptap" class="tiptapContent">
 		<div class="bg-tool-background sticky top-0 left-0 z-20 flex items-center justify-start flex-wrap">
 			<LogoInTool />
-			<CacheTool :htmlContent="contentResult" @load="(data) => loadHtml(data)" />
+			<CacheTool :htmlContent="templateValue" @load="(data) => loadHtml(data)" />
 			<EditorStyleTool
 				:isPreviewMobile="isPreviewMobile"
 				:isShowBorderOuter="isShowBorderOuter"
@@ -41,7 +41,7 @@
 
 		<div v-if="isShowHtml">
 			<div class="w-full max-w-[800px] m-auto my-8 sm:my-0">
-				<ExportTemplate :savedData="contentResult" />
+				<ExportTemplate :savedData="htmlValue" />
 			</div>
 		</div>
 	</div>
@@ -88,6 +88,7 @@ import {cssStyle} from '@/assets/js/cssStyle.js';
 import {AllSelection} from 'prosemirror-state';
 import {LineHeightTextStyle} from '@assets/js/tiptap/extensions/LineHeight';
 import {TiptapCustomSpacing} from '@/plugins/TiptapCustomSpacing.ts';
+import {Div} from '@/plugins/Div.ts';
 import {staticWords} from '@/assets/js/staticWords.js';
 
 import HeadingAndAlignTool from '@components/organisms/editor/tiptap/groupTool/HeadingAndAlignTool.vue';
@@ -216,6 +217,7 @@ export default {
 				Color,
 				LineHeightTextStyle,
 				TiptapCustomSpacing,
+				Div,
 			],
 			content: '',
 			onUpdate: () => {
@@ -230,7 +232,7 @@ export default {
 	},
 	methods: {
 		generateHTML() {
-			return `<div class="blog">${this.editor?.getHTML()}${staticWords}</div>` + `<style>${cssStyle}</style>`;
+			return `<div class="blog">${this.editor?.getHTML()}</div>` + `<style>${cssStyle}</style>`;
 		},
 		insertCommonText(text) {
 			this.editor.chain().focus().insertContent(text).run();
@@ -250,6 +252,16 @@ export default {
 		},
 		loadHtml(data) {
 			this.editor.commands.setContent(data);
+		},
+	},
+	computed: {
+		templateValue: function () {
+			console.log(this.editor.getHTML());
+
+			return this.editor.getHTML();
+		},
+		htmlValue: function () {
+			return `<div class="blog">${this.editor?.getHTML()}${staticWords}</div>` + `<style>${cssStyle}</style>`;
 		},
 	},
 };
