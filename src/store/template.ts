@@ -10,7 +10,7 @@ interface TemplateData {
 
 export const useDataStore = defineStore('template', {
 	state: () => ({
-		templates: useStorage('templates', []),
+		templates: useStorage('templatesStore', []),
 		commonWords: useStorage('commonWords', []),
 	}),
 	getters: {
