@@ -17,7 +17,7 @@
 
 <script setup>
 import {ref} from 'vue';
-import {IconDeviceFloppy, IconDownload, IconTemplate} from '@tabler/icons-vue';
+import {IconTemplate} from '@tabler/icons-vue';
 import TiptapToolbarGroup from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarGroup.vue';
 import TiptapToolbarButton from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarButton.vue';
 import TemplatesModal from '@components/organisms/templateModal/TemplatesModal.vue';
