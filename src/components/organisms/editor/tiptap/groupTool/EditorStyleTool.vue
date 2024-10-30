@@ -6,9 +6,10 @@
 		<TiptapToolbarButton :isActive="isPreviewMobile" @click="toggleDevice(true)" label="Mobile">
 			<IconDeviceMobile class="h-5 w-5" />
 		</TiptapToolbarButton>
-		<!--		<TiptapToolbarButton :isActive="isShowBorderOuter" @click="toggleBorderOuter" label="Border Outer">-->
-		<!--			<IconBorderOuter class="h-5 w-5" />-->
-		<!--		</TiptapToolbarButton>-->
+		<TiptapToolbarButton :isActive="isLock" @click="toggleLock" label="Border Outer">
+			<IconLockOpen2 v-if="isEditable" class="h-5 w-5" />
+			<IconLock v-if="!isEditable" class="h-5 w-5" />
+		</TiptapToolbarButton>
 		<TiptapToolbarButton :isActive="isShowHtml" @click="toggleHtml" label="Border Outer">
 			<IconHtml class="h-5 w-5" />
 		</TiptapToolbarButton>
@@ -16,17 +17,17 @@
 </template>
 
 <script setup>
-import {IconDeviceDesktop, IconDeviceMobile, IconHtml} from '@tabler/icons-vue';
+import {IconDeviceDesktop, IconDeviceMobile, IconHtml, IconLockOpen2, IconLock} from '@tabler/icons-vue';
 import TiptapToolbarGroup from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarGroup.vue';
 import TiptapToolbarButton from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarButton.vue';
 
-const emit = defineEmits(['toggleDevice', 'toggleBorderOuter', 'toggleHtml']);
+const emit = defineEmits(['toggleDevice', 'toggleLock', 'toggleHtml']);
 defineProps({
 	isPreviewMobile: {
 		type: Boolean,
 		default: false,
 	},
-	isShowBorderOuter: {
+	isEditable: {
 		type: Boolean,
 		default: false,
 	},
@@ -40,9 +41,9 @@ const toggleDevice = (val) => {
 	emit('toggleDevice', val);
 };
 
-// const toggleBorderOuter = () => {
-// 	emit('toggleBorderOuter');
-// };
+const toggleLock = () => {
+	emit('toggleLock');
+};
 
 const toggleHtml = () => {
 	emit('toggleHtml');
