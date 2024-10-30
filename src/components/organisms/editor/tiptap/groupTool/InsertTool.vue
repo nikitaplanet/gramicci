@@ -109,7 +109,7 @@ const insertCommonText = (text) => {
 
 const insertLinkButton = () => {
 	props.editor?.commands.insertImageLink({
-		src: 'https://img.shoplineapp.com/media/image_clips/671f978667e306000b1c282e/original.png?1730123654',
+		src: 'https://img.shoplineapp.com/media/image_clips/67224698dcbea4000aff7dc9/original.png?1730299544',
 		href: 'https://www.gramiccitwshop.com/pages/fit-guide-2024',
 		alt: '版型指南',
 	});

@@ -4,12 +4,12 @@
 			<LogoInTool />
 			<CacheTool :htmlContent="templateValue" @load="(data) => loadHtml(data)" />
 			<EditorStyleTool
+				:isEditable="isEditable"
 				:isPreviewMobile="isPreviewMobile"
-				:isShowBorderOuter="isShowBorderOuter"
 				:isShowHtml="isShowHtml"
-				@toggleBorderOuter="toggleBorderOuter"
 				@toggleDevice="toggleDevice"
-				@toggleHtml="toggleHtml" />
+				@toggleHtml="toggleHtml"
+				@toggleLock="toggleLock" />
 			<HeadingAndAlignTool :editor="editor" />
 			<TextStyleTool :editor="editor" />
 			<ListTool :editor="editor" />
@@ -22,20 +22,8 @@
 			<div
 				:class="{'max-w-[1400px]': !isPreviewMobile, 'max-w-[400px] sm:max-w-full': isPreviewMobile}"
 				class="flex flex-col w-11/12 min-h-96 mx-auto bg-white my-8 sm:w-full sm:my-0 sm:mb-8 md:my-0 md:mb-8">
-				<EditorContent :editor="editor" />
-				<div v-show="!isEditable" class="remarkBlog">
-					<h5>
-						尺寸數據皆為官方數值，可以參照手邊現有衣服尺寸比對大小。<br />
-						平量數據將以「寬」表示 EX. 腰寬、臀寬、褲口寬 等<br />
-						整圈數據將以「圍」表示 EX. 腰圍、臀圍、褲口圍 等 <br />
-						為避免腰帶在洗滌中打卷纏繞，建議使用洗衣袋。<br />
-						*調節環皆可透過單手輕鬆調節，切勿使用蠻力扯開，如不清楚使用方法，歡迎詢問。<br />
-						*由於布料染色工法的特性，一開始著用時可能會有因爲汗水、雨水加上摩擦導致沾色到淺色布料的情況。<br />
-						*淺色和深色衣物建議分開洗滌。<br />
-						*貼身衣物類和配件類商品，皆不提供退換貨服務，購買前請謹慎思考。<br />
-						*如有其他產品相關問題，歡迎透過官網訊息或官方社群媒體訊息詢問，謝謝！<br />
-					</h5>
-				</div>
+				<EditorContent v-if="isEditable" :editor="editor" />
+				<div v-else v-html="htmlValue" class="preview"></div>
 			</div>
 		</div>
 
@@ -243,8 +231,8 @@ export default {
 		toggleDevice(val) {
 			this.isPreviewMobile = val;
 		},
-		toggleBorderOuter() {
-			this.isShowBorderOuter = !this.isShowBorderOuter;
+		toggleLock() {
+			this.isEditable = !this.isEditable;
 		},
 		toggleHtml() {
 			this.contentResult = this.generateHTML();

@@ -1,7 +1,7 @@
 // 模板樣式
 .blog {
 	width: 100%;
-	max-width: 750px;
+	max-width: 700px;
 	padding-left: -20px;
 	padding-bottom: 20px;
 	margin: auto;
@@ -48,7 +48,7 @@
 
 	h4 {
 		font-family: 'PingFang TC';
-		font-size: 14px;
+		font-size: 16px;
 		line-height: 1.5;
 		font-weight: 500;
 	}
@@ -71,10 +71,10 @@
 
 	p {
 		font-family: 'PingFang TC';
-		font-size: 13px;
+		font-size: 12px;
 		line-height: 1.5;
-		letter-spacing: 0.5px;
 		font-weight: 500;
+		min-height: 20px;
 	}
 
 	ol,
@@ -144,7 +144,7 @@
 
 		p {
 			font-family: 'PingFang TC';
-			font-size: 13px;
+			font-size: 12px;
 			line-height: 1.5;
 			letter-spacing: 0.5px;
 			font-weight: 500;
@@ -172,8 +172,8 @@
 
 		figcaption {
 			position: absolute;
-			bottom: 16px;
-			left: 16px;
+			bottom: 20px;
+			left: 25px;
 			font-size: 14px;
 			color: #9f9f9f;
 			font-family: 'Arial';
@@ -210,7 +210,7 @@
 
 	h5 {
 		font-family: 'PingFang TC';
-		font-size: 12px;
+		font-size: 13px;
 		line-height: 2.5;
 		letter-spacing: 0.5px;
 		font-weight: 500;
@@ -270,6 +270,12 @@
 			}
 		}
 	}
+
+	.remarkBlog {
+		h5 {
+			font-size: 12px;
+		}
+	}
 }
 
 @media only screen and (max-width: 767px) {
@@ -323,6 +329,12 @@
 			figcaption {
 				font-size: 10px;
 			}
+		}
+	}
+
+	.remarkBlog {
+		h5 {
+			font-size: 12px;
 		}
 	}
 }
