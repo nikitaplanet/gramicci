@@ -141,6 +141,14 @@
 	}
 }
 
+.blogAlign {
+	> * {
+		// drag drop front content
+		margin-left: 20px !important;
+		width: calc(100% - 40px) !important;
+	}
+}
+
 // PlaceHolder
 .tiptap p.is-empty::before {
 	color: #adb5bd;
