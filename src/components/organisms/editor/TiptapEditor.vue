@@ -257,12 +257,4 @@ export default {
 
 <style lang="scss">
 @import '@/assets/scss/plugins/tiptapTemplate';
-
-.blogAlign {
-	> * {
-		// drag drop front content
-		margin-left: 20px;
-		width: calc(100% - 40px) !important;
-	}
-}
 </style>
