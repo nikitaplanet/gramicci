@@ -157,7 +157,7 @@ const cssStyle =
 	'\tposition: relative !important;\n' +
 	'\tbox-sizing: border-box !important;\n' +
 	'\tmin-width: 1em !important;\n' +
-	'\tvertical-align: center !important;\n' +
+	'\tvertical-align: middle !important;\n' +
 	'}\n' +
 	'\n' +
 	'.blog table p {\n' +
@@ -170,6 +170,11 @@ const cssStyle =
 	'\n' +
 	'.blog table th:first-child p {\n' +
 	"\tfont-family: 'Arial Black' !important;\n" +
+	'}\n' +
+	'\n' +
+	'.blog table th:first-child,\n' +
+	'.blog table td:first-child {\n' +
+	'\twidth: 220px !important;\n' +
 	'}\n' +
 	'\n' +
 	'.blog figure {\n' +
@@ -198,23 +203,23 @@ const cssStyle =
 	'\tletter-spacing: 0.5px !important;\n' +
 	'}\n' +
 	'\n' +
-	'.tableWrapper {\n' +
+	'.blog .tableWrapper {\n' +
 	'\toverflow: auto !important;\n' +
 	'\twidth: calc(100% - 40px) !important;\n' +
 	'}\n' +
 	'\n' +
-	'.image-link-button {\n' +
+	'.blog .image-link-button {\n' +
 	'\tdisplay: block !important;\n' +
-	'\twidth: 100px !important;\n' +
+	'\twidth: 153px !important;\n' +
 	'\ttransition: 0.2s ease !important;\n' +
 	'\tmargin-top: 8px !important;\n' +
 	'}\n' +
 	'\n' +
-	'.image-link-button:hover {\n' +
+	'.blog .image-link-button:hover {\n' +
 	'\topacity: 0.8 !important;\n' +
 	'}\n' +
 	'\n' +
-	'.image-link-button img {\n' +
+	'.blog .image-link-button img {\n' +
 	'\twidth: 100% !important;\n' +
 	'}\n' +
 	'\n' +
@@ -276,12 +281,21 @@ const cssStyle =
 	'\tline-height: 1.5 !important;\n' +
 	'}\n' +
 	'\n' +
+	'.w767 .blog table th:first-child,\n' +
+	'.w767 .blog table td:first-child {\n' +
+	'\twidth: 150px !important;\n' +
+	'}\n' +
+	'\n' +
 	'.w767 .blog figure figcaption {\n' +
 	'\tfont-size: 10px !important;\n' +
 	'}\n' +
 	'\n' +
 	'.w767 .remarkBlog h5 {\n' +
 	'\tfont-size: 12px !important;\n' +
+	'}\n' +
+	'\n' +
+	'.w767 .image-link-button {\n' +
+	'\twidth: 108px !important;\n' +
 	'}\n' +
 	'\n' +
 	'@media only screen and (max-width: 767px) {\n' +
@@ -336,6 +350,10 @@ const cssStyle =
 	'\n' +
 	'\t.remarkBlog h5 {\n' +
 	'\t\tfont-size: 12px !important;\n' +
+	'\t}\n' +
+	'\n' +
+	'\t.image-link-button {\n' +
+	'\t\twidth: 108px !important;\n' +
 	'\t}\n' +
 	'}\n';
 
