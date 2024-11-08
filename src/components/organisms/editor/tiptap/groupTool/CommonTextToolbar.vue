@@ -37,20 +37,24 @@
 				<div class="w-full flex justify-start items-start flex-wrap gap-3 overflow-scroll">
 					<template v-if="searchInput">
 						<CommonTextButton v-for="item in searchList" :key="`editCommon_${item}`" @click="textAction(item)" class="hover:bg-blue-700">
-							{{ item }}
+							{{ item.content }}
 						</CommonTextButton>
 						<div v-if="!searchList.length" class="text-xs text-gray-500">無搜尋結果</div>
 					</template>
 					<template v-else>
 						<template v-if="store.getCommonWords.length > 0">
-							<CommonTextButton
-								v-for="(item, index) in store.getCommonWords"
-								:class="{'hover:bg-red-700': isEdit, 'hover:bg-blue-700': !isEdit}"
-								:key="`editCommon_${item}`"
-								@click="textAction(item, index)">
-								<pre v-html="transHtmlFormat(item)" class="text-left"></pre>
-								<IconX v-if="isEdit" :size="10" class="min-w-2 min-h-2 ml-3" />
-							</CommonTextButton>
+							<div v-for="item in store.getCommonWords" class="flex flex-col">
+								<div class="text-xs mb-2 font-medium">
+									{{ item.title }}
+								</div>
+								<CommonTextButton
+									:class="{'hover:bg-red-700': isEdit, 'hover:bg-blue-700': !isEdit}"
+									:key="`editCommon_${item}`"
+									@click="textAction(item)">
+									<pre v-html="transHtmlFormat(item)" class="text-left"></pre>
+									<IconX v-if="isEdit" :size="10" class="min-w-2 min-h-2 ml-3" />
+								</CommonTextButton>
+							</div>
 						</template>
 
 						<template v-else>
@@ -77,11 +81,12 @@ import AddCommonTextDialog from '@components/organisms/editor/tiptap/dialog/AddC
 
 import {useDataStore} from '@/store/template.ts';
 import NLink from '@components/atoms/NLink.vue';
+import {CommonText} from '@assets/js/enum/commonText';
 
 const store = useDataStore();
 defineProps<{show: boolean}>();
 const emit = defineEmits(['close', 'insertCommonText']);
-const searchList = ref<Array<string>>([]);
+const searchList = ref<Array<CommonText>>([]);
 const searchInput = ref<string>('');
 const isEdit = ref(false);
 const commonTextTool = ref();
@@ -100,7 +105,7 @@ const toggleEdit = () => {
 	}
 };
 
-const textAction = (item: string) => {
+const textAction = (item: CommonText) => {
 	if (isEdit.value) {
 		deleteText(item);
 	} else {
@@ -108,15 +113,15 @@ const textAction = (item: string) => {
 	}
 };
 
-const deleteText = (item: string) => {
-	ElMessageBox.confirm(`確認後將刪除常用字「${item}」。`, `確認刪除常用字?`, {
+const deleteText = (item: CommonText) => {
+	ElMessageBox.confirm(`確認後將刪除常用字「${item.content}」。`, '確認刪除常用字?', {
 		confirmButtonText: '確認',
 		cancelButtonText: '取消',
 		showCancelButton: true,
 		type: 'warning',
 	})
 		.then(() => {
-			store.setCommonWords(store.commonWords.filter((val) => val !== item));
+			store.setCommonWords(store.commonWords.filter((val) => val.content !== item.content));
 			ElMessage({
 				type: 'success',
 				message: `已刪除常用字 "${item}"`,
@@ -125,37 +130,39 @@ const deleteText = (item: string) => {
 		.catch(() => {});
 };
 
-const addText = (data) => {
-	if (store.getCommonWords.includes(data.content)) {
+const addText = (data: CommonText) => {
+	const findData = store.getCommonWords.find((item) => item.content === data.content);
+	if (findData) {
 		ElMessage({
 			type: 'warning',
 			message: `"${data.content}" 已在常用字清單中`,
 		});
 		return;
 	}
-	store.setCommonWords([...store.getCommonWords, data.content]);
+	store.setCommonWords([...store.getCommonWords, data]);
 	ElMessage({
 		type: 'success',
 		message: '已儲存常用字',
 	});
 };
 
-const insertText = (text: string) => {
+const insertText = (text: CommonText) => {
 	emit('insertCommonText', transHtmlFormat(text));
 };
 
 const search = () => {
-	searchList.value = filter(store.getCommonWords, (i) => i.includes(searchInput.value));
+	searchList.value = filter(store.getCommonWords, (i) => i.content.includes(searchInput.value));
 };
 
 /**
  * transHtmlFormat:textarea有換行格式換為<p>標籤
  * @description textarea有換行格式\h，將每列文字是用<p>標籤做換行區別，無\h傳回text原始值。
- * @param {string} text - 新增常用字input輸入的值
- * @returns {string} text or <p>標籤字串。
+ * @param {CommonText} data - 新增常用字input輸入的值
+ * @returns {string} data.content or <p>標籤字串。
  */
-const transHtmlFormat = (text: string) => {
-	return text.includes('\n') ? `<p>${text.replaceAll('\n', '</p><p>')}</p>` : text;
+const transHtmlFormat = (data: CommonText) => {
+	// return data.content.includes('\n') ? `<p>${data.content.replaceAll('\n', '</p><p>')}</p>` : data.content;
+	return data.content;
 };
 </script>
 <style lang="scss" scoped></style>

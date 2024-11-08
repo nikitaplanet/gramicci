@@ -244,8 +244,6 @@ export default {
 	},
 	computed: {
 		templateValue: function () {
-			console.log(this.editor.getHTML());
-
 			return this.editor.getHTML();
 		},
 		htmlValue: function () {
