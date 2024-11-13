@@ -169,6 +169,11 @@
 				font-family: 'Arial Black';
 			}
 		}
+
+		th:first-child,
+		td:first-child {
+			width: 220px !important;
+		}
 	}
 
 	figure {
@@ -186,8 +191,8 @@
 
 		figcaption {
 			position: absolute;
-			bottom: 20px;
-			left: 20px;
+			bottom: 15px;
+			left: 15px;
 			font-size: 18px;
 			color: #9f9f9f;
 			font-family: 'Arial';
@@ -204,7 +209,7 @@
 
 	.image-link-button {
 		display: block;
-		width: 100px;
+		width: 153px;
 		transition: 0.2s ease;
 		margin-top: 8px;
 
@@ -276,6 +281,11 @@
 				font-size: 12px;
 				line-height: 1.5;
 			}
+
+			th:first-child,
+			td:first-child {
+				width: 150px !important;
+			}
 		}
 
 		figure {
@@ -289,6 +299,10 @@
 		h5 {
 			font-size: 12px;
 		}
+	}
+
+	.image-link-button {
+		width: 108px;
 	}
 }
 
@@ -350,5 +364,9 @@
 		h5 {
 			font-size: 12px;
 		}
+	}
+
+	.image-link-button {
+		width: 108px;
 	}
 }

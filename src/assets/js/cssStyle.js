@@ -74,7 +74,7 @@ const cssStyle =
 	'\n' +
 	'.blog h6 {\n' +
 	"\tfont-family: 'PingFang TC' !important;\n" +
-	'\tfont-size: 15px !important;\n' +
+	'\tfont-size: 20px !important;\n' +
 	'\tline-height: 1.8 !important;\n' +
 	'\tletter-spacing: 0.5px !important;\n' +
 	'\tfont-weight: 500 !important;\n' +
@@ -157,12 +157,12 @@ const cssStyle =
 	'\tposition: relative !important;\n' +
 	'\tbox-sizing: border-box !important;\n' +
 	'\tmin-width: 1em !important;\n' +
-	'\tvertical-align: center !important;\n' +
+	'\tvertical-align: middle !important;\n' +
 	'}\n' +
 	'\n' +
 	'.blog table p {\n' +
 	"\tfont-family: 'PingFang TC' !important;\n" +
-	'\tfont-size: 12px !important;\n' +
+	'\tfont-size: 18px !important;\n' +
 	'\tline-height: 1.5 !important;\n' +
 	'\tletter-spacing: 0.5px !important;\n' +
 	'\tfont-weight: 500 !important;\n' +
@@ -170,6 +170,11 @@ const cssStyle =
 	'\n' +
 	'.blog table th:first-child p {\n' +
 	"\tfont-family: 'Arial Black' !important;\n" +
+	'}\n' +
+	'\n' +
+	'.blog table th:first-child,\n' +
+	'.blog table td:first-child {\n' +
+	'\twidth: 220px !important;\n' +
 	'}\n' +
 	'\n' +
 	'.blog figure {\n' +
@@ -188,8 +193,8 @@ const cssStyle =
 	'\n' +
 	'.blog figure figcaption {\n' +
 	'\tposition: absolute !important;\n' +
-	'\tbottom: 20px !important;\n' +
-	'\tleft: 20px !important;\n' +
+	'\tbottom: 15px !important;\n' +
+	'\tleft: 15px !important;\n' +
 	'\tfont-size: 18px !important;\n' +
 	'\tcolor: #9f9f9f !important;\n' +
 	"\tfont-family: 'Arial' !important;\n" +
@@ -205,7 +210,7 @@ const cssStyle =
 	'\n' +
 	'.blog .image-link-button {\n' +
 	'\tdisplay: block !important;\n' +
-	'\twidth: 100px !important;\n' +
+	'\twidth: 153px !important;\n' +
 	'\ttransition: 0.2s ease !important;\n' +
 	'\tmargin-top: 8px !important;\n' +
 	'}\n' +
@@ -235,54 +240,120 @@ const cssStyle =
 	'\tpadding: 0 20px 0 -20px !important;\n' +
 	'}\n' +
 	'\n' +
+	'.w767 .blog h1 {\n' +
+	'\tfont-size: 20px !important;\n' +
+	'\tline-height: 1 !important;\n' +
+	'}\n' +
+	'\n' +
+	'.w767 .blog h2 {\n' +
+	'\tfont-size: 12px !important;\n' +
+	'\tline-height: 1.5 !important;\n' +
+	'}\n' +
+	'\n' +
+	'.w767 .blog h3 {\n' +
+	'\tfont-size: 12px !important;\n' +
+	'\tline-height: 1.8 !important;\n' +
+	'}\n' +
+	'\n' +
+	'.w767 .blog h4 {\n' +
+	'\tfont-size: 10px !important;\n' +
+	'\tline-height: 1.5 !important;\n' +
+	'}\n' +
+	'\n' +
+	'.w767 .blog h5 {\n' +
+	'\tfont-size: 9px !important;\n' +
+	'\tline-height: 2.5 !important;\n' +
+	'\tletter-spacing: 1px !important;\n' +
+	'}\n' +
+	'\n' +
+	'.w767 .blog h6 {\n' +
+	'\tfont-size: 12px !important;\n' +
+	'\tline-height: 1.8 !important;\n' +
+	'}\n' +
+	'\n' +
+	'.w767 .blog p {\n' +
+	'\tfont-size: 11px !important;\n' +
+	'\tline-height: 1.5 !important;\n' +
+	'}\n' +
+	'\n' +
+	'.w767 .blog table p {\n' +
+	'\tfont-size: 12px !important;\n' +
+	'\tline-height: 1.5 !important;\n' +
+	'}\n' +
+	'\n' +
+	'.w767 .blog table th:first-child,\n' +
+	'.w767 .blog table td:first-child {\n' +
+	'\twidth: 150px !important;\n' +
+	'}\n' +
+	'\n' +
+	'.w767 .blog figure figcaption {\n' +
+	'\tfont-size: 10px !important;\n' +
+	'}\n' +
+	'\n' +
+	'.w767 .remarkBlog h5 {\n' +
+	'\tfont-size: 12px !important;\n' +
+	'}\n' +
+	'\n' +
+	'.w767 .image-link-button {\n' +
+	'\twidth: 108px !important;\n' +
+	'}\n' +
+	'\n' +
 	'@media only screen and (max-width: 767px) {\n' +
-	'\t.w767 .blog h1 {\n' +
+	'\t.blog {\n' +
+	'\t\tpadding: 0 20px 0 -20px !important;\n' +
+	'\t}\n' +
+	'\n' +
+	'\t.blog h1 {\n' +
 	'\t\tfont-size: 20px !important;\n' +
 	'\t\tline-height: 1 !important;\n' +
 	'\t}\n' +
 	'\n' +
-	'\t.w767 .blog h2 {\n' +
+	'\t.blog h2 {\n' +
 	'\t\tfont-size: 12px !important;\n' +
 	'\t\tline-height: 1.5 !important;\n' +
 	'\t}\n' +
 	'\n' +
-	'\t.w767 .blog h3 {\n' +
+	'\t.blog h3 {\n' +
 	'\t\tfont-size: 12px !important;\n' +
 	'\t\tline-height: 1.8 !important;\n' +
 	'\t}\n' +
 	'\n' +
-	'\t.w767 .blog h4 {\n' +
+	'\t.blog h4 {\n' +
 	'\t\tfont-size: 10px !important;\n' +
 	'\t\tline-height: 1.5 !important;\n' +
 	'\t}\n' +
 	'\n' +
-	'\t.w767 .blog h5 {\n' +
+	'\t.blog h5 {\n' +
 	'\t\tfont-size: 9px !important;\n' +
 	'\t\tline-height: 2.5 !important;\n' +
 	'\t\tletter-spacing: 1px !important;\n' +
 	'\t}\n' +
 	'\n' +
-	'\t.w767 .blog h6 {\n' +
+	'\t.blog h6 {\n' +
 	'\t\tfont-size: 12px !important;\n' +
 	'\t\tline-height: 1.8 !important;\n' +
 	'\t}\n' +
 	'\n' +
-	'\t.w767 .blog p {\n' +
+	'\t.blog p {\n' +
 	'\t\tfont-size: 11px !important;\n' +
 	'\t\tline-height: 1.5 !important;\n' +
 	'\t}\n' +
 	'\n' +
-	'\t.w767 .blog table p {\n' +
+	'\t.blog table p {\n' +
 	'\t\tfont-size: 12px !important;\n' +
 	'\t\tline-height: 1.5 !important;\n' +
 	'\t}\n' +
 	'\n' +
-	'\t.w767 .blog figure figcaption {\n' +
+	'\t.blog figure figcaption {\n' +
 	'\t\tfont-size: 10px !important;\n' +
 	'\t}\n' +
 	'\n' +
 	'\t.remarkBlog h5 {\n' +
 	'\t\tfont-size: 12px !important;\n' +
+	'\t}\n' +
+	'\n' +
+	'\t.image-link-button {\n' +
+	'\t\twidth: 108px !important;\n' +
 	'\t}\n' +
 	'}\n';
 
