@@ -40,7 +40,7 @@ import Input from '../../../form/Input.vue';
 import InputSelect from '../../../form/InputSelect.vue';
 import InputContainer from '../../../form/InputContainer.vue';
 import DialogButton from '@components/atoms/dialog/DialogButton.vue';
-import {useDataStore} from '@/store/imageComment.ts';
+import {useImageCommentStore} from '@/store/imageComment.ts';
 
 defineProps<{show: boolean}>();
 const emit = defineEmits(['close', 'insert']);
@@ -48,7 +48,7 @@ const inputLinkRef = ref<string>();
 const inputCaptionRef = ref<string>();
 const isAutoSaveComment = ref<Boolean>(true);
 
-const store = useDataStore();
+const store = useImageCommentStore();
 
 const commentOption = computed(() => {
 	return store.getImageComment.map((item, index) => {

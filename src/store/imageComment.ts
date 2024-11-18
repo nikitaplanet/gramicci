@@ -2,9 +2,9 @@
 import {defineStore} from 'pinia';
 import {useStorage} from '@vueuse/core';
 
-export const useDataStore = defineStore('imageComment', {
+export const useImageCommentStore = defineStore('imageComment', {
 	state: () => ({
-		imageComment: useStorage('imageCommentStore', ['好喔','什麼']),
+		imageComment: useStorage('imageCommentStore', []),
 	}),
 	getters: {
 		getImageComment: (state) => state.imageComment
