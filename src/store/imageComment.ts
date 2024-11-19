@@ -16,7 +16,7 @@ export const useImageCommentStore = defineStore('imageComment', {
 			if(this.imageComment.some((item)=>item === data)) return
 			this.imageComment.unshift(data);
 		},
-		deleteTemplate(delIndex) {
+		deleteImageComment(delIndex) {
 			this.imageComment = this.imageComment.filter((item,index) => {
 				return delIndex !== index;
 			});
