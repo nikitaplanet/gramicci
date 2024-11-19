@@ -91,7 +91,7 @@ function closeDialog() {
 }
 
 function insertImage() {
-	if (isAutoSaveComment) store.addImageComment(inputCaptionRef.value);
+	if (isAutoSaveComment && inputCaptionRef.value) store.addImageComment(inputCaptionRef.value);
 	emit('insert', {url: inputLinkRef.value, caption: inputCaptionRef.value});
 	emit('close');
 }

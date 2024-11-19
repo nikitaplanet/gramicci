@@ -11,8 +11,6 @@ export const useImageCommentStore = defineStore('imageComment', {
 	},
 	actions: {
 		addImageComment(data:string) {
-			console.log("???",data);
-			
 			if(this.imageComment.some((item)=>item === data)) return
 			this.imageComment.unshift(data);
 		},

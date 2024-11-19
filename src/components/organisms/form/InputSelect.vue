@@ -39,15 +39,12 @@ const emit = defineEmits<{
 }>();
 
 watch(selectValue, (val) => {
-	console.log('dsdf', selectValue.value);
-
 	emit('update:modelValue', val);
 });
 
 const filterOpts = ref(props.options);
 
 function onFilter(text) {
-	console.log(text, 'sddd');
 	inputValue.value = text;
 	filterOpts.value = props.options.filter((option) => option?.label?.includes(text));
 }
@@ -62,7 +59,6 @@ function onBlur() {
 	if (inputValue.value) {
 		selectValue.value = inputValue.value;
 	}
-	console.log('blur', inputValue.value);
 }
 </script>
 <style lang="scss">
