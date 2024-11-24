@@ -348,6 +348,6 @@ const cssStyle = '.blog {\n' +
 	'\t}\n' +
 	'\n' +
 	'\t.remarkBlog h5 {\n' +
-	'\t\tfont-size: 12px !\n';
+	'\t\tfont-size: 12px !important;\n';
 
 export {cssStyle};
