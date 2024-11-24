@@ -43,19 +43,6 @@
 			</TiptapToolbarDropdown>
 		</TiptapToolbarButton>
 
-		<!-- 間隔 -->
-		<TiptapToolbarButton :isActive="isShowSpacing || isSplacing" @click="toggleSpacingList" label="Spacing">
-			<IconSpacingVertical class="h-5 w-5" />
-			<TiptapToolbarDropdown v-if="isShowSpacing" @onClickOutside="isShowSpacing = false">
-				<TiptapToolbarDropdownButton
-					v-for="(item, index) in spacingList"
-					:isActive="editor.isActive('customSpacing', {minHeight: item})"
-					:key="`spacing_${index}`"
-					@click="setSpacing(item)">
-					<span>{{ item }}</span>
-				</TiptapToolbarDropdownButton>
-			</TiptapToolbarDropdown>
-		</TiptapToolbarButton>
 		<div class="inline-flex h-8 w-8 shrink-0 flex-row items-center justify-center">
 			<input
 				:value="editor.getAttributes('textStyle').color"
@@ -67,15 +54,15 @@
 </template>
 
 <script lang="ts" setup>
-import {IconBold, IconItalic, IconUnderline, IconTextSize, IconTypography, IconSpacingVertical} from '@tabler/icons-vue';
+import {IconBold, IconItalic, IconUnderline, IconTextSize, IconTypography} from '@tabler/icons-vue';
 import TiptapToolbarGroup from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarGroup.vue';
 import TiptapToolbarButton from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarButton.vue';
 import TiptapToolbarDropdown from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarDropdown.vue';
 import TiptapToolbarDropdownButton from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarDropdownButton.vue';
 
-import {ref, computed} from 'vue';
+import {ref} from 'vue';
 
-const props = defineProps({
+defineProps({
 	editor: {
 		type: Object,
 		default: () => {},
@@ -84,14 +71,12 @@ const props = defineProps({
 
 const isShowFontSize = ref(false);
 const isShowTypography = ref(false);
-const isShowSpacing = ref(false);
 
 const fontSizeList = ref<number[]>([]);
 for (let i = 9; i < 40; i++) {
 	fontSizeList.value.push(i);
 }
 
-const spacingList = ref<number[]>([20, 25, 50]);
 
 interface FontFamily {
 	name: string;
@@ -124,30 +109,6 @@ const toggleFontSizeList = () => {
 const toggleTypographyList = () => {
 	isShowTypography.value = !isShowTypography.value;
 };
-
-const toggleSpacingList = () => {
-	isShowSpacing.value = !isShowSpacing.value;
-};
-
-const setSpacing = (val) => {
-	const stateIsSplacing = isSplacing.value;
-
-	props.editor?.commands.newlineInCode();
-	props.editor?.commands.insertContent({
-		type: 'customSpacing',
-		attrs: {
-			minHeight: val,
-		},
-	});
-
-	props.editor?.commands.focus();
-};
-
-const isSplacing = computed(() => {
-	return props.editor.isActive('customSpacing');
-});
-
-const isCurrentTextAlign = (value) => props.editor?.getAttributes('textAlign').textAlign === value;
 </script>
 
 <style lang="scss" scoped>
