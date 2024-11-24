@@ -10,10 +10,12 @@ import {ref} from 'vue';
 import TiptapToolbarButton from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarButton.vue';
 import {useDataStore} from '@/store/template.ts';
 import {useTableDataStore} from '@/store/table.ts';
+import {useImageCommentStore} from '@/store/imageComment.ts';
 import {ElMessage, ElMessageBox} from 'element-plus';
 
 const store = useDataStore();
 const tableStore = useTableDataStore();
+const imageCommentStore = useImageCommentStore();
 const importRef = ref();
 const importedObject = ref(null);
 
@@ -41,6 +43,7 @@ const importTextFile = (event) => {
 				store.templates = [...importedObject.value.templates];
 				store.setCommonWords([...importedObject.value.commonWords]);
 				tableStore.setTables([...importedObject.value.tables]);
+				imageCommentStore.imageComment = [...importedObject.value.imageComment];
 				ElMessage({
 					type: 'success',
 					message: '已匯入設定檔',

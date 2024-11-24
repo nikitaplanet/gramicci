@@ -10,17 +10,20 @@
 import TiptapToolbarButton from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarButton.vue';
 import {useDataStore} from '@/store/template.ts';
 import {useTableDataStore} from '@/store/table.ts';
+import {useImageCommentStore} from '@/store/imageComment.ts';
 import {formatNowDate} from '@/utils/formatNowDate.ts';
 import {computed} from 'vue';
 
 const store = useDataStore();
 const tableStore = useTableDataStore();
+const imageCommentStore = useImageCommentStore();
 
 const storeData = computed(() => {
 	return {
 		templates: [...store.getTemplates],
 		commonWords: [...store.getCommonWords],
 		tables: [...tableStore.tables],
+		imageComment: [...imageCommentStore.imageComment],
 	};
 });
 const exportObjectAsText = () => {
