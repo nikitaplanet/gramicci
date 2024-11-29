@@ -107,7 +107,7 @@ export default {
 				Document,
 				Text,
 				Table.configure({
-					resizable: true,
+					resizable: false,
 					allowTableNodeSelection: true,
 				}),
 				TableRow,

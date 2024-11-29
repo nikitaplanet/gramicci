@@ -176,7 +176,7 @@ export default {
 				}),
 				HorizontalRule,
 				Table.configure({
-					resizable: true,
+					resizable: false,
 					allowTableNodeSelection: true,
 				}),
 				TableRow,

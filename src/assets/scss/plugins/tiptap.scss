@@ -143,7 +143,8 @@
 		margin: 0;
 		overflow: hidden;
 		table-layout: fixed;
-		width: 100% !important;
+		min-width: 100%;
+		width: 100%;
 
 		th,
 		td {
@@ -158,7 +159,7 @@
 
 		p {
 			font-family: 'PingFang TC';
-			font-size: 12px;
+			font-size: 18px;
 			line-height: 1.5;
 			letter-spacing: 0.5px;
 			font-weight: 500;
@@ -172,7 +173,7 @@
 
 		th:first-child,
 		td:first-child {
-			width: 200px !important;
+			width: 230px !important;
 		}
 	}
 
@@ -284,7 +285,7 @@
 
 			th:first-child,
 			td:first-child {
-				width: 150px !important;
+				width: 160px !important;
 			}
 		}
 
@@ -350,6 +351,11 @@
 			p {
 				font-size: 12px;
 				line-height: 1.5;
+			}
+
+			th:first-child,
+			td:first-child {
+				width: 160px !important;
 			}
 		}
 
