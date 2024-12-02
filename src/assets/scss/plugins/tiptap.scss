@@ -165,7 +165,7 @@
 			font-weight: 500;
 		}
 
-		th:first-child {
+		th:first-child, tr:first-child td:first-child {
 			p {
 				font-family: 'Arial Black';
 			}
@@ -173,7 +173,7 @@
 
 		th:first-child,
 		td:first-child {
-			width: 230px !important;
+			width: 290px !important;
 		}
 	}
 
@@ -285,7 +285,7 @@
 
 			th:first-child,
 			td:first-child {
-				width: 160px !important;
+				width: 190px !important;
 			}
 		}
 
