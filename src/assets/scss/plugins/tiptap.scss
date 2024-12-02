@@ -281,11 +281,16 @@
 			p {
 				font-size: 12px;
 				line-height: 1.5;
+				letter-spacing: 0;
+			}
+
+			th, td {
+				padding: 2px;
 			}
 
 			th:first-child,
 			td:first-child {
-				width: 190px !important;
+				width: 171px !important;
 			}
 		}
 
@@ -351,11 +356,16 @@
 			p {
 				font-size: 12px;
 				line-height: 1.5;
+				letter-spacing: 0;
+			}
+
+			th, td {
+				padding: 2px;
 			}
 
 			th:first-child,
 			td:first-child {
-				width: 160px !important;
+				width: 171px !important;
 			}
 		}
 
