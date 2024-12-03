@@ -350,7 +350,7 @@ img.ProseMirror-separator {
 	letter-spacing: 0 !important;
 }
 .w767 .blog table th, .w767 .blog table td {
-	padding: 2px !important;
+	padding: 2px 0.25rem !important;
 }
 .w767 .blog table th:first-child, .w767 .blog table td:first-child {
 	width: 171px !important;
@@ -403,7 +403,7 @@ img.ProseMirror-separator {
 		letter-spacing: 0 !important;
 	}
 	.blog table th, .blog table td {
-		padding: 2px !important;
+		padding: 2px 0.25rem !important;
 	}
 	.blog table th:first-child, .blog table td:first-child {
 		width: 171px !important;

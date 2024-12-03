@@ -1,14 +1,15 @@
-const cssStyle = '.blog {\n' +
+const cssStyle =
+	'.blog {\n' +
 	'\twidth: 100% !important;\n' +
 	'\tmax-width: 700px !important;\n' +
 	'\tpadding-left: -20px !important;\n' +
 	'\tpadding-bottom: 20px !important;\n' +
 	'\tmargin: auto !important;\n' +
-	'\tfont-family: Arial, \'PingFang TC\', \'微軟正黑體\' !important;\n' +
+	"\tfont-family: Arial, 'PingFang TC', '微軟正黑體' !important;\n" +
 	'\tdisplay: flex !important;\n' +
 	'\tflex-direction: column !important;\n' +
 	'\tcolor: #333 !important;\n' +
-	'\tfont-feature-settings: \'liga\' 0 !important;\n' +
+	"\tfont-feature-settings: 'liga' 0 !important;\n" +
 	'}\n' +
 	'.blog h1, .blog h2, .blog h3, .blog h4, .blog h5, .blog h6, .blog p {\n' +
 	'\tmargin-top: 0 !important;\n' +
@@ -24,7 +25,7 @@ const cssStyle = '.blog {\n' +
 	'\tmargin: 0 !important;\n' +
 	'}\n' +
 	'.blog h2 {\n' +
-	'\tfont-family: \'PingFang TC\' !important;\n' +
+	"\tfont-family: 'PingFang TC' !important;\n" +
 	'\tfont-size: 18px !important;\n' +
 	'\tline-height: 1.5 !important;\n' +
 	'\tletter-spacing: 0.5px !important;\n' +
@@ -33,7 +34,7 @@ const cssStyle = '.blog {\n' +
 	'\tmargin: 0 !important;\n' +
 	'}\n' +
 	'.blog h3 {\n' +
-	'\tfont-family: \'PingFang TC\' !important;\n' +
+	"\tfont-family: 'PingFang TC' !important;\n" +
 	'\tfont-size: 16px !important;\n' +
 	'\tline-height: 1.8 !important;\n' +
 	'\tletter-spacing: 0.5px !important;\n' +
@@ -42,7 +43,7 @@ const cssStyle = '.blog {\n' +
 	'\tmargin: 0 !important;\n' +
 	'}\n' +
 	'.blog h4 {\n' +
-	'\tfont-family: \'PingFang TC\' !important;\n' +
+	"\tfont-family: 'PingFang TC' !important;\n" +
 	'\tfont-size: 16px !important;\n' +
 	'\tline-height: 1.5 !important;\n' +
 	'\tfont-weight: 500 !important;\n' +
@@ -50,7 +51,7 @@ const cssStyle = '.blog {\n' +
 	'\tmargin: 0 !important;\n' +
 	'}\n' +
 	'.blog h5 {\n' +
-	'\tfont-family: \'PingFang TC\' !important;\n' +
+	"\tfont-family: 'PingFang TC' !important;\n" +
 	'\tfont-size: 12px !important;\n' +
 	'\tline-height: 2.5 !important;\n' +
 	'\tletter-spacing: 0.5px !important;\n' +
@@ -59,7 +60,7 @@ const cssStyle = '.blog {\n' +
 	'\tmargin: 0 !important;\n' +
 	'}\n' +
 	'.blog h6 {\n' +
-	'\tfont-family: \'PingFang TC\' !important;\n' +
+	"\tfont-family: 'PingFang TC' !important;\n" +
 	'\tfont-size: 20px !important;\n' +
 	'\tline-height: 1.8 !important;\n' +
 	'\tletter-spacing: 0.5px !important;\n' +
@@ -68,7 +69,7 @@ const cssStyle = '.blog {\n' +
 	'\tmargin: 0 !important;\n' +
 	'}\n' +
 	'.blog p {\n' +
-	'\tfont-family: \'PingFang TC\' !important;\n' +
+	"\tfont-family: 'PingFang TC' !important;\n" +
 	'\tfont-size: 12px !important;\n' +
 	'\tline-height: 1.5 !important;\n' +
 	'\tfont-weight: 500 !important;\n' +
@@ -131,14 +132,14 @@ const cssStyle = '.blog {\n' +
 	'\tvertical-align: center !important;\n' +
 	'}\n' +
 	'.blog table p {\n' +
-	'\tfont-family: \'PingFang TC\' !important;\n' +
+	"\tfont-family: 'PingFang TC' !important;\n" +
 	'\tfont-size: 18px !important;\n' +
 	'\tline-height: 1.5 !important;\n' +
 	'\tletter-spacing: 0.5px !important;\n' +
 	'\tfont-weight: 500 !important;\n' +
 	'}\n' +
 	'.blog table th:first-child p, .blog table tr:first-child td:first-child p {\n' +
-	'\tfont-family: \'Arial Black\' !important;\n' +
+	"\tfont-family: 'Arial Black' !important;\n" +
 	'}\n' +
 	'.blog table th:first-child, .blog table td:first-child {\n' +
 	'\twidth: 290px !important;\n' +
@@ -161,7 +162,7 @@ const cssStyle = '.blog {\n' +
 	'\tleft: 15px !important;\n' +
 	'\tfont-size: 18px !important;\n' +
 	'\tcolor: #9f9f9f !important;\n' +
-	'\tfont-family: \'Arial\' !important;\n' +
+	"\tfont-family: 'Arial' !important;\n" +
 	'\tline-height: 19px !important;\n' +
 	'\tfont-weight: 500 !important;\n' +
 	'\tletter-spacing: 0.5px !important;\n' +
@@ -187,7 +188,7 @@ const cssStyle = '.blog {\n' +
 	'\tmargin-top: 20px !important;\n' +
 	'}\n' +
 	'.remarkBlog h5 {\n' +
-	'\tfont-family: \'PingFang TC\' !important;\n' +
+	"\tfont-family: 'PingFang TC' !important;\n" +
 	'\tfont-size: 13px !important;\n' +
 	'\tline-height: 2.5 !important;\n' +
 	'\tletter-spacing: 0.5px !important;\n' +
@@ -231,7 +232,7 @@ const cssStyle = '.blog {\n' +
 	'\tletter-spacing: 0 !important;\n' +
 	'}\n' +
 	'.w767 .blog table th, .w767 .blog table td {\n' +
-	'\tpadding: 2px !important;\n' +
+	'\tpadding: 2px 0.25rem !important;\n' +
 	'}\n' +
 	'.w767 .blog table th:first-child, .w767 .blog table td:first-child {\n' +
 	'\twidth: 171px !important;\n' +
@@ -284,7 +285,7 @@ const cssStyle = '.blog {\n' +
 	'\t\tletter-spacing: 0 !important;\n' +
 	'\t}\n' +
 	'\t.blog table th, .blog table td {\n' +
-	'\t\tpadding: 2px !important;\n' +
+	'\t\tpadding: 2px 0.25rem !important;\n' +
 	'\t}\n' +
 	'\t.blog table th:first-child, .blog table td:first-child {\n' +
 	'\t\twidth: 171px !important;\n' +
