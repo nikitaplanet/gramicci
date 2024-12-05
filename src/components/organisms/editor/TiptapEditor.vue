@@ -176,7 +176,7 @@ export default {
 				}),
 				HorizontalRule,
 				Table.configure({
-					resizable: false,
+					resizable: true,
 					allowTableNodeSelection: true,
 				}),
 				TableRow,
@@ -199,9 +199,10 @@ export default {
 					placeholder: '輸入內容...',
 				}),
 				TipTapImageLink,
-				Figure.configure({
-					inline: true,
-				}),
+				// Figure.configure({
+				// 	inline: true,
+				// }),
+                Figure,
 				Color,
 				LineHeightTextStyle,
 				TiptapCustomSpacing,

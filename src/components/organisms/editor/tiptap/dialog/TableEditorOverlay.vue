@@ -107,7 +107,7 @@ export default {
 				Document,
 				Text,
 				Table.configure({
-					resizable: false,
+					resizable: true,
 					allowTableNodeSelection: true,
 				}),
 				TableRow,
@@ -142,7 +142,7 @@ export default {
 					.insertTable({
 						rows: 8,
 						cols: 4,
-						withHeaderRow: true,
+						withHeaderRow: false,
 					})
 					.run();
 			} else {

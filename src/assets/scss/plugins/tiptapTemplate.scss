@@ -92,6 +92,15 @@
 		}
 	}
 
+	figure.ProseMirror-selectednode {
+		border: 3px solid #f59e0b;
+		cursor: pointer;
+	}
+
+	figure * {
+		pointer-events: auto;
+	}
+
 	.selectedCell:after {
 		z-index: 2;
 		position: absolute;
