@@ -83,7 +83,7 @@ const cssStyle =
 	'\tmargin-top: 0.5rem !important;\n' +
 	'}\n' +
 	'.blog ol li, .blog ul li {\n' +
-	'\tmargin-top: 0.5rem !important;\n' +
+	'\tmargin-top: 0 !important;\n' +
 	'}\n' +
 	'.blog ol li:first-child, .blog ul li:first-child {\n' +
 	'\tmargin-top: 0 !important;\n' +
