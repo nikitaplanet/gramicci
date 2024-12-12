@@ -84,6 +84,7 @@ const cssStyle =
 	'}\n' +
 	'.blog ol li, .blog ul li {\n' +
 	'\tmargin-top: 0 !important;\n' +
+	'\tlist-style-position: outside !important;\n' +
 	'}\n' +
 	'.blog ol li:first-child, .blog ul li:first-child {\n' +
 	'\tmargin-top: 0 !important;\n' +
