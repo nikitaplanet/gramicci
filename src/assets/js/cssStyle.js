@@ -90,9 +90,13 @@ const cssStyle =
 	'}\n' +
 	'.blog ol {\n' +
 	'\tlist-style-type: decimal !important;\n' +
+	'\tpadding: 0 0 0 18px !important;\n' +
+	'\tmargin: 0 !important;\n' +
 	'}\n' +
 	'.blog ul {\n' +
 	'\tlist-style-type: disc !important;\n' +
+	'\tpadding: 0 0 0 14px !important;\n' +
+	'\tmargin: 0 !important;\n' +
 	'}\n' +
 	'.blog blockquote {\n' +
 	'\tfont-style: italic !important;\n' +
