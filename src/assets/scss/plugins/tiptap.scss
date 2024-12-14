@@ -1,396 +1,466 @@
 // 模板樣式
 .blog {
-	width: 100%;
-	max-width: 700px;
-	padding-left: -20px;
-	padding-bottom: 20px;
-	margin: auto;
-	font-family: Arial, 'PingFang TC', '微軟正黑體';
-	display: flex;
-	flex-direction: column;
-	color: #333333;
-	font-feature-settings: 'liga' 0;
+  width: 100%;
+  max-width: 700px;
+  padding-left: -20px;
+  padding-bottom: 20px;
+  margin: auto;
+  font-family: Arial, 'PingFang TC', '微軟正黑體';
+  display: flex;
+  flex-direction: column;
+  color: #333333;
+  font-feature-settings: 'liga' 0;
 
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
-	p {
-		margin-top: 0;
-		margin-bottom: 0;
-	}
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 
-	h1 {
-		font-family: Arial;
-		font-size: 30px;
-		line-height: 1.5;
-		letter-spacing: 1px;
-		font-weight: 700;
-		padding: 0;
-		margin: 0;
-	}
+  h1 {
+    font-family: Arial;
+    font-size: 30px;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    font-weight: 700;
+    padding: 0;
+    margin: 0;
+  }
 
-	h2 {
-		font-family: 'PingFang TC';
-		font-size: 18px;
-		line-height: 1.5;
-		letter-spacing: 0.5px;
-		font-weight: 500;
-		padding: 0;
-		margin: 0;
-	}
+  h2 {
+    font-family: 'PingFang TC';
+    font-size: 18px;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    padding: 0;
+    margin: 0;
+  }
 
-	h3 {
-		font-family: 'PingFang TC';
-		font-size: 16px;
-		line-height: 1.8;
-		letter-spacing: 0.5px;
-		font-weight: 400;
-		padding: 0;
-		margin: 0;
-	}
+  h3 {
+    font-family: 'PingFang TC';
+    font-size: 16px;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+    font-weight: 400;
+    padding: 0;
+    margin: 0;
+  }
 
-	h4 {
-		font-family: 'PingFang TC';
-		font-size: 16px;
-		line-height: 1.5;
-		font-weight: 500;
-		padding: 0;
-		margin: 0;
-	}
+  h4 {
+    font-family: 'PingFang TC';
+    font-size: 16px;
+    line-height: 1.5;
+    font-weight: 500;
+    padding: 0;
+    margin: 0;
+  }
 
-	h5 {
-		font-family: 'PingFang TC';
-		font-size: 12px;
-		line-height: 2.5;
-		letter-spacing: 0.5px;
-		font-weight: 500;
-		padding: 0;
-		margin: 0;
-	}
+  h5 {
+    font-family: 'PingFang TC';
+    font-size: 12px;
+    line-height: 2.5;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    padding: 0;
+    margin: 0;
+  }
 
-	h6 {
-		font-family: 'PingFang TC';
-		font-size: 20px;
-		line-height: 1.8;
-		letter-spacing: 0.5px;
-		font-weight: 500;
-		padding: 0;
-		margin: 0;
-	}
+  h6 {
+    font-family: 'PingFang TC';
+    font-size: 20px;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+    padding: 0;
+    margin: 0;
+  }
 
-	p {
-		font-family: 'PingFang TC';
-		font-size: 12px;
-		line-height: 1.5;
-		font-weight: 500;
-		min-height: 20px;
-		padding: 0;
-		margin: 0;
-	}
+  p {
+    font-family: 'PingFang TC';
+    font-size: 12px;
+    line-height: 1.5;
+    font-weight: 500;
+    min-height: 20px;
+    padding: 0;
+    margin: 0;
+  }
 
-	ol,
-	ul {
-		margin-left: 2rem; /* ml-8 */
-		list-style-position: outside; /* list-outside */
-		margin-top: 0.5rem !important; /* !mt-2 */
+  ol,
+  ul {
+    margin-left: 2rem; /* ml-8 */
+    list-style-position: outside; /* list-outside */
+    margin-top: 0.5rem !important; /* !mt-2 */
 
-		li {
-			margin-top: 0;
-			list-style-position: outside;
+    li {
+      margin-top: 0;
+      list-style-position: outside;
+      font-size: 16px;
+      line-height: 1.8;
 
-			&:first-child {
-				margin-top: 0; /* first:mt-0 */
-			}
-		}
-	}
+      &:first-child {
+        margin-top: 0;
+      }
 
-	ol {
-		margin: 0;
-		list-style-type: decimal; /* list-decimal */
-		padding: 0 0 0 18px;
-	}
+      p {
+        font-family: 'PingFang TC' !important;
+        font-size: 16px !important;
+        line-height: 1.8 !important;
+        letter-spacing: 0.5px !important;
+        font-weight: 400 !important;
+      }
+    }
+  }
 
-	ul {
-		margin: 0;
-		list-style-type: disc; /* list-disc */
-		padding: 0 0 0 14px;
-	}
+  ol {
+    margin: 0;
+    list-style-type: decimal;
+    padding: 0 0 0 24px;
+  }
 
-	blockquote {
-		font-style: italic;
-		border-left: 4px solid #d1d5db; /* border-gray-300 */
-		padding: 0.5rem 1rem; /* p-4 py-2 */
-		margin-left: 1.5rem; /* ml-6 */
-		margin-top: 1.5rem !important; /* !mt-6 */
-		margin-bottom: 0.5rem !important; /* !mb-2 */
-	}
+  ul {
+    margin: 0;
+    list-style-type: none;
+    padding: 0 0 0 17.5px;
 
-	a {
-		color: #1e40af; /* text-blue-800 */
-		cursor: pointer;
-		text-decoration: none;
+    li {
+      position: relative;
+    }
 
-		&:hover {
-			text-decoration: underline;
-		}
-	}
+    li::before {
+      content: "";
+      position: absolute;
+      left: -10px;
+      top: 15.5px;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 4px;
+      background-color: black;
+      border-radius: 50%;
+    }
+  }
 
-	hr {
-		border-color: #9ca3af; /* border-gray-400 */
-	}
+  blockquote {
+    font-style: italic;
+    border-left: 4px solid #d1d5db; /* border-gray-300 */
+    padding: 0.5rem 1rem; /* p-4 py-2 */
+    margin-left: 1.5rem; /* ml-6 */
+    margin-top: 1.5rem !important; /* !mt-6 */
+    margin-bottom: 0.5rem !important; /* !mb-2 */
+  }
 
-	table {
-		border: 1px solid #000000;
-		border-collapse: collapse;
-		margin: 0;
-		overflow: hidden;
-		table-layout: fixed;
-		min-width: 100%;
-		width: 100%;
+  a {
+    color: #1e40af; /* text-blue-800 */
+    cursor: pointer;
+    text-decoration: none;
 
-		th,
-		td {
-			text-align: left;
-			border: 1px solid black;
-			padding: 2px 0.5rem;
-			position: relative;
-			box-sizing: border-box;
-			min-width: 1em;
-			vertical-align: center;
-		}
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 
-		p {
-			font-family: 'PingFang TC';
-			font-size: 18px;
-			line-height: 1.5;
-			letter-spacing: 0.5px;
-			font-weight: 500;
-		}
+  hr {
+    border-color: #9ca3af; /* border-gray-400 */
+  }
 
-		th:first-child,
-		tr:first-child td:first-child {
-			p {
-				font-family: 'Arial Black';
-			}
-		}
+  table {
+    border: 1px solid #000000;
+    border-collapse: collapse;
+    margin: 0;
+    overflow: hidden;
+    table-layout: fixed;
+    min-width: 100%;
+    width: 100%;
 
-		th:first-child,
-		td:first-child {
-			width: 290px !important;
-		}
-	}
+    th,
+    td {
+      text-align: left;
+      border: 1px solid black;
+      padding: 2px 0.5rem;
+      position: relative;
+      box-sizing: border-box;
+      min-width: 1em;
+      vertical-align: center;
+    }
 
-	figure {
-		align-items: flex-start;
-		border-radius: 0.5rem;
-		display: flex;
-		flex-direction: column;
-		position: relative;
-		width: 100%;
-		max-width: 100%;
+    p {
+      font-family: 'PingFang TC';
+      font-size: 18px;
+      line-height: 1.5;
+      letter-spacing: 0.5px;
+      font-weight: 500;
+    }
 
-		img {
-			width: 100%;
-		}
+    th:first-child,
+    tr:first-child td:first-child {
+      p {
+        font-family: 'Arial Black';
+      }
+    }
 
-		figcaption {
-			position: absolute;
-			bottom: 15px;
-			left: 15px;
-			font-size: 18px;
-			color: #9f9f9f;
-			font-family: 'Arial';
-			line-height: 19px;
-			font-weight: 500;
-			letter-spacing: 0.5px;
-		}
-	}
+    th:first-child,
+    td:first-child {
+      width: 290px !important;
+    }
+  }
 
-	.tableWrapper {
-		overflow: auto;
-		width: calc(100% - 40px);
-	}
+  figure {
+    align-items: flex-start;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
 
-	.image-link-button {
-		display: block;
-		width: 153px;
-		transition: 0.2s ease;
-		margin-top: 8px;
+    img {
+      width: 100%;
+    }
 
-		&:hover {
-			opacity: 0.8;
-		}
+    figcaption {
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      font-size: 18px;
+      color: #9f9f9f;
+      font-family: 'Arial';
+      line-height: 19px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+  }
 
-		img {
-			width: 100%;
-		}
-	}
+  .tableWrapper {
+    overflow: auto;
+    width: calc(100% - 40px);
+  }
+
+  .image-link-button {
+    display: block;
+    width: 153px;
+    transition: 0.2s ease;
+    margin-top: 8px;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    img {
+      width: 100%;
+    }
+  }
 }
 
 .remarkBlog {
-	color: #333333;
-	margin-top: 20px;
+  color: #333333;
+  margin-top: 20px;
 
-	h5 {
-		font-family: 'PingFang TC';
-		font-size: 13px;
-		line-height: 2.5;
-		letter-spacing: 0.5px;
-		font-weight: 500;
-	}
+  h5 {
+    font-family: 'PingFang TC';
+    font-size: 13px;
+    line-height: 2.5;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+  }
 }
 
 .w767 {
-	.blog {
-		padding: 0 20px 0 -20px;
+  .blog {
+    padding: 0 20px 0 -20px;
 
-		h1 {
-			font-size: 20px;
-			line-height: 1;
-		}
+    h1 {
+      font-size: 20px;
+      line-height: 1;
+    }
 
-		h2 {
-			font-size: 12px;
-			line-height: 1.5;
-		}
+    h2 {
+      font-size: 12px;
+      line-height: 1.5;
+    }
 
-		h3 {
-			font-size: 12px;
-			line-height: 1.8;
-		}
+    h3 {
+      font-size: 12px;
+      line-height: 1.8;
+    }
 
-		h4 {
-			font-size: 10px;
-			line-height: 1.5;
-		}
+    h4 {
+      font-size: 10px;
+      line-height: 1.5;
+    }
 
-		h5 {
-			font-size: 9px;
-			line-height: 2.5;
-			letter-spacing: 1px;
-		}
+    h5 {
+      font-size: 9px;
+      line-height: 2.5;
+      letter-spacing: 1px;
+    }
 
-		h6 {
-			font-size: 12px;
-			line-height: 1.8;
-		}
+    h6 {
+      font-size: 12px;
+      line-height: 1.8;
+    }
 
-		p {
-			font-size: 11px;
-			line-height: 1.5;
-		}
+    p {
+      font-size: 11px;
+      line-height: 1.5;
+    }
 
-		table {
-			p {
-				font-size: 12px;
-				line-height: 1.5;
-				letter-spacing: 0;
-			}
+    ul, ol {
+      li {
+        font-size: 12px;
+        line-height: 1.8;
 
-			th,
-			td {
-				padding: 2px 0.25rem;
-			}
+        p {
+          font-size: 12px;
+          line-height: 1.8;
+        }
+      }
+    }
 
-			th:first-child,
-			td:first-child {
-				width: 171px !important;
-			}
-		}
+    ol {
+      padding: 0 0 0 19.5px;
+    }
 
-		figure {
-			figcaption {
-				font-size: 10px;
-			}
-		}
-	}
+    ul {
+      li::before {
+        top: 11.5px;
+      }
+    }
 
-	.remarkBlog {
-		h5 {
-			font-size: 12px;
-		}
-	}
+    table {
+      p {
+        font-size: 12px;
+        line-height: 1.5;
+        letter-spacing: 0;
+      }
 
-	.image-link-button {
-		width: 108px;
-	}
+      th,
+      td {
+        padding: 2px 0.25rem;
+      }
+
+      th:first-child,
+      td:first-child {
+        width: 171px !important;
+      }
+    }
+
+    figure {
+      figcaption {
+        font-size: 10px;
+      }
+    }
+  }
+
+  .remarkBlog {
+    h5 {
+      font-size: 12px;
+    }
+  }
+
+  .image-link-button {
+    width: 108px;
+  }
 }
 
 @media only screen and (max-width: 767px) {
-	.blog {
-		padding: 0 20px 0 -20px;
+  .blog {
+    padding: 0 20px 0 -20px !important;
 
-		h1 {
-			font-size: 20px;
-			line-height: 1;
-		}
+    h1 {
+      font-size: 20px;
+      line-height: 1;
+    }
 
-		h2 {
-			font-size: 12px;
-			line-height: 1.5;
-		}
+    h2 {
+      font-size: 12px;
+      line-height: 1.5;
+    }
 
-		h3 {
-			font-size: 12px;
-			line-height: 1.8;
-		}
+    h3 {
+      font-size: 12px;
+      line-height: 1.8;
+    }
 
-		h4 {
-			font-size: 10px;
-			line-height: 1.5;
-		}
+    h4 {
+      font-size: 10px;
+      line-height: 1.5;
+    }
 
-		h5 {
-			font-size: 9px;
-			line-height: 2.5;
-			letter-spacing: 1px;
-		}
+    h5 {
+      font-size: 9px;
+      line-height: 2.5;
+      letter-spacing: 1px;
+    }
 
-		h6 {
-			font-size: 12px;
-			line-height: 1.8;
-		}
+    h6 {
+      font-size: 12px;
+      line-height: 1.8;
+    }
 
-		p {
-			font-size: 11px;
-			line-height: 1.5;
-		}
+    p {
+      font-size: 11px;
+      line-height: 1.5;
+    }
 
-		table {
-			p {
-				font-size: 12px;
-				line-height: 1.5;
-				letter-spacing: 0;
-			}
+    ul, ol {
+      li {
+        font-size: 12px;
+        line-height: 1.8;
 
-			th,
-			td {
-				padding: 2px 0.25rem;
-			}
+        p {
+          font-size: 12px;
+          line-height: 1.8;
+        }
+      }
+    }
 
-			th:first-child,
-			td:first-child {
-				width: 171px !important;
-			}
-		}
+    ol {
+      padding: 0 0 0 19.5px;
+    }
 
-		figure {
-			figcaption {
-				font-size: 10px;
-			}
-		}
-	}
+    ul {
+      li::before {
+        top: 11.5px;
+      }
+    }
 
-	.remarkBlog {
-		h5 {
-			font-size: 12px;
-		}
-	}
+    table {
+      p {
+        font-size: 12px;
+        line-height: 1.5;
+        letter-spacing: 0;
+      }
 
-	.image-link-button {
-		width: 108px;
-	}
+      th,
+      td {
+        padding: 2px 0.25rem;
+      }
+
+      th:first-child,
+      td:first-child {
+        width: 171px !important;
+      }
+    }
+
+    figure {
+      figcaption {
+        font-size: 10px;
+      }
+    }
+  }
+
+  .remarkBlog {
+    h5 {
+      font-size: 12px;
+    }
+  }
+
+  .image-link-button {
+    width: 108px;
+  }
 }
