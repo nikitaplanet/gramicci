@@ -1,5 +1,5 @@
 <template>
-	<Dialog :show="show" @close="closeDialog" title="編輯表單內容" maxWidth="max-w-[660px]">
+	<Dialog :show="show" @close="closeDialog" maxWidth="max-w-[660px]" title="編輯表單內容">
 		<div id="tiptapTableEditor" class="flex flex-col space-y-5">
 			<InputContainer>
 				<Label for="input-link-url">表格標題 ＊</Label>
