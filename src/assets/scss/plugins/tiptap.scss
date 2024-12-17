@@ -174,7 +174,7 @@
     margin: 0;
     overflow: hidden;
     table-layout: fixed;
-    min-width: 100%;
+    min-width: 100% !important;
     width: 100%;
 
     th,
