@@ -1,466 +1,472 @@
 // 模板樣式
 .blog {
-  width: 100%;
-  max-width: 700px;
-  padding-left: -20px;
-  padding-bottom: 20px;
-  margin: auto;
-  font-family: Arial, 'PingFang TC', '微軟正黑體';
-  display: flex;
-  flex-direction: column;
-  color: #333333;
-  font-feature-settings: 'liga' 0;
+	width: 100%;
+	max-width: 700px;
+	padding-left: -20px;
+	padding-bottom: 20px;
+	margin: auto;
+	font-family: Arial, 'PingFang TC', '微軟正黑體';
+	display: flex;
+	flex-direction: column;
+	color: #333333;
+	font-feature-settings: 'liga' 0;
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	p {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
 
-  h1 {
-    font-family: Arial;
-    font-size: 30px;
-    line-height: 1.5;
-    letter-spacing: 1px;
-    font-weight: 700;
-    padding: 0;
-    margin: 0;
-  }
+	h1 {
+		font-family: Arial;
+		font-size: 30px;
+		line-height: 1.5;
+		letter-spacing: 1px;
+		font-weight: 700;
+		padding: 0;
+		margin: 0;
+	}
 
-  h2 {
-    font-family: 'PingFang TC';
-    font-size: 18px;
-    line-height: 1.5;
-    letter-spacing: 0.5px;
-    font-weight: 500;
-    padding: 0;
-    margin: 0;
-  }
+	h2 {
+		font-family: 'PingFang TC';
+		font-size: 18px;
+		line-height: 1.5;
+		letter-spacing: 0.5px;
+		font-weight: 500;
+		padding: 0;
+		margin: 0;
+	}
 
-  h3 {
-    font-family: 'PingFang TC';
-    font-size: 16px;
-    line-height: 1.8;
-    letter-spacing: 0.5px;
-    font-weight: 400;
-    padding: 0;
-    margin: 0;
-  }
+	h3 {
+		font-family: 'PingFang TC';
+		font-size: 16px;
+		line-height: 1.8;
+		letter-spacing: 0.5px;
+		font-weight: 400;
+		padding: 0;
+		margin: 0;
+	}
 
-  h4 {
-    font-family: 'PingFang TC';
-    font-size: 16px;
-    line-height: 1.5;
-    font-weight: 500;
-    padding: 0;
-    margin: 0;
-  }
+	h4 {
+		font-family: 'PingFang TC';
+		font-size: 16px;
+		line-height: 1.5;
+		font-weight: 500;
+		padding: 0;
+		margin: 0;
+	}
 
-  h5 {
-    font-family: 'PingFang TC';
-    font-size: 12px;
-    line-height: 2.5;
-    letter-spacing: 0.5px;
-    font-weight: 500;
-    padding: 0;
-    margin: 0;
-  }
+	h5 {
+		font-family: 'PingFang TC';
+		font-size: 12px;
+		line-height: 2.5;
+		letter-spacing: 0.5px;
+		font-weight: 500;
+		padding: 0;
+		margin: 0;
+	}
 
-  h6 {
-    font-family: 'PingFang TC';
-    font-size: 20px;
-    line-height: 1.8;
-    letter-spacing: 0.5px;
-    font-weight: 500;
-    padding: 0;
-    margin: 0;
-  }
+	h6 {
+		font-family: 'PingFang TC';
+		font-size: 20px;
+		line-height: 1.8;
+		letter-spacing: 0.5px;
+		font-weight: 500;
+		padding: 0;
+		margin: 0;
+	}
 
-  p {
-    font-family: 'PingFang TC';
-    font-size: 12px;
-    line-height: 1.5;
-    font-weight: 500;
-    min-height: 20px;
-    padding: 0;
-    margin: 0;
-  }
+	p {
+		font-family: 'PingFang TC';
+		font-size: 12px;
+		line-height: 1.5;
+		font-weight: 500;
+		min-height: 20px;
+		padding: 0;
+		margin: 0;
+	}
 
-  ol,
-  ul {
-    margin-left: 2rem; /* ml-8 */
-    list-style-position: outside; /* list-outside */
-    margin-top: 0.5rem !important; /* !mt-2 */
+	ol,
+	ul {
+		margin-left: 2rem; /* ml-8 */
+		list-style-position: outside; /* list-outside */
+		margin-top: 0.5rem !important; /* !mt-2 */
 
-    li {
-      margin-top: 0;
-      list-style-position: outside;
-      font-size: 16px;
-      line-height: 1.8;
+		li {
+			margin-top: 0;
+			list-style-position: outside;
+			font-size: 16px;
+			line-height: 1.8;
 
-      &:first-child {
-        margin-top: 0;
-      }
+			&:first-child {
+				margin-top: 0;
+			}
 
-      p {
-        font-family: 'PingFang TC';
-        font-size: 16px;
-        line-height: 1.8;
-        letter-spacing: 0.5px;
-        font-weight: 400;
-      }
-    }
-  }
+			p {
+				font-family: 'PingFang TC';
+				font-size: 16px;
+				line-height: 1.8;
+				letter-spacing: 0.5px;
+				font-weight: 400;
+			}
+		}
+	}
 
-  ol {
-    margin: 0;
-    list-style-type: decimal;
-    padding: 0 0 0 24px;
-  }
+	ol {
+		margin: 0;
+		list-style-type: decimal;
+		padding: 0 0 0 24px;
+	}
 
-  ul {
-    margin: 0;
-    list-style-type: none;
-    padding: 0 0 0 17.5px;
+	ul {
+		margin: 0;
+		list-style-type: none;
+		padding: 0 0 0 17.5px;
 
-    li {
-      position: relative;
-    }
+		li {
+			position: relative;
+		}
 
-    li::before {
-      content: "";
-      position: absolute;
-      left: -10px;
-      top: 15.5px;
-      transform: translateY(-50%);
-      width: 4px;
-      height: 4px;
-      background-color: black;
-      border-radius: 50%;
-    }
-  }
+		li::before {
+			content: '';
+			position: absolute;
+			left: -10px;
+			top: 15.5px;
+			transform: translateY(-50%);
+			width: 4px;
+			height: 4px;
+			background-color: black;
+			border-radius: 50%;
+		}
+	}
 
-  blockquote {
-    font-style: italic;
-    border-left: 4px solid #d1d5db; /* border-gray-300 */
-    padding: 0.5rem 1rem; /* p-4 py-2 */
-    margin-left: 1.5rem; /* ml-6 */
-    margin-top: 1.5rem !important; /* !mt-6 */
-    margin-bottom: 0.5rem !important; /* !mb-2 */
-  }
+	blockquote {
+		font-style: italic;
+		border-left: 4px solid #d1d5db; /* border-gray-300 */
+		padding: 0.5rem 1rem; /* p-4 py-2 */
+		margin-left: 1.5rem; /* ml-6 */
+		margin-top: 1.5rem !important; /* !mt-6 */
+		margin-bottom: 0.5rem !important; /* !mb-2 */
+	}
 
-  a {
-    color: #1e40af; /* text-blue-800 */
-    cursor: pointer;
-    text-decoration: none;
+	a {
+		color: #1e40af; /* text-blue-800 */
+		cursor: pointer;
+		text-decoration: none;
 
-    &:hover {
-      text-decoration: underline;
-    }
-  }
+		&:hover {
+			text-decoration: underline;
+		}
+	}
 
-  hr {
-    border-color: #9ca3af; /* border-gray-400 */
-  }
+	hr {
+		border-color: #9ca3af; /* border-gray-400 */
+	}
 
-  table {
-    border: 1px solid #000000;
-    border-collapse: collapse;
-    margin: 0;
-    overflow: hidden;
-    table-layout: fixed;
-    min-width: 100% !important;
-    width: 100%;
+	table {
+		border: 1px solid #000000;
+		border-collapse: collapse;
+		margin: 0;
+		overflow: hidden;
+		table-layout: fixed;
+		min-width: 100% !important;
+		width: 100%;
 
-    th,
-    td {
-      text-align: left;
-      border: 1px solid black;
-      padding: 2px 0.5rem;
-      position: relative;
-      box-sizing: border-box;
-      min-width: 1em;
-      vertical-align: center;
-    }
+		th,
+		td {
+			text-align: left;
+			border: 1px solid black;
+			padding: 2px 0.5rem;
+			position: relative;
+			box-sizing: border-box;
+			min-width: 1em;
+			vertical-align: center;
+		}
 
-    p {
-      font-family: 'PingFang TC';
-      font-size: 18px;
-      line-height: 1.5;
-      letter-spacing: 0.5px;
-      font-weight: 500;
-    }
+		p {
+			font-family: 'PingFang TC';
+			font-size: 18px;
+			line-height: 1.5;
+			letter-spacing: 0.5px;
+			font-weight: 500;
+		}
 
-    th:first-child,
-    tr:first-child td:first-child {
-      p {
-        font-family: 'Arial Black';
-      }
-    }
+		th:first-child,
+		tr:first-child td:first-child {
+			p {
+				font-family: 'Arial Black';
+			}
+		}
 
-    th:first-child,
-    td:first-child {
-      width: 290px !important;
-    }
-  }
+		th:first-child,
+		td:first-child {
+			width: 290px !important;
+		}
+	}
 
-  figure {
-    align-items: flex-start;
-    border-radius: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    width: 100%;
-    max-width: 100%;
+	figure {
+		align-items: flex-start;
+		border-radius: 0.5rem;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		width: 100%;
+		max-width: 100%;
 
-    img {
-      width: 100%;
-    }
+		img {
+			width: 100%;
+		}
 
-    figcaption {
-      position: absolute;
-      bottom: 15px;
-      left: 15px;
-      font-size: 18px;
-      color: #9f9f9f;
-      font-family: 'Arial';
-      line-height: 19px;
-      font-weight: 500;
-      letter-spacing: 0.5px;
-    }
-  }
+		figcaption {
+			position: absolute;
+			bottom: 15px;
+			left: 15px;
+			font-size: 18px;
+			color: #9f9f9f;
+			font-family: 'Arial';
+			line-height: 19px;
+			font-weight: 500;
+			letter-spacing: 0.5px;
+		}
+	}
 
-  .tableWrapper {
-    overflow: auto;
-    width: calc(100% - 40px);
-  }
+	.tableWrapper {
+		overflow: auto;
+		width: calc(100% - 40px);
+	}
 
-  .image-link-button {
-    display: block;
-    width: 153px;
-    transition: 0.2s ease;
-    margin-top: 8px;
+	.image-link-button {
+		display: block;
+		width: 153px;
+		transition: 0.2s ease;
+		margin-top: 8px;
 
-    &:hover {
-      opacity: 0.8;
-    }
+		&:hover {
+			opacity: 0.8;
+		}
 
-    img {
-      width: 100%;
-    }
-  }
-}
+		img {
+			width: 100%;
+		}
+	}
 
-.remarkBlog {
-  color: #333333;
-  margin-top: 20px;
+	.remarkBlog {
+		color: #333333;
+		margin-top: 20px;
 
-  h5 {
-    font-family: 'PingFang TC';
-    font-size: 13px;
-    line-height: 2.5;
-    letter-spacing: 0.5px;
-    font-weight: 500;
-  }
+		h5 {
+			font-family: 'PingFang TC';
+			font-size: 13px;
+			line-height: 2.5;
+			letter-spacing: 0.5px;
+			font-weight: 500;
+		}
+
+		a {
+			color: #cc0b0b !important;
+		}
+	}
 }
 
 .w767 {
-  .blog {
-    padding: 0 20px 0 -20px;
+	.blog {
+		padding: 0 20px 0 -20px;
 
-    h1 {
-      font-size: 20px;
-      line-height: 1;
-    }
+		h1 {
+			font-size: 20px;
+			line-height: 1;
+		}
 
-    h2 {
-      font-size: 12px;
-      line-height: 1.5;
-    }
+		h2 {
+			font-size: 12px;
+			line-height: 1.5;
+		}
 
-    h3 {
-      font-size: 12px;
-      line-height: 1.8;
-    }
+		h3 {
+			font-size: 12px;
+			line-height: 1.8;
+		}
 
-    h4 {
-      font-size: 10px;
-      line-height: 1.5;
-    }
+		h4 {
+			font-size: 10px;
+			line-height: 1.5;
+		}
 
-    h5 {
-      font-size: 9px;
-      line-height: 2.5;
-      letter-spacing: 1px;
-    }
+		h5 {
+			font-size: 9px;
+			line-height: 2.5;
+			letter-spacing: 1px;
+		}
 
-    h6 {
-      font-size: 12px;
-      line-height: 1.8;
-    }
+		h6 {
+			font-size: 12px;
+			line-height: 1.8;
+		}
 
-    p {
-      font-size: 11px;
-      line-height: 1.5;
-    }
+		p {
+			font-size: 11px;
+			line-height: 1.5;
+		}
 
-    ul, ol {
-      li {
-        font-size: 12px;
-        line-height: 1.8;
+		ul,
+		ol {
+			li {
+				font-size: 12px;
+				line-height: 1.8;
 
-        p {
-          font-size: 12px;
-          line-height: 1.8;
-        }
-      }
-    }
+				p {
+					font-size: 12px;
+					line-height: 1.8;
+				}
+			}
+		}
 
-    ol {
-      padding: 0 0 0 19.5px;
-    }
+		ol {
+			padding: 0 0 0 19.5px;
+		}
 
-    ul {
-      li::before {
-        top: 14.5px;
-      }
-    }
+		ul {
+			li::before {
+				top: 14.5px;
+			}
+		}
 
-    table {
-      p {
-        font-size: 12px;
-        line-height: 1.5;
-        letter-spacing: 0;
-      }
+		table {
+			p {
+				font-size: 12px;
+				line-height: 1.5;
+				letter-spacing: 0;
+			}
 
-      th,
-      td {
-        padding: 2px 0.25rem;
-      }
+			th,
+			td {
+				padding: 2px 0.25rem;
+			}
 
-      th:first-child,
-      td:first-child {
-        width: 171px !important;
-      }
-    }
+			th:first-child,
+			td:first-child {
+				width: 171px !important;
+			}
+		}
 
-    figure {
-      figcaption {
-        font-size: 10px;
-      }
-    }
-  }
+		figure {
+			figcaption {
+				font-size: 10px;
+			}
+		}
+	}
 
-  .remarkBlog {
-    h5 {
-      font-size: 12px;
-    }
-  }
+	.remarkBlog {
+		h5 {
+			font-size: 12px;
+		}
+	}
 
-  .image-link-button {
-    width: 108px;
-  }
+	.image-link-button {
+		width: 108px;
+	}
 }
 
 @media only screen and (max-width: 767px) {
-  .blog {
-    padding: 0 20px 0 -20px !important;
+	.blog {
+		padding: 0 20px 0 -20px !important;
 
-    h1 {
-      font-size: 20px;
-      line-height: 1;
-    }
+		h1 {
+			font-size: 20px;
+			line-height: 1;
+		}
 
-    h2 {
-      font-size: 12px;
-      line-height: 1.5;
-    }
+		h2 {
+			font-size: 12px;
+			line-height: 1.5;
+		}
 
-    h3 {
-      font-size: 12px;
-      line-height: 1.8;
-    }
+		h3 {
+			font-size: 12px;
+			line-height: 1.8;
+		}
 
-    h4 {
-      font-size: 10px;
-      line-height: 1.5;
-    }
+		h4 {
+			font-size: 10px;
+			line-height: 1.5;
+		}
 
-    h5 {
-      font-size: 9px;
-      line-height: 2.5;
-      letter-spacing: 1px;
-    }
+		h5 {
+			font-size: 9px;
+			line-height: 2.5;
+			letter-spacing: 1px;
+		}
 
-    h6 {
-      font-size: 12px;
-      line-height: 1.8;
-    }
+		h6 {
+			font-size: 12px;
+			line-height: 1.8;
+		}
 
-    p {
-      font-size: 11px;
-      line-height: 1.5;
-    }
+		p {
+			font-size: 11px;
+			line-height: 1.5;
+		}
 
-    ul, ol {
-      li {
-        font-size: 12px;
-        line-height: 1.8;
+		ul,
+		ol {
+			li {
+				font-size: 12px;
+				line-height: 1.8;
 
-        p {
-          font-size: 12px;
-          line-height: 1.8;
-        }
-      }
-    }
+				p {
+					font-size: 12px;
+					line-height: 1.8;
+				}
+			}
+		}
 
-    ol {
-      padding: 0 0 0 19.5px;
-    }
+		ol {
+			padding: 0 0 0 19.5px;
+		}
 
-    ul {
-      li::before {
-        top: 14.5px;
-      }
-    }
+		ul {
+			li::before {
+				top: 14.5px;
+			}
+		}
 
-    table {
-      p {
-        font-size: 12px;
-        line-height: 1.5;
-        letter-spacing: 0;
-      }
+		table {
+			p {
+				font-size: 12px;
+				line-height: 1.5;
+				letter-spacing: 0;
+			}
 
-      th,
-      td {
-        padding: 2px 0.25rem;
-      }
+			th,
+			td {
+				padding: 2px 0.25rem;
+			}
 
-      th:first-child,
-      td:first-child {
-        width: 171px !important;
-      }
-    }
+			th:first-child,
+			td:first-child {
+				width: 171px !important;
+			}
+		}
 
-    figure {
-      figcaption {
-        font-size: 10px;
-      }
-    }
-  }
+		figure {
+			figcaption {
+				font-size: 10px;
+			}
+		}
+	}
 
-  .remarkBlog {
-    h5 {
-      font-size: 12px;
-    }
-  }
+	.remarkBlog {
+		h5 {
+			font-size: 12px;
+		}
+	}
 
-  .image-link-button {
-    width: 108px;
-  }
+	.image-link-button {
+		width: 108px;
+	}
 }
