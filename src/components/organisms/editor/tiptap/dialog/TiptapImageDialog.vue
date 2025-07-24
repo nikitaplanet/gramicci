@@ -63,7 +63,6 @@ import CommonTextButton from '@components/organisms/editor/tiptap/toolButton/Com
 import NLink from '@components/atoms/NLink.vue';
 import {IconEraser, IconX, IconCircleX} from '@tabler/icons-vue';
 import {useImageCommentStore} from '@/store/imageComment.ts';
-import Container from 'postcss/lib/container';
 
 defineProps<{show: boolean}>();
 const emit = defineEmits(['close', 'insert']);
@@ -92,7 +91,10 @@ function closeDialog() {
 
 function insertImage() {
 	if (isAutoSaveComment && inputCaptionRef.value) store.addImageComment(inputCaptionRef.value);
-	emit('insert', {url: inputLinkRef.value, caption: inputCaptionRef.value});
+	emit('insert', {
+		url: inputLinkRef.value,
+		caption: inputCaptionRef.value,
+	});
 	emit('close');
 }
 </script>

@@ -101,7 +101,8 @@ const insertTable = (tableHtml: string) => {
 };
 
 const insertImage = (imageObj: Image) => {
-	props.editor?.chain().focus().setFigure({src: imageObj.url, caption: imageObj.caption}).run();
+	const captionColor = localStorage.getItem('captionColor') || '#9f9f9f';
+	props.editor?.chain().focus().setFigure({src: imageObj.url, caption: imageObj.caption, captionColor: captionColor}).run();
 };
 
 const insertCommonText = (text) => {
@@ -118,10 +119,10 @@ const insertLinkButton = () => {
 
 const handleChangeCaptionColor = (event) => {
 	const color = event.target.value;
+	localStorage.setItem('captionColor', color);
 
 	// 直接從 DOM 找 figcaption
 	const figcaptions = props.editor.view.dom.querySelectorAll('figcaption');
-	console.log('找到的 figcaption 數量:', figcaptions.length);
 
 	figcaptions.forEach((figcaptionDOM) => {
 		try {

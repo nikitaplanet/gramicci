@@ -84,24 +84,45 @@ export const Figure = Node.create<FigureOptions>({
 	addCommands() {
 		return {
 			setFigure:
-				({caption, ...attrs}) =>
-				({chain}) => {
-					return (
-						chain()
-							.insertContent({
-								type: this.name,
-								attrs,
-								content: caption ? [{type: 'text', text: caption}] : [],
-							})
-							// set cursor at end of caption field
-							.command(({tr, commands}) => {
-								const {doc, selection} = tr;
-								const position = doc.resolve(selection.to - 2).end();
+				({caption, captionColor, ...attrs}) =>
+				({chain, editor}) => {
+					console.log('setFigure 接收到的參數:', {caption, captionColor, attrs});
 
-								return commands.setTextSelection(position);
-							})
-							.run()
-					);
+					// 建立 caption 內容，直接包含顏色 mark
+					let captionContent = [];
+
+					if (caption) {
+						const textNode = {
+							type: 'text',
+							text: caption,
+						};
+
+						// 如果有顏色，添加 textStyle mark
+						if (captionColor && editor.schema.marks.textStyle) {
+							textNode.marks = [
+								{
+									type: 'textStyle',
+									attrs: {color: captionColor},
+								},
+							];
+						}
+
+						captionContent = [textNode];
+					}
+
+					// 插入 figure
+					return chain()
+						.insertContent({
+							type: this.name,
+							attrs,
+							content: captionContent,
+						})
+						.command(({tr, commands}) => {
+							const {doc, selection} = tr;
+							const position = doc.resolve(selection.to - 2).end();
+							return commands.setTextSelection(position);
+						})
+						.run();
 				},
 
 			imageToFigure:
