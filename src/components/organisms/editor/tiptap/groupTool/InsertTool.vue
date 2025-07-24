@@ -7,6 +7,10 @@
 			<IconPhoto class="h-5 w-5" />
 		</TiptapToolbarButton>
 
+		<div class="inline-flex h-8 w-8 shrink-0 flex-row items-center justify-center">
+			<input :value="editor.getAttributes('textStyle').color" @input="handleChangeCaptionColor" class="h-5 w-5" type="color" />
+		</div>
+
 		<TiptapToolbarButton @click="showAddTableDialog = true" label="Table">
 			<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 				<path
@@ -109,6 +113,40 @@ const insertLinkButton = () => {
 		src: 'https://img.shoplineapp.com/media/image_clips/67224698dcbea4000aff7dc9/original.png?1730299544',
 		href: 'https://www.gramiccitwshop.com/pages/fit-guide-2024',
 		alt: '版型指南',
+	});
+};
+
+const handleChangeCaptionColor = (event) => {
+	const color = event.target.value;
+
+	// 直接從 DOM 找 figcaption
+	const figcaptions = props.editor.view.dom.querySelectorAll('figcaption');
+	console.log('找到的 figcaption 數量:', figcaptions.length);
+
+	figcaptions.forEach((figcaptionDOM) => {
+		try {
+			// 獲取 DOM 元素在編輯器中的位置
+			const pos = props.editor.view.posAtDOM(figcaptionDOM, 0);
+			const resolvedPos = props.editor.state.doc.resolve(pos);
+
+			// 獲取 figcaption 節點
+			const figcaptionNode = resolvedPos.nodeAfter || resolvedPos.nodeBefore;
+
+			if (figcaptionNode) {
+				// 選擇整個 figcaption 內容
+				const from = pos;
+				const to = pos + figcaptionNode.nodeSize;
+
+				props.editor
+					.chain()
+					.focus()
+					.setTextSelection({ from, to })
+					.setColor(color)
+					.run();
+			}
+		} catch (e) {
+			console.error('處理 figcaption 時出錯:', e);
+		}
 	});
 };
 </script>
