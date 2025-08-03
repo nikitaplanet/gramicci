@@ -1,11 +1,16 @@
 import {defineStore} from 'pinia';
 import {useStorage} from '@vueuse/core';
 
+interface TemplateConfig {
+	figcaptionColor: string;
+}
+
 interface TemplateData {
 	id: string;
 	label: string;
 	value: string;
 	updateAt: string;
+	config: TemplateConfig;
 }
 
 export const useDataStore = defineStore('template', {
@@ -24,6 +29,7 @@ export const useDataStore = defineStore('template', {
 					item.value = data.value;
 					item.label = data.label;
 					item.updateAt = data.updateAt;
+					item.config = data.config;
 				}
 			});
 		},

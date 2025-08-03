@@ -19,8 +19,8 @@
 								class="border border-gray-400"
 								label="templateTrash"
 								title="刪除模板">
-								<IconTrash></IconTrash
-							></TiptapToolbarButton>
+								<IconTrash></IconTrash>
+							</TiptapToolbarButton>
 
 							<TiptapToolbarButton
 								@click="save(template.id, templatesLength - index)"
@@ -35,14 +35,16 @@
 								class="border border-gray-400"
 								label="templateEdit"
 								title="重新命名模板">
-								<IconEdit
-							/></TiptapToolbarButton>
+								<IconEdit />
+							</TiptapToolbarButton>
 
 							<TiptapToolbarButton @click="load(template.id)" class="border border-gray-400" label="templateEdit" title="套用模板">
-								<IconDownload
-							/></TiptapToolbarButton>
+								<IconDownload />
+							</TiptapToolbarButton>
 						</TiptapToolbarGroup>
-						<p class="text-sm font-bold text-[#5d5d5d] italic absolute bottom-5 right-6">{{ template.updateAt ?? '' }}</p>
+						<p class="text-sm font-bold text-[#5d5d5d] italic absolute bottom-5 right-6">
+							{{ template.updateAt ?? '' }}
+						</p>
 					</div>
 				</template>
 			</div>
@@ -55,6 +57,7 @@ import FullPageModal from '@components/organisms/modal/FullPageModal.vue';
 import {useVModel} from '@vueuse/core';
 import {ElMessage, ElMessageBox, ElButton} from 'element-plus';
 import {useDataStore} from '@/store/template.ts';
+import {useImageCommentStore} from '../../../store/imageComment';
 import {IconEdit, IconTrash, IconDeviceFloppy, IconDownload} from '@tabler/icons-vue';
 import TiptapToolbarGroup from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarGroup.vue';
 import TiptapToolbarButton from '@components/organisms/editor/tiptap/toolButton/TiptapToolbarButton.vue';
@@ -62,6 +65,7 @@ import {v4 as uuidv4} from 'uuid';
 import {computed} from 'vue';
 
 const store = useDataStore();
+const imageStore = useImageCommentStore();
 
 interface SaveTemplateModalProps {
 	modelValue: boolean;
@@ -75,8 +79,10 @@ const props = withDefaults(defineProps<SaveTemplateModalProps>(), {
 
 interface SaveTemplateModalEmit {
 	(event: 'update:modelValue', value: boolean): void;
+
 	(event: 'update', value: string): void;
 }
+
 const emit = defineEmits<SaveTemplateModalEmit>();
 
 const modelValueWritable = useVModel(props, 'modelValue', emit);
@@ -127,6 +133,9 @@ const save = (id?: string, dataIndex?: number) => {
 					label: value,
 					value: props.templateValue,
 					updateAt: formatDate(Date.now()),
+					config: {
+						figcaptionColor: imageStore.getImageCommentColor,
+					},
 				});
 			else {
 				store.addTemplate({
@@ -134,6 +143,9 @@ const save = (id?: string, dataIndex?: number) => {
 					label: value,
 					value: props.templateValue,
 					updateAt: formatDate(Date.now()),
+					config: {
+						figcaptionColor: imageStore.getImageCommentColor,
+					},
 				});
 			}
 			ElMessage({
@@ -200,6 +212,9 @@ const load = (id) => {
 	})
 		.then(() => {
 			const checkedIdData = store.getTemplates.find((data) => data.id === id);
+			if (checkedIdData.config?.figcaptionColor) {
+				imageStore.saveImageCommentColor(checkedIdData.config.figcaptionColor);
+			}
 
 			emit('update', checkedIdData.value);
 			ElMessage({
