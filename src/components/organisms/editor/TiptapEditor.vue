@@ -25,13 +25,15 @@
 				<EditorContent v-if="isEditable" :editor="editor" />
 				<div v-else v-html="htmlValue" class="preview"></div>
 			</div>
-			<div class="w-full text-xs text-center py-2 text-gray-400 italic">Copyright © 2025 GRAMICCI v1.3</div>
+			<div class="w-full text-xs text-center pb-5 text-gray-400 italic">Copyright © 2025 GRAMICCI v1.3</div>
 		</div>
 
 		<div v-if="isShowHtml" class="w-full">
 			<div class="w-full max-w-[800px] m-auto my-8 sm:my-0">
 				<ExportTemplate :savedData="htmlValue" />
+				<div class="w-full text-xs text-center py-5 text-gray-400 italic">Copyright © 2025 GRAMICCI v1.3</div>
 			</div>
+
 		</div>
 	</div>
 </template>
