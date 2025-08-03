@@ -113,6 +113,7 @@ const handleClick = (event) => {
 
 	&--hasUnderline {
 		text-decoration: underline;
+		text-underline-offset: 4px;
 	}
 
 	&:not(.n-link--disabled):hover {

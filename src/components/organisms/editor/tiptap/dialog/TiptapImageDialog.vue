@@ -68,12 +68,12 @@ defineProps<{show: boolean}>();
 const emit = defineEmits(['close', 'insert']);
 const inputLinkRef = ref<string>();
 const inputCaptionRef = ref<string>();
-const isAutoSaveComment = ref<Boolean>(true);
+const isAutoSaveComment = ref<boolean>(true);
 const store = useImageCommentStore();
 const isExpand = ref<boolean>(false);
 
 const commentOption = computed(() => {
-	return store.getImageComment.map((item, index) => {
+	return store.getImageComment.map((item) => {
 		return {label: item, value: item};
 	});
 });

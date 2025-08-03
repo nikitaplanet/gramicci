@@ -10,7 +10,7 @@ declare module '@tiptap/core' {
 			/**
 			 * Add a figure element
 			 */
-			setFigure: (options: {src: string; alt?: string; title?: string; caption?: string}) => ReturnType;
+			setFigure: (options: {src: string; alt?: string; title?: string; caption?: string; captionColor?: string}) => ReturnType;
 
 			/**
 			 * Converts an image to a figure
@@ -85,44 +85,91 @@ export const Figure = Node.create<FigureOptions>({
 		return {
 			setFigure:
 				({caption, captionColor, ...attrs}) =>
-				({chain, editor}) => {
+				({chain, tr, commands}) => {
 					console.log('setFigure 接收到的參數:', {caption, captionColor, attrs});
 
-					// 建立 caption 內容，直接包含顏色 mark
-					let captionContent = [];
+					try {
+						// 建立 caption 內容
+						let captionContent = [];
 
-					if (caption) {
-						const textNode = {
-							type: 'text',
-							text: caption,
-						};
-
-						// 如果有顏色，添加 textStyle mark
-						if (captionColor && editor.schema.marks.textStyle) {
-							textNode.marks = [
-								{
-									type: 'textStyle',
-									attrs: {color: captionColor},
-								},
-							];
+						if (caption) {
+							// 如果有指定顏色，建立帶有顏色標記的文字節點
+							if (captionColor) {
+								const textNode = {
+									type: 'text',
+									text: caption,
+									marks: [
+										{
+											type: 'textStyle',
+											attrs: {
+												color: captionColor,
+											},
+										},
+									],
+								};
+								captionContent = [textNode];
+							} else {
+								// 沒有指定顏色的情況
+								const textNode = {
+									type: 'text',
+									text: caption,
+								};
+								captionContent = [textNode];
+							}
 						}
 
-						captionContent = [textNode];
-					}
+						// 取得當前選取範圍
+						const {from, to} = tr.selection;
 
-					// 插入 figure
-					return chain()
-						.insertContent({
+						// 插入 figure 節點
+						const figureNode = {
 							type: this.name,
 							attrs,
 							content: captionContent,
-						})
-						.command(({tr, commands}) => {
-							const {doc, selection} = tr;
-							const position = doc.resolve(selection.to - 2).end();
-							return commands.setTextSelection(position);
-						})
-						.run();
+						};
+
+						// 插入內容並設置正確的游標位置
+						return chain()
+							.insertContentAt(from, figureNode)
+							.command(({tr: newTr, commands: newCommands}) => {
+								try {
+									const {doc} = newTr;
+
+									// 找到剛插入的 figure 節點
+									let figurePos = -1;
+									doc.descendants((node, pos) => {
+										if (node.type.name === this.name && figurePos === -1) {
+											figurePos = pos;
+											return false;
+										}
+									});
+
+									if (figurePos !== -1) {
+										// 計算 figcaption 的位置
+										const figureNode = doc.nodeAt(figurePos);
+										if (figureNode) {
+											// 設置游標到 figcaption 內部
+											const captionPos = figurePos + figureNode.firstChild?.nodeSize + 1 || figurePos + 1;
+
+											// 確保位置在有效範圍內
+											const safePos = Math.min(Math.max(captionPos, 0), doc.content.size);
+
+											return newCommands.setTextSelection(safePos);
+										}
+									}
+
+									// 如果找不到 figure，設置到文檔末尾
+									return newCommands.setTextSelection(doc.content.size);
+								} catch (error) {
+									console.error('設置游標位置時發生錯誤:', error);
+									return true; // 即使設置游標失敗也返回 true，避免整個命令失敗
+								}
+							})
+							.run();
+					} catch (error) {
+						console.error('setFigure 命令執行時發生錯誤:', error);
+						return false;
+					}
 				},
 
 			imageToFigure:
@@ -154,6 +201,8 @@ export const Figure = Node.create<FigureOptions>({
 							type: this.name,
 							attrs: {
 								src: node.attrs.src,
+								alt: node.attrs.alt,
+								title: node.attrs.title,
 							},
 						});
 					});
@@ -188,6 +237,8 @@ export const Figure = Node.create<FigureOptions>({
 							type: 'image',
 							attrs: {
 								src: node.attrs.src,
+								alt: node.attrs.alt,
+								title: node.attrs.title,
 							},
 						});
 					});
@@ -201,8 +252,7 @@ export const Figure = Node.create<FigureOptions>({
 				find: inputRegex,
 				type: this.type,
 				getAttributes: (match) => {
-					const [, src, alt, title] = match;
-
+					const [, alt, src, title] = match;
 					return {src, alt, title};
 				},
 			}),

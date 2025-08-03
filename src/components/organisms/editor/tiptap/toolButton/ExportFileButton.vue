@@ -27,6 +27,7 @@ const storeData = computed(() => {
 	};
 });
 const exportObjectAsText = () => {
+	console.log('storeData.value', storeData.value);
 	const objectString = JSON.stringify(storeData.value, null, 2);
 	const blob = new Blob([objectString], {type: 'text/plain'});
 	const url = URL.createObjectURL(blob);

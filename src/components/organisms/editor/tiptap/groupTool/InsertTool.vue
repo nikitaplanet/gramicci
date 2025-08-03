@@ -8,7 +8,7 @@
 		</TiptapToolbarButton>
 
 		<div class="inline-flex h-8 w-8 shrink-0 flex-row items-center justify-center">
-			<input :value="editor.getAttributes('textStyle').color" @input="handleChangeCaptionColor" class="h-5 w-5" type="color" />
+			<input :value="captionColor" @input="handleChangeCaptionColor" class="h-5 w-5" type="color" />
 		</div>
 
 		<TiptapToolbarButton @click="showAddTableDialog = true" label="Table">
@@ -54,8 +54,12 @@ import TiptapLinkDialog from '@components/organisms/editor/tiptap/dialog/TiptapL
 import CommonTextToolbar from '@components/organisms/editor/tiptap/groupTool/CommonTextToolbar.vue';
 import EditTableOverlay from '@components/organisms/editor/tiptap/dialog/EditTableOverlay.vue';
 
-import {ref} from 'vue';
+import {computed, ref} from 'vue';
 import {Image} from '@components/organisms/editor/tiptap/dialog';
+
+import {useImageCommentStore} from '@/store/imageComment.ts';
+
+const imageStore = useImageCommentStore();
 
 const props = defineProps({
 	editor: {
@@ -73,6 +77,9 @@ const showCommonTextDialog = ref(false);
 
 // Data
 const currentLinkInDialog = ref('');
+const captionColor = computed(() => {
+	return imageStore.getImageCommentColor;
+});
 
 // Methods
 const openLinkDialog = () => {
@@ -101,8 +108,15 @@ const insertTable = (tableHtml: string) => {
 };
 
 const insertImage = (imageObj: Image) => {
-	const captionColor = localStorage.getItem('captionColor') || '#9f9f9f';
-	props.editor?.chain().focus().setFigure({src: imageObj.url, caption: imageObj.caption, captionColor: captionColor}).run();
+	props.editor
+		?.chain()
+		.focus()
+		.setFigure({
+			src: imageObj.url,
+			caption: imageObj.caption,
+			captionColor: imageStore.getImageCommentColor,
+		})
+		.run();
 };
 
 const insertCommonText = (text) => {
@@ -119,7 +133,7 @@ const insertLinkButton = () => {
 
 const handleChangeCaptionColor = (event) => {
 	const color = event.target.value;
-	localStorage.setItem('captionColor', color);
+	imageStore.saveImageCommentColor(color);
 
 	// 直接從 DOM 找 figcaption
 	const figcaptions = props.editor.view.dom.querySelectorAll('figcaption');
@@ -138,12 +152,7 @@ const handleChangeCaptionColor = (event) => {
 				const from = pos;
 				const to = pos + figcaptionNode.nodeSize;
 
-				props.editor
-					.chain()
-					.focus()
-					.setTextSelection({ from, to })
-					.setColor(color)
-					.run();
+				props.editor.chain().focus().setTextSelection({from, to}).setColor(color).run();
 			}
 		} catch (e) {
 			console.error('處理 figcaption 時出錯:', e);
