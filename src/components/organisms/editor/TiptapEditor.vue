@@ -25,6 +25,7 @@
 				<EditorContent v-if="isEditable" :editor="editor" />
 				<div v-else v-html="htmlValue" class="preview"></div>
 			</div>
+			<div class="w-full text-xs text-center py-2 text-gray-400 italic">Copyright © 2025 GRAMICCI v1.3</div>
 		</div>
 
 		<div v-if="isShowHtml" class="w-full">
