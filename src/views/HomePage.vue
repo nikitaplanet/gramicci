@@ -4,7 +4,7 @@
 		<div class="teditor">
 			<TiptapEditor ref="editorRef" />
 		</div>
-		<div class="w-full text-xs text-center py-2 text-gray-400 italic">Copyright © 2025 GRAMICCI v1.2 / By Nikita Lyu</div>
+		<div class="w-full text-xs text-center py-2 text-gray-400 italic">Copyright © 2025 GRAMICCI v1.2</div>
 	</div>
 </template>
 <script lang="ts" setup>
