@@ -1,6 +1,6 @@
 <template>
 	<div v-if="editor" :class="{'tiptapContent--showOuterBorder': isShowBorderOuter}" id="tiptap" class="tiptapContent">
-		<div class="bg-tool-background sticky top-0 left-0 z-20 flex items-center justify-start flex-wrap">
+		<div class="bg-tool-background w-full fixed top-0 left-0 z-20 flex items-center justify-start flex-wrap ">
 			<LogoInTool />
 			<CacheTool :htmlContent="templateValue" @load="(data) => loadHtml(data)" />
 			<EditorStyleTool
@@ -18,7 +18,7 @@
 			<SyncConfigTool />
 		</div>
 
-		<div v-show="!isShowHtml" :class="{w767: isPreviewMobile}" class="w-full">
+		<div v-show="!isShowHtml" :class="{w767: isPreviewMobile}" class="w-full pt-12">
 			<div
 				:class="{'max-w-[1400px]': !isPreviewMobile, 'max-w-[400px] sm:max-w-full': isPreviewMobile}"
 				class="flex flex-col w-11/12 min-h-96 mx-auto bg-white my-8 sm:w-full sm:my-0 sm:mb-8 md:my-0 md:mb-8">
@@ -27,7 +27,7 @@
 			</div>
 		</div>
 
-		<div v-if="isShowHtml">
+		<div v-if="isShowHtml" class="w-full pt-12">
 			<div class="w-full max-w-[800px] m-auto my-8 sm:my-0">
 				<ExportTemplate :savedData="htmlValue" />
 			</div>

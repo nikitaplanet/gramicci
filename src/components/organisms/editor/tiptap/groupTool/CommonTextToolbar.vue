@@ -34,7 +34,7 @@
 							placeholder="搜尋常用字" />
 					</div>
 				</div>
-				<div class="w-full flex justify-start items-start flex-wrap gap-3 overflow-scroll">
+				<div class="w-full flex justify-start items-start flex-wrap gap-3 overflow-scroll commonTextContainer">
 					<template v-if="searchInput">
 						<CommonTextButton v-for="item in searchList" :key="`editCommon_${item}`" @click="textAction(item)" class="hover:bg-blue-700">
 							{{ item.content }}
@@ -165,4 +165,13 @@ const transHtmlFormat = (data: CommonText) => {
 	return data.content;
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.commonTextContainer {
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; /* IE & Edge */
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+</style>
